@@ -27,3 +27,7 @@ with io.open("temp/full_output.txt", "r") as f:
             break
         else:
             research_output.writelines(line + "\n")
+
+
+def getTotalStorage():
+    print("test")
