@@ -1,0 +1,5 @@
+sys
+pypdf
+csv
+pandas
+matplotlib

@@ -1,6 +1,11 @@
+# Note
+# Add headers to csv files?
+#
 import sys
 from pypdf import PdfReader
 import csv
+import pandas as pd
+import matplotlib as plt
 
 
 def main():
@@ -15,6 +20,8 @@ def main():
     csvWriter("research", "research")
     csvWriter("departments", "departments")
     csvWriter("colleges", "colleges")
+
+    getTotalStorage()
 
 
 def createFullOutput():
@@ -107,18 +114,52 @@ def createCollegesOutput():
 def csvWriter(input, output):
     with open(f"groups/{input}.txt", "r") as f:
         with open(f"csv/{output}.csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            if output == "research":
+                headers = [
+                    "Full Name",
+                    "DepCode",
+                    "AFS Groups",
+                    "Users AFS",
+                    "Users Panas.",
+                    "Tot.Used Space",
+                ]
+                writer.writerow(headers)
+            if output == "departments":
+                headers = [
+                    "Department",
+                    "AFS Groups",
+                    "Users AFS",
+                    "Users Panas.",
+                    "Tot.Used Space",
+                ]
+                writer.writerow(headers)
+            if output == "colleges":
+                headers = [
+                    "College Name",
+                    "AFS Groups",
+                    "Users AFS",
+                    "Users Panas.",
+                    "Tot.Used Space",
+                ]
+                writer.writerow(headers)
             for line in f:
                 trimmedWords = []
                 line = line.split("|")
                 for word in line:
                     new_word = word.strip()
                     trimmedWords.append(new_word)
-                writer = csv.writer(file)
+                # writer = csv.writer(file)
                 writer.writerow(trimmedWords)
 
 
 def getTotalStorage():
-    print("test")
+    total = 0
+    df = pd.read_csv("csv/research.csv")
+    total = df["Tot.Used Space"].sum()
+    terabyte = total / 1000000000
+    print(f"Total Storage (KB): {total}")
+    print(f"Total Storage (TB): {terabyte}")
 
 
 if __name__ == "__main__":
