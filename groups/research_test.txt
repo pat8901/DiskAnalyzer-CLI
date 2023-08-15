@@ -1,7 +1,3 @@
-Thu Aug 10 08:14:49 AM EDT 2023
-Space Used by Researchers
-Full Name                DepCode     AFS Groups      Users AFS      Users Panas.    Tot.Used Space
--------------------------------   -------    ------------    ------------    ------------    --------------
 Patrick Joseph Flynn           |  CSE    |   154246196295|    18783536436|    43559500120|     216589232851|
 Steven A Corcelli              |  CHEM   |   109582934193|     8842452101|    11298590080|     129723976374|
 Paola Crippa                   |  CEEES  |      149941544|       13069562|    73440000000|      73603011106|
@@ -503,6 +499,3 @@ Stefan Frauendorf              |  PHYS   |              0|             21|      
 Scott Mainwaring               |  POLSCI |              0|             21|              0|               21|
 Swapnil Motghare               |  LFIDS  |              0|             21|              0|               21|
 Viva Bartkus                   |  ITM    |              0|             21|              0|               21|
-=========================================|===============|===============|===============|=================|
-Total Used Space in KB                   |   834792165185|   245569748366|   331211102600|    1411573016151|
-Thu Aug 10 08:14:49 AM EDT 2023
