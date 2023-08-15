@@ -6,23 +6,21 @@ import csv
 def main():
     # input = sys.argv[1]
     # print(f'You said "{input}"')
+
     createFullOutput()
-    # createResearchOutput()
-    createResearchOutputTest()
+    createResearchOutput()
     createDepartmentOutput()
     createCollegesOutput()
-    # convertToCSV()
-    # convertToCSVTest()
-    listLine()
-    convert()
-    csvWriter()
+
+    csvWriter("research", "research")
+    csvWriter("departments", "departments")
+    csvWriter("colleges", "colleges")
 
 
 def createFullOutput():
     pdf = open("Storage_Rep_2023-08-10.pdf", "rb")
     reader = PdfReader(pdf)
-    with open("temp/full_output.txt", "w") as f_output:
-        # outputfile = open("temp/full_output.txt", "a")
+    with open("tmp/full_output.txt", "w") as f_output:
         count = 0
         for i in reader.pages:
             page = reader.pages[count]
@@ -31,31 +29,32 @@ def createFullOutput():
             count = count + 1
 
 
+# def createResearchOutput():
+#     search_string = "Space Used by Departments"
+#     # search_string = "M EDT 20"
+#     with open("temp/full_output.txt", "r") as f_input:
+#         with open("groups/research.txt", "w") as f_output:
+#             for line in f_input:
+#                 line = line.strip()
+#                 if search_string in line:
+#                     print(f'Found the search string "{line}"')
+#                     break
+#                 else:
+#                     f_output.write(line + "\n")
+
+
 def createResearchOutput():
-    search_string = "Space Used by Departments"
-    # search_string = "M EDT 20"
-    with open("temp/full_output.txt", "r") as f_input:
-        with open("groups/research.txt", "w") as f_output:
-            for line in f_input:
-                line = line.strip()
-                if search_string in line:
-                    print(f'Found the search string "{line}"')
-                    break
-                else:
-                    f_output.write(line + "\n")
-
-
-def createResearchOutputTest():
     begin = "-------------------------------   -------    ------------    ------------    ------------    --------------"
     end = "=========================================|===============|===============|===============|=================|"
     beginFound = False
-    with open("temp/full_output.txt", "r") as f_input:
-        with open("groups/research_test.txt", "w") as f_output:
+    with open("tmp/full_output.txt", "r") as f_input:
+        with open("groups/research.txt", "w") as f_output:
             for line in f_input:
                 if end in line:
                     break
                 if beginFound:
                     line = line.strip()
+                    line = line[:-1]
                     f_output.write(line + "\n")
                 elif begin in line:
                     beginFound = True
@@ -67,7 +66,7 @@ def createDepartmentOutput():
     end = "=========================================|===============|===============|===============|=================|"
     headerFound = False
     beginFound = False
-    with open("temp/full_output.txt", "r") as f_input:
+    with open("tmp/full_output.txt", "r") as f_input:
         with open("groups/departments.txt", "w") as f_output:
             for line in f_input:
                 if header in line:
@@ -77,6 +76,7 @@ def createDepartmentOutput():
                         break
                     elif beginFound:
                         line = line.strip()
+                        line = line[:-1]
                         f_output.write(line + "\n")
                     elif begin in line:
                         beginFound = True
@@ -88,7 +88,7 @@ def createCollegesOutput():
     end = "=========================================|===============|===============|===============|=================|"
     headerFound = False
     beginFound = False
-    with open("temp/full_output.txt", "r") as f_input:
+    with open("tmp/full_output.txt", "r") as f_input:
         with open("groups/colleges.txt", "w") as f_output:
             for line in f_input:
                 if header in line:
@@ -98,45 +98,23 @@ def createCollegesOutput():
                         break
                     elif beginFound:
                         line = line.strip()
+                        line = line[:-1]
                         f_output.write(line + "\n")
                     elif begin in line:
                         beginFound = True
 
 
-def listLine():
-    with open("groups/research_test.txt", "r") as f:
-        with open("temp/test.txt", "w") as f_out:
-            content = f.readlines()
-            line = content[0]
-            line = line.split("|")
-            for i in line:
-                string = i.strip()
-                # string = i.replace(" ", ",")
-                print(string)
-                f_out.write(string + ",")
-
-
-# Best working to csv so far
-def convert():
-    with open("groups/research_test.txt", "r") as f:
-        with open("temp/test_full.txt", "w") as f_out:
+def csvWriter(input, output):
+    with open(f"groups/{input}.txt", "r") as f:
+        with open(f"csv/{output}.csv", "w", newline="") as file:
             for line in f:
+                trimmedWords = []
                 line = line.split("|")
                 for word in line:
-                    string = word.strip()
-                    # string = i.replace(" ", ",")
-                    print(string)
-                    f_out.write(string + ",")
-                # f_out.write("\n")
-
-
-def csvWriter():
-    with open("groups/research_test.txt", "r") as f:
-        with open("temp/test.csv", "w", newline="") as file:
-            for line in f:
-                line = line.split("|")
+                    new_word = word.strip()
+                    trimmedWords.append(new_word)
                 writer = csv.writer(file)
-                writer.writerow(line)
+                writer.writerow(trimmedWords)
 
 
 def getTotalStorage():
