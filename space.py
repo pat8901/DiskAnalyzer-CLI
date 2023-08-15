@@ -5,7 +5,8 @@ import sys
 from pypdf import PdfReader
 import csv
 import pandas as pd
-import matplotlib as plt
+import matplotlib
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -22,6 +23,7 @@ def main():
     csvWriter("colleges", "colleges")
 
     getTotalStorage()
+    testPlot()
 
 
 def createFullOutput():
@@ -160,6 +162,25 @@ def getTotalStorage():
     terabyte = total / 1000000000
     print(f"Total Storage (KB): {total}")
     print(f"Total Storage (TB): {terabyte}")
+
+
+def testPlot():
+    df = pd.read_csv("csv/research.csv")
+    # df.plot()
+    # plt.show()
+
+    # df["Tot.Used Space"].plot(
+    #     kind="bar",
+    #     x="Full Name",
+    #     y="Tot.Used Space",
+    # )
+    # plt.show()
+    print(df)
+
+
+# Frequency binning function to plot pie chart
+def frequencyPlot():
+    df = pd.read_csv("csv/research.csv")
 
 
 if __name__ == "__main__":
