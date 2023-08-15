@@ -23,7 +23,8 @@ def main():
     csvWriter("colleges", "colleges")
 
     getTotalStorage()
-    testPlot()
+    # testPlot()
+    frequencyPlot()
 
 
 def createFullOutput():
@@ -180,7 +181,9 @@ def testPlot():
 
 # Frequency binning function to plot pie chart
 def frequencyPlot():
-    df = pd.read_csv("csv/research.csv")
+    data = pd.read_csv("csv/research.csv")
+    df = data["Tot.Used Space"].value_counts(bins="3")
+    print(df)
 
 
 if __name__ == "__main__":
