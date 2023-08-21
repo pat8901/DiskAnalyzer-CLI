@@ -7,6 +7,7 @@ import csv
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def main():
@@ -23,8 +24,8 @@ def main():
     csvWriter("colleges", "colleges")
 
     getTotalStorage()
-    #testPlot()
-    #frequencyPlot()
+    # testPlot()
+    # frequencyPlot()
     testPlot2()
 
 
@@ -166,7 +167,6 @@ def getTotalStorage():
     print(f"Total Storage (TB): {terabyte}")
 
 
-
 # Below are plots that I am testing to understand how to use matplotlib/pandas
 def testPlot():
     df = pd.read_csv("csv/research.csv")
@@ -183,9 +183,38 @@ def testPlot():
 
 
 def testPlot2():
-    df = pd.read_csv("csv/research.csv")
-    df.column
-   
+    df = pd.read_csv("csv/colleges.csv")
+    df = df.sort_values("Tot.Used Space", ascending=False)
+    x = df["College Name"]
+    y = df["Tot.Used Space"]
+    # y = np.arange(0, 17)
+    fig, ax = plt.subplots()
+
+    ax.bar(
+        x,
+        y,
+        width=1,
+        edgecolor="white",
+        color="purple",
+        linewidth=0.7,
+    )
+
+    ax.set(
+        ylabel="Kilobytes",
+        xlabel="Colleges",
+        title="Total College Storage",
+        # xlim=(0, 19),
+        # ylim=(0, 100000000000),
+        # yticks=[0, 100, 100000, 100000000, 100000000000],
+    )
+
+    ax.grid(visible=True, axis="y")
+
+    plt.xticks(rotation=45, ha="right")
+    plt.savefig("graphs/colleges/college_group_test.png")
+    plt.savefig("graphs/colleges/college_group_test.pdf")
+    plt.show()
+
 
 # Frequency binning function to plot pie chart
 def frequencyPlot():
