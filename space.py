@@ -23,8 +23,9 @@ def main():
     csvWriter("colleges", "colleges")
 
     getTotalStorage()
-    # testPlot()
-    frequencyPlot()
+    #testPlot()
+    #frequencyPlot()
+    testPlot2()
 
 
 def createFullOutput():
@@ -165,19 +166,26 @@ def getTotalStorage():
     print(f"Total Storage (TB): {terabyte}")
 
 
+
+# Below are plots that I am testing to understand how to use matplotlib/pandas
 def testPlot():
     df = pd.read_csv("csv/research.csv")
     # df.plot()
     # plt.show()
 
-    # df["Tot.Used Space"].plot(
-    #     kind="bar",
-    #     x="Full Name",
-    #     y="Tot.Used Space",
-    # )
-    # plt.show()
+    df["Tot.Used Space"].plot(
+        kind="bar",
+        x="Full Name",
+        y="Tot.Used Space",
+    )
+    plt.show()
     print(df)
 
+
+def testPlot2():
+    df = pd.read_csv("csv/research.csv")
+    df.column
+   
 
 # Frequency binning function to plot pie chart
 def frequencyPlot():
