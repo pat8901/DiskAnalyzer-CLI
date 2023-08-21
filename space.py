@@ -23,10 +23,9 @@ def main():
     csvWriter("departments", "departments")
     csvWriter("colleges", "colleges")
 
-    getTotalStorage()
-    # testPlot()
-    # frequencyPlot()
-    testPlot2()
+    # testCollegeGroupPlot()
+    # testCollegeIndividualPlot()
+    test_CollegePieChart()
 
 
 def createFullOutput():
@@ -167,7 +166,14 @@ def getTotalStorage():
     print(f"Total Storage (TB): {terabyte}")
 
 
+def addlabels(x, y):
+    for i in range(len(x)):
+        plt.text(i, y[i], y[i])
+
+
 # Below are plots that I am testing to understand how to use matplotlib/pandas
+
+
 def testPlot():
     df = pd.read_csv("csv/research.csv")
     # df.plot()
@@ -182,13 +188,82 @@ def testPlot():
     print(df)
 
 
-def testPlot2():
+def test_CollegePieChart():
+    terabyte = 1000000000
+    bins = [0, 1, 50, 100, 200, 300, 400, 500, 600]
+    labels = [
+        "0-1",
+        "1-50",
+        "50-100",
+        "100-200",
+        "200-300",
+        "300-400",
+        "400-500",
+        "500>",
+    ]
+    df = pd.read_csv("csv/colleges.csv")
+    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
+    df = df.sort_values("AFS Groups", ascending=False)
+    df["bin"] = pd.cut(
+        df["AFS Groups"],
+        bins,
+        labels=labels,
+        right=False,
+    )
+
+    x = df["bin"].value_counts()
+    print(x)
+    y = df["bin"].unique()
+    print(y)
+
+    fig, ax = plt.subplots()
+    ax.pie(x, labels=y, autopct="%1.1f%%")
+    plt.show()
+
+
+# +===============================================================================+
+# |
+# |
+# |
+# +===============================================================================+
+def testCollegeIndividualPlot():
+    terabyte = 1000000000
+    df = pd.read_csv("csv/colleges.csv")
+    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+    storage = {"afs": df["AFS Groups"], "total": df["Tot.Used Space"]}
+
+    fig, ax = plt.subplots()
+
+    for i, storage in storage.items():
+        p = ax.bar(
+            storage,
+            height=500,
+            label=i,
+        )
+
+    ax.bar_label(p, label_type="center")
+
+    # ax.set_title('')
+    ax.legend()
+
+    plt.show()
+
+
+def testCollegeGroupPlot():
+    terabyte = 1000000000
+
     df = pd.read_csv("csv/colleges.csv")
     df = df.sort_values("Tot.Used Space", ascending=False)
+    print(df)
+    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+    print("=========================================================")
+    print(df)
     x = df["College Name"]
     y = df["Tot.Used Space"]
     # y = np.arange(0, 17)
     fig, ax = plt.subplots()
+
+    # addlabels(x, y)
 
     ax.bar(
         x,
@@ -200,7 +275,7 @@ def testPlot2():
     )
 
     ax.set(
-        ylabel="Kilobytes",
+        ylabel="Terabytes",
         xlabel="Colleges",
         title="Total College Storage",
         # xlim=(0, 19),
