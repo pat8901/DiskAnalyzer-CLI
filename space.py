@@ -24,7 +24,9 @@ def main():
     # getGroupPieChart("research", "AFS Groups")
     # getGroupPieChart("colleges", "AFS Groups")
 
-    getUserBarChart("research")
+    # getUserBarChart("research")
+    testgetUserBarChart("research")
+    # finaltestgetUserBarChart("research")
 
 
 # +======================================================================================+
@@ -220,32 +222,158 @@ def getUserBarChart(input):
         print(i)
         fig, ax = plt.subplots()
         ax.bar(df.iloc[i]["Full Name"], df.iloc[i]["AFS Groups"], width=0.5)
+        ax.bar(df.iloc[i]["Full Name"], df.iloc[i]["Users AFS"], width=0.5)
         ax.set(
             ylabel="Terabytes",
             xlabel="User",
             title=f"{df.iloc[i]['Full Name']}'s AFS Storage Amount",
         )
+        ax.legend(loc="upper right")
         plt.savefig(f"graphs/research/user/{df.iloc[i]['Full Name']}_user_report.pdf")
         plt.close(fig)
         # plt.show()
 
-    # for i in users:
-    #     print(df.loc[df["Full Name"] == f"{i}"])
-    #     p = ax.bar()
-    #     fig, ax = plt.subplots()
-    #     x = i
-    #     y1 = df["AFS Groups"]
-    #     y2 = "Users AFS"
-    #     y3 = "Users Panas."
-    #     y4 = "Tot.Used Space"
-    #     ax.set(
-    #         title=f"User Storage's in Terabytes",
-    #     )
-    #     ax.bar(x, y1)
-    #     ax.bar(x, y2, bottom=y1)
-    #     ax.bar(x, y3, bottom=y1 + y2)
-    #     ax.bar(x, y4, bottom=y1 + y2 + y3)
-    #     plt.show()
+
+def finaltestgetUserBarChart(input):
+    terabyte = 1000000000
+    df = pd.read_csv(f"csv/{input}.csv")
+    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
+    df["Users AFS"] = df["Users AFS"].div(terabyte)
+    df["Users Panas."] = df["Users Panas."].div(terabyte)
+    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+    users = []
+    for i in df["Full Name"]:
+        users.append(i)
+    length = len(users)
+
+    # May be able to use in your pie chart issue to filter out the zeros ex. df.loc[df["Full Name"] != "Patrick Joseph Flynn"]
+    print(df.loc[df["Full Name"] == "Patrick Joseph Flynn"])
+    for i in range(length):
+        print(i)
+        fig, ax = plt.subplots()
+        p1 = ax.bar(
+            df.iloc[i]["Full Name"],
+            df.iloc[i]["AFS Groups"],
+            width=0.5,
+            color="lightblue",
+            label="AFS Groups",
+        )
+        ax.bar_label(p1, label_type="center")
+
+        p2 = ax.bar(
+            df.iloc[i]["Full Name"],
+            df.iloc[i]["Users AFS"],
+            width=0.5,
+            color="lightgreen",
+            bottom=df.iloc[i]["AFS Groups"],
+            label="Users AFS",
+        )
+        ax.bar_label(p2, label_type="center")
+
+        p3 = ax.bar(
+            df.iloc[i]["Full Name"],
+            df.iloc[i]["Users Panas."],
+            width=0.5,
+            color="lightcoral",
+            bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
+            label="Users Panas.",
+        )
+        ax.bar_label(p3, label_type="center")
+
+        p4 = ax.bar(
+            "Total",
+            df.iloc[i]["Tot.Used Space"],
+            width=0.5,
+            color="silver",
+            label="Tot.Used Space",
+        )
+        ax.bar_label(p4, label_type="center")
+
+        ax.set(
+            ylabel="Terabytes",
+            xlabel="User",
+            title=f"{df.iloc[i]['Full Name']}'s Storage Amounts",
+        )
+        lgd = ax.legend(loc="upper right")
+        plt.savefig(
+            f"graphs/research/tests/{df.iloc[i]['Full Name']}_user_report.pdf",
+            dpi=300,
+            format="pdf",
+            bbox_extra_artists=(lgd,),
+            bbox_inches="tight",
+        )
+        plt.close(fig)
+
+
+def testgetUserBarChart(input):
+    terabyte = 1000000000
+    df = pd.read_csv(f"csv/{input}.csv")
+
+    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
+    df["Users AFS"] = df["Users AFS"].div(terabyte)
+    df["Users Panas."] = df["Users Panas."].div(terabyte)
+    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+
+    print(df.loc[df["Full Name"] == "Patrick Joseph Flynn"])
+    i = 0
+    print(i)
+
+    fig, ax = plt.subplots()
+    p1 = ax.bar(
+        df.iloc[i]["Full Name"],
+        df.iloc[i]["AFS Groups"],
+        width=0.5,
+        color="lightblue",
+        label="AFS Groups",
+    )
+    ax.bar_label(p1, label_type="center")
+
+    p2 = ax.bar(
+        df.iloc[i]["Full Name"],
+        df.iloc[i]["Users AFS"],
+        width=0.5,
+        color="lightgreen",
+        bottom=df.iloc[i]["AFS Groups"],
+        label="Users AFS",
+    )
+    ax.bar_label(p2, label_type="center")
+
+    p3 = ax.bar(
+        df.iloc[i]["Full Name"],
+        df.iloc[i]["Users Panas."],
+        width=0.5,
+        color="lightcoral",
+        bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
+        label="Users Panas.",
+    )
+    ax.bar_label(p3, label_type="center")
+
+    p4 = ax.bar(
+        "Total",
+        df.iloc[i]["Tot.Used Space"],
+        width=0.5,
+        color="silver",
+        label="Tot.Used Space",
+    )
+    ax.bar_label(p4, label_type="center")
+
+    ax.set(
+        ylabel="Terabytes",
+        xlabel="User",
+        title=f"{df.iloc[i]['Full Name']}'s Storage Amounts",
+        width=1.0,
+    )
+    # ax.legend([p1, p2, p3, p4], ["AFS Groups", "Users AFS", "Users Panas.", "Tot.Used Space"])
+    lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+
+    plt.savefig(
+        f"graphs/research/tests/{df.iloc[i]['Full Name']}_user_report.pdf",
+        dpi=300,
+        format="pdf",
+        bbox_extra_artists=(lgd,),
+        bbox_inches="tight",
+    )
+    plt.show()
 
 
 # +======================================================================================+
