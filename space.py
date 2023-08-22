@@ -202,6 +202,7 @@ def test_CollegePieChart():
         "500>",
     ]
     df = pd.read_csv("csv/colleges.csv")
+
     df["AFS Groups"] = df["AFS Groups"].div(terabyte)
     df = df.sort_values("AFS Groups", ascending=False)
     df["bin"] = pd.cut(
@@ -209,15 +210,21 @@ def test_CollegePieChart():
         bins,
         labels=labels,
         right=False,
+        duplicates='drop'
     )
 
-    x = df["bin"].value_counts()
-    print(x)
-    y = df["bin"].unique()
-    print(y)
+    print(df)
+    print("====================================================================================================")
+
+    data = df["bin"].value_counts()
+    print(data)
+    print("====================================================================================================")
+
+    id = df["bin"].unique()
+    print(id)
 
     fig, ax = plt.subplots()
-    ax.pie(x, labels=y, autopct="%1.1f%%")
+    # ax.pie(data, labels=id, autopct="%1.1f%%")
     plt.show()
 
 
