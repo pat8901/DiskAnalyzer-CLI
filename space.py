@@ -314,54 +314,55 @@ def testgetUserBarChart(input):
     df["Users Panas."] = df["Users Panas."].div(terabyte)
     df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
 
-    print(df.loc[df["Full Name"] == "Patrick Joseph Flynn"])
-    i = 0
+    i = 500
     print(i)
 
     fig, ax = plt.subplots()
-    p1 = ax.bar(
-        df.iloc[i]["Full Name"],
-        df.iloc[i]["AFS Groups"],
-        width=0.5,
-        color="lightblue",
-        label="AFS Groups",
-    )
-    ax.bar_label(p1, label_type="center")
+    if df.iloc[i]["AFS Groups"] != 0:
+        p1 = ax.bar(
+            df.iloc[i]["Full Name"],
+            df.iloc[i]["AFS Groups"],
+            width=0.5,
+            color="lightblue",
+            label="AFS Groups",
+        )
+        ax.bar_label(p1, label_type="center")
 
-    p2 = ax.bar(
-        df.iloc[i]["Full Name"],
-        df.iloc[i]["Users AFS"],
-        width=0.5,
-        color="lightgreen",
-        bottom=df.iloc[i]["AFS Groups"],
-        label="Users AFS",
-    )
-    ax.bar_label(p2, label_type="center")
+    if df.iloc[i]["Users AFS"] != 0:
+        p2 = ax.bar(
+            df.iloc[i]["Full Name"],
+            df.iloc[i]["Users AFS"],
+            width=0.5,
+            color="lightgreen",
+            bottom=df.iloc[i]["AFS Groups"],
+            label="Users AFS",
+        )
+        ax.bar_label(p2, label_type="center")
 
-    p3 = ax.bar(
-        df.iloc[i]["Full Name"],
-        df.iloc[i]["Users Panas."],
-        width=0.5,
-        color="lightcoral",
-        bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
-        label="Users Panas.",
-    )
-    ax.bar_label(p3, label_type="center")
+    if df.iloc[i]["Users Panas."] != 0:
+        p3 = ax.bar(
+            df.iloc[i]["Full Name"],
+            df.iloc[i]["Users Panas."],
+            width=0.5,
+            color="lightcoral",
+            bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
+            label="Users Panas.",
+        )
+        ax.bar_label(p3, label_type="center")
 
-    p4 = ax.bar(
-        "Total",
-        df.iloc[i]["Tot.Used Space"],
-        width=0.5,
-        color="silver",
-        label="Tot.Used Space",
-    )
-    ax.bar_label(p4, label_type="center")
+    if df.iloc[i]["Tot.Used Space"] != 0:
+        p4 = ax.bar(
+            "Total",
+            df.iloc[i]["Tot.Used Space"],
+            width=0.5,
+            color="slateblue",
+            label="Tot.Used Space",
+        )
+        ax.bar_label(p4, label_type="center")
 
     ax.set(
         ylabel="Terabytes",
-        xlabel="User",
         title=f"{df.iloc[i]['Full Name']}'s Storage Amounts",
-        width=1.0,
     )
     # ax.legend([p1, p2, p3, p4], ["AFS Groups", "Users AFS", "Users Panas.", "Tot.Used Space"])
     lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
