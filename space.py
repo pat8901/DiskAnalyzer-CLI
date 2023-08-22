@@ -20,8 +20,11 @@ def main():
     csvWriter("departments", "departments")
     csvWriter("colleges", "colleges")
 
-    getGroupPieChart("research", "AFS Groups")
-    getGroupPieChart("colleges", "AFS Groups")
+    # How do I get rid of the bins with 0's so they dont display in the plots?
+    # getGroupPieChart("research", "AFS Groups")
+    # getGroupPieChart("colleges", "AFS Groups")
+
+    getUserBarChart("research")
 
 
 # +======================================================================================+
@@ -160,7 +163,7 @@ def csvWriter(input, output):
 
 
 # +======================================================================================+
-# |             This fucntion sums the column of Total Storage and prints                |
+# |             This function sums the column of Total Storage and prints                |
 # |                           onto the screen in terabytes                               |
 # +======================================================================================+
 def getTotalStorage():
@@ -198,7 +201,55 @@ def testPlot():
 
 
 # +======================================================================================+
-# | This fucntion takes in a csv file and a single column which then creates a pie chart |
+# |             Creates a stacked bar chart displaying the different amounts             |
+# |                           of storage a user is using                                 |
+# +======================================================================================+
+def getUserBarChart(input):
+    terabyte = 1000000000
+    df = pd.read_csv(f"csv/{input}.csv")
+    users = []
+    for i in df["Full Name"]:
+        users.append(i)
+    length = len(users)
+
+    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
+
+    # May be able to use in your pie chart issue to filter out the zeros ex. df.loc[df["Full Name"] != "Patrick Joseph Flynn"]
+    print(df.loc[df["Full Name"] == "Patrick Joseph Flynn"])
+    for i in range(length):
+        print(i)
+        fig, ax = plt.subplots()
+        ax.bar(df.iloc[i]["Full Name"], df.iloc[i]["AFS Groups"], width=0.5)
+        ax.set(
+            ylabel="Terabytes",
+            xlabel="User",
+            title=f"{df.iloc[i]['Full Name']}'s AFS Storage Amount",
+        )
+        plt.savefig(f"graphs/research/user/{df.iloc[i]['Full Name']}_user_report.pdf")
+        plt.close(fig)
+        # plt.show()
+
+    # for i in users:
+    #     print(df.loc[df["Full Name"] == f"{i}"])
+    #     p = ax.bar()
+    #     fig, ax = plt.subplots()
+    #     x = i
+    #     y1 = df["AFS Groups"]
+    #     y2 = "Users AFS"
+    #     y3 = "Users Panas."
+    #     y4 = "Tot.Used Space"
+    #     ax.set(
+    #         title=f"User Storage's in Terabytes",
+    #     )
+    #     ax.bar(x, y1)
+    #     ax.bar(x, y2, bottom=y1)
+    #     ax.bar(x, y3, bottom=y1 + y2)
+    #     ax.bar(x, y4, bottom=y1 + y2 + y3)
+    #     plt.show()
+
+
+# +======================================================================================+
+# | This function takes in a csv file and a single column which then creates a pie chart |
 # | displaying the counts of binned data within a specified range                        |
 # +======================================================================================+
 def getGroupPieChart(input, column):
@@ -240,7 +291,7 @@ def getGroupPieChart(input, column):
 
 
 # +======================================================================================+
-# |         This fucntion creates a plot for a individual displaying storages            |
+# |         This function creates a plot for a individual displaying storages            |
 # |                             *Not Complete*                                           |
 # +======================================================================================+
 def testCollegeIndividualPlot():
