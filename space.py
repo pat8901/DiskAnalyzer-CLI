@@ -1,6 +1,3 @@
-# Note
-# Add headers to csv files?
-#
 import sys
 from pypdf import PdfReader
 import csv
@@ -14,7 +11,7 @@ def main():
     # input = sys.argv[1]
     # print(f'You said "{input}"')
 
-    createFullOutput()
+    createFullOutput("Storage_Rep_2023-08-10.pdf")
     createResearchOutput()
     createDepartmentOutput()
     createCollegesOutput()
@@ -23,13 +20,16 @@ def main():
     csvWriter("departments", "departments")
     csvWriter("colleges", "colleges")
 
-    # testCollegeGroupPlot()
-    # testCollegeIndividualPlot()
-    test_CollegePieChart()
+    getGroupPieChart("research", "AFS Groups")
+    getGroupPieChart("colleges", "AFS Groups")
 
 
-def createFullOutput():
-    pdf = open("Storage_Rep_2023-08-10.pdf", "rb")
+# +======================================================================================+
+# |           Converts input pdf into a txt file to be used in further processing        |
+# |                           *Can be optimized further*                                 |
+# +======================================================================================+
+def createFullOutput(input):
+    pdf = open(f"{input}", "rb")
     reader = PdfReader(pdf)
     with open("tmp/full_output.txt", "w") as f_output:
         count = 0
@@ -40,20 +40,10 @@ def createFullOutput():
             count = count + 1
 
 
-# def createResearchOutput():
-#     search_string = "Space Used by Departments"
-#     # search_string = "M EDT 20"
-#     with open("temp/full_output.txt", "r") as f_input:
-#         with open("groups/research.txt", "w") as f_output:
-#             for line in f_input:
-#                 line = line.strip()
-#                 if search_string in line:
-#                     print(f'Found the search string "{line}"')
-#                     break
-#                 else:
-#                     f_output.write(line + "\n")
-
-
+# +======================================================================================+
+# |           Converts input pdf into a txt file to be used in further processing        |
+# |                           *Can be optimized further*                                 |
+# +======================================================================================+
 def createResearchOutput():
     begin = "-------------------------------   -------    ------------    ------------    ------------    --------------"
     end = "=========================================|===============|===============|===============|=================|"
@@ -71,6 +61,10 @@ def createResearchOutput():
                     beginFound = True
 
 
+# +======================================================================================+
+# |           Converts input pdf into a txt file to be used in further processing        |
+# |                           *Can be optimized further*                                 |
+# +======================================================================================+
 def createDepartmentOutput():
     header = "                                            Space Used by Departments"
     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
@@ -93,6 +87,10 @@ def createDepartmentOutput():
                         beginFound = True
 
 
+# +======================================================================================+
+# |           Converts input pdf into a txt file to be used in further processing        |
+# |                           *Can be optimized further*                                 |
+# +======================================================================================+
 def createCollegesOutput():
     header = "                                            Space Used by Colleges"
     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
@@ -115,6 +113,10 @@ def createCollegesOutput():
                         beginFound = True
 
 
+# +======================================================================================+
+# |           Converts input pdf into a txt file to be used in further processing        |
+# |                           *Can be optimized further*                                 |
+# +======================================================================================+
 def csvWriter(input, output):
     with open(f"groups/{input}.txt", "r") as f:
         with open(f"csv/{output}.csv", "w", newline="") as file:
@@ -157,6 +159,10 @@ def csvWriter(input, output):
                 writer.writerow(trimmedWords)
 
 
+# +======================================================================================+
+# |             This fucntion sums the column of Total Storage and prints                |
+# |                           onto the screen in terabytes                               |
+# +======================================================================================+
 def getTotalStorage():
     total = 0
     df = pd.read_csv("csv/research.csv")
@@ -166,14 +172,17 @@ def getTotalStorage():
     print(f"Total Storage (TB): {terabyte}")
 
 
+# +======================================================================================+
+# |             This fucntion may be helpful in adding labels to graphs                  |
+# +======================================================================================+
 def addlabels(x, y):
     for i in range(len(x)):
         plt.text(i, y[i], y[i])
 
 
-# Below are plots that I am testing to understand how to use matplotlib/pandas
-
-
+# +======================================================================================+
+# |             This fucntion may be helpful in adding labels to graphs                  |
+# +======================================================================================+
 def testPlot():
     df = pd.read_csv("csv/research.csv")
     # df.plot()
@@ -188,51 +197,52 @@ def testPlot():
     print(df)
 
 
-def test_CollegePieChart():
+# +======================================================================================+
+# | This fucntion takes in a csv file and a single column which then creates a pie chart |
+# | displaying the counts of binned data within a specified range                        |
+# +======================================================================================+
+def getGroupPieChart(input, column):
     terabyte = 1000000000
     bins = [0, 1, 50, 100, 200, 300, 400, 500, 600]
     labels = [
-        "0-1",
-        "1-50",
-        "50-100",
-        "100-200",
-        "200-300",
-        "300-400",
-        "400-500",
-        "500>",
+        "0-1 TB",
+        "1-50 TB",
+        "50-100 TB",
+        "100-200 TB",
+        "200-300 TB",
+        "300-400 TB",
+        "400-500 TB",
+        "500 TB >",
     ]
-    df = pd.read_csv("csv/colleges.csv")
+    df = pd.read_csv(f"csv/{input}.csv")
 
-    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
-    df = df.sort_values("AFS Groups", ascending=False)
+    df[f"{column}"] = df[f"{column}"].div(terabyte)
+    df = df.sort_values(f"{column}", ascending=False)
     df["bin"] = pd.cut(
-        df["AFS Groups"],
+        df[f"{column}"],
         bins,
         labels=labels,
-        right=False,
-        duplicates='drop'
     )
 
-    print(df)
-    print("====================================================================================================")
-
     data = df["bin"].value_counts()
-    print(data)
-    print("====================================================================================================")
-
-    id = df["bin"].unique()
-    print(id)
+    id = df["bin"]
 
     fig, ax = plt.subplots()
-    # ax.pie(data, labels=id, autopct="%1.1f%%")
+    ax.set(
+        title=f"{input} {column} Storage in Terabytes",
+    )
+    ax.pie(
+        data,
+        labels=labels,
+        autopct="%1.1f%%",
+    )
     plt.show()
 
 
-# +===============================================================================+
-# |
-# |
-# |
-# +===============================================================================+
+# +======================================================================================+
+# |         This fucntion creates a plot for a individual displaying storages            |
+# |                             *Not Complete*                                           |
+# +======================================================================================+
 def testCollegeIndividualPlot():
     terabyte = 1000000000
     df = pd.read_csv("csv/colleges.csv")
@@ -256,6 +266,9 @@ def testCollegeIndividualPlot():
     plt.show()
 
 
+# +======================================================================================+
+# |             This fucntion may be helpful in adding labels to graphs                  |
+# +======================================================================================+
 def testCollegeGroupPlot():
     terabyte = 1000000000
 
@@ -298,7 +311,9 @@ def testCollegeGroupPlot():
     plt.show()
 
 
-# Frequency binning function to plot pie chart
+# +======================================================================================+
+# |                 Frequency binning function to plot pie chart                         |
+# +======================================================================================+
 def frequencyPlot():
     data = pd.read_csv("csv/research.csv")
     df = data["Tot.Used Space"].value_counts(bins="3")
