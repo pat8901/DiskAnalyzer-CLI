@@ -307,14 +307,26 @@ def finaltestgetUserBarChart(input):
 
 def testgetUserBarChart(input):
     terabyte = 1000000000
+    gigabyte = 1000000
+    megabyte = 1000
+    kilobytes = 1
+    i = 136
     df = pd.read_csv(f"csv/{input}.csv")
 
-    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
-    df["Users AFS"] = df["Users AFS"].div(terabyte)
-    df["Users Panas."] = df["Users Panas."].div(terabyte)
-    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+    divisor = getDivisor(df.iloc[i]["Tot.Used Space"])
+    print(df.iloc[i]["Tot.Used Space"])
+    print(divisor)
+    counter = getChartCounter(divisor)
+    unit = getUnit(counter)
+    
 
-    i = 500
+
+    df["AFS Groups"] = df["AFS Groups"].div(divisor)
+    df["Users AFS"] = df["Users AFS"].div(divisor)
+    df["Users Panas."] = df["Users Panas."].div(divisor)
+    df["Tot.Used Space"] = df["Tot.Used Space"].div(divisor)
+
+    
     print(i)
 
     fig, ax = plt.subplots()
@@ -358,10 +370,11 @@ def testgetUserBarChart(input):
             color="slateblue",
             label="Tot.Used Space",
         )
-        ax.bar_label(p4, label_type="center")
+        ax.bar_label(p4, labels=[f"{df.iloc[i]['Tot.Used Space']} {unit}"], label_type="center")
+        #ax.bar_label(p4, label_type="center")
 
     ax.set(
-        ylabel="Terabytes",
+        ylabel=counter,
         title=f"{df.iloc[i]['Full Name']}'s Storage Amounts",
     )
     # ax.legend([p1, p2, p3, p4], ["AFS Groups", "Users AFS", "Users Panas.", "Tot.Used Space"])
@@ -489,6 +502,57 @@ def testCollegeGroupPlot():
     plt.savefig("graphs/colleges/college_group_test.png")
     plt.savefig("graphs/colleges/college_group_test.pdf")
     plt.show()
+
+
+# +======================================================================================+
+# |       Tool to determine the proper divisor to use when given a pandas dataframe      |
+# |             Uses the total storage of a user to calculate the divisor                |
+# +======================================================================================+
+def getDivisor(input): 
+    # may be faster to do bit shifting?
+    terabyte = 1000000000
+    gigabyte = 1000000
+    megabyte = 1000
+    kilobyte = 1
+
+    if terabyte <= input:
+        return terabyte
+    elif gigabyte <= input < terabyte:
+        return gigabyte
+    elif megabyte <= input < gigabyte:
+        return megabyte
+    else: 
+        return kilobyte
+   
+
+
+# +======================================================================================+
+# |               Tool to number to its corresponding name returns a string              |
+# +======================================================================================+
+def getChartCounter(input):
+    terabyte = 1000000000
+    gigabyte = 1000000
+    megabyte = 1000
+    kilobyte = 1
+    if input == terabyte:
+        return 'Terabytes'
+    elif input == gigabyte:
+        return 'Gigabytes'
+    elif input == megabyte:
+        return 'Megabytes'
+    else: return 'Kilobytes'
+
+# +======================================================================================+
+# |               Tool to number to its corresponding name returns a string              |
+# +======================================================================================+
+def getUnit(input):
+    if input == 'Terabytes':
+        return 'TB'
+    elif input == 'Gigabytes':
+        return 'GB'
+    elif input == 'Megabytes':
+        return 'MB'
+    else: return 'KB'
 
 
 # +======================================================================================+
