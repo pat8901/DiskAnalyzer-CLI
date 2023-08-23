@@ -25,7 +25,7 @@ def main():
     # getGroupPieChart("colleges", "AFS Groups")
 
     # getUserBarChart("research")
-    testgetUserBarChart("research")
+    test_getUserBarChart("research")
     # finaltestgetUserBarChart("research")
 
 
@@ -305,30 +305,35 @@ def finaltestgetUserBarChart(input):
         plt.close(fig)
 
 
-def testgetUserBarChart(input):
+# +======================================================================================+
+# |             Testing function for when getting a user's bar chart of storages         |
+# |                         Only creates one user at a time                              |
+# +======================================================================================+
+def test_getUserBarChart(input):
     terabyte = 1000000000
     gigabyte = 1000000
     megabyte = 1000
     kilobytes = 1
-    i = 136
+    i = 0
     df = pd.read_csv(f"csv/{input}.csv")
 
     divisor = getDivisor(df.iloc[i]["Tot.Used Space"])
-    print(df.iloc[i]["Tot.Used Space"])
-    print(divisor)
+    print(f'raw storage amount: {df.iloc[i]["Tot.Used Space"]}')
+    print(f"divisor: {divisor}")
     counter = getChartCounter(divisor)
     unit = getUnit(counter)
-    
 
-
+    # Converting units
     df["AFS Groups"] = df["AFS Groups"].div(divisor)
     df["Users AFS"] = df["Users AFS"].div(divisor)
     df["Users Panas."] = df["Users Panas."].div(divisor)
     df["Tot.Used Space"] = df["Tot.Used Space"].div(divisor)
 
-    
-    print(i)
+    # Using numpy to create an array to house total values. May be better to use numpy to hold values of the other columns too!
+    array = np.array(df["Tot.Used Space"])
+    total = array[i]
 
+    print(f"User index: {i}")
     fig, ax = plt.subplots()
     if df.iloc[i]["AFS Groups"] != 0:
         p1 = ax.bar(
@@ -336,7 +341,7 @@ def testgetUserBarChart(input):
             df.iloc[i]["AFS Groups"],
             width=0.5,
             color="lightblue",
-            label="AFS Groups",
+            label="AFS Group",
         )
         ax.bar_label(p1, label_type="center")
 
@@ -347,7 +352,7 @@ def testgetUserBarChart(input):
             width=0.5,
             color="lightgreen",
             bottom=df.iloc[i]["AFS Groups"],
-            label="Users AFS",
+            label="AFS User",
         )
         ax.bar_label(p2, label_type="center")
 
@@ -358,28 +363,50 @@ def testgetUserBarChart(input):
             width=0.5,
             color="lightcoral",
             bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
-            label="Users Panas.",
+            label="Panasas User",
         )
         ax.bar_label(p3, label_type="center")
 
-    if df.iloc[i]["Tot.Used Space"] != 0:
+    if df.iloc[i]["Tot.Used Space"] == 0:
         p4 = ax.bar(
-            "Total",
+            "Total Storage",
             df.iloc[i]["Tot.Used Space"],
             width=0.5,
             color="slateblue",
             label="Tot.Used Space",
         )
-        ax.bar_label(p4, labels=[f"{df.iloc[i]['Tot.Used Space']} {unit}"], label_type="center")
-        #ax.bar_label(p4, label_type="center")
+        ax.bar_label(
+            # p4, labels=[f"{df.iloc[i]['Tot.Used Space']} {unit}"], label_type="center"
+            p4,
+            label_type="center",
+        )
 
-    ax.set(
-        ylabel=counter,
-        title=f"{df.iloc[i]['Full Name']}'s Storage Amounts",
+    ax.set(ylabel=counter, title=f"{df.iloc[i]['Full Name']}'s Storage Amounts")
+
+    # Setting axis limits
+    xlimits = ax.get_xlim()
+    ax.set_xlim(left=-0.7, right=0.7)
+    ylimits = ax.get_ylim()  # getting the current yaxis limits
+    ax.set_ylim(bottom=None, top=(ylimits[1] + ylimits[1] * 0.15))
+
+    # Displaying total on top of bar
+    print(f"total value: {array[i]}")
+    total = np.float64(np.format_float_positional(total, precision=4))
+    print(total)
+    ax.text(
+        0,
+        total + (total * 0.07),
+        f"Total: {total}",
+        ha="center",
+        weight="bold",
+        color="black",
     )
+
+    # ax.ticklabel_format()
     # ax.legend([p1, p2, p3, p4], ["AFS Groups", "Users AFS", "Users Panas.", "Tot.Used Space"])
     lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
 
+    # Saving the figure
     plt.savefig(
         f"graphs/research/tests/{df.iloc[i]['Full Name']}_user_report.pdf",
         dpi=300,
@@ -508,7 +535,7 @@ def testCollegeGroupPlot():
 # |       Tool to determine the proper divisor to use when given a pandas dataframe      |
 # |             Uses the total storage of a user to calculate the divisor                |
 # +======================================================================================+
-def getDivisor(input): 
+def getDivisor(input):
     # may be faster to do bit shifting?
     terabyte = 1000000000
     gigabyte = 1000000
@@ -521,9 +548,8 @@ def getDivisor(input):
         return gigabyte
     elif megabyte <= input < gigabyte:
         return megabyte
-    else: 
+    else:
         return kilobyte
-   
 
 
 # +======================================================================================+
@@ -534,25 +560,29 @@ def getChartCounter(input):
     gigabyte = 1000000
     megabyte = 1000
     kilobyte = 1
+
     if input == terabyte:
-        return 'Terabytes'
+        return "Terabytes"
     elif input == gigabyte:
-        return 'Gigabytes'
+        return "Gigabytes"
     elif input == megabyte:
-        return 'Megabytes'
-    else: return 'Kilobytes'
+        return "Megabytes"
+    else:
+        return "Kilobytes"
+
 
 # +======================================================================================+
 # |               Tool to number to its corresponding name returns a string              |
 # +======================================================================================+
 def getUnit(input):
-    if input == 'Terabytes':
-        return 'TB'
-    elif input == 'Gigabytes':
-        return 'GB'
-    elif input == 'Megabytes':
-        return 'MB'
-    else: return 'KB'
+    if input == "Terabytes":
+        return "TB"
+    elif input == "Gigabytes":
+        return "GB"
+    elif input == "Megabytes":
+        return "MB"
+    else:
+        return "KB"
 
 
 # +======================================================================================+
