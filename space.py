@@ -25,8 +25,8 @@ def main():
     # getGroupPieChart("colleges", "AFS Groups")
 
     # getUserBarChart("research")
-    test_getUserBarChart("research")
-    # finaltestgetUserBarChart("research")
+    # test_getUserBarChart("research")
+    finaltestgetUserBarChart("research")
 
 
 # +======================================================================================+
@@ -234,69 +234,107 @@ def getUserBarChart(input):
         # plt.show()
 
 
+# +======================================================================================+
+# |           Official bar chart function that creates batches of user charts            |
+# +======================================================================================+
 def finaltestgetUserBarChart(input):
-    terabyte = 1000000000
     df = pd.read_csv(f"csv/{input}.csv")
-    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
-    df["Users AFS"] = df["Users AFS"].div(terabyte)
-    df["Users Panas."] = df["Users Panas."].div(terabyte)
-    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+    dfBase = pd.read_csv(f"csv/{input}.csv")
+
+    # Calculating how many rows are in the datframe column "Full Name" *can make this a seperate function, may come in handy later*
     users = []
     for i in df["Full Name"]:
         users.append(i)
     length = len(users)
 
-    # May be able to use in your pie chart issue to filter out the zeros ex. df.loc[df["Full Name"] != "Patrick Joseph Flynn"]
-    print(df.loc[df["Full Name"] == "Patrick Joseph Flynn"])
+    afsGroups = np.array(df["AFS Groups"])
+    afsUsers = np.array(df["Users AFS"])
+    panasasUsers = np.array(df["Users Panas."])
+    totalSpace = np.array(df["Tot.Used Space"])
+
+    # Generating a chart for each user found in "users" array
     for i in range(length):
-        print(i)
+        print(f"User Index: {i}")
+        print(f'Name {df.iloc[i]["Full Name"]}')
+        print(f'Amount {df.iloc[i]["Tot.Used Space"]}')
+        divisor = getDivisor(dfBase.iloc[i]["Tot.Used Space"])
+        print(f"divsior: {divisor}")
+        counter = getChartCounter(divisor)
+        print(f"counter: {counter}")
+
+        # dfTest["AFS Groups"] = df["AFS Groups"]
+        # dfTest["Users AFS"] = df["Users AFS"]
+        # dfTest["Users Panas."] = df["Users Panas."]
+        # dfTest["Tot.Used Space"] = df["Tot.Used Space"]
+
+        df["AFS Groups"] = dfBase["AFS Groups"].div(divisor)
+        df["Users AFS"] = dfBase["Users AFS"].div(divisor)
+        df["Users Panas."] = dfBase["Users Panas."].div(divisor)
+        df["Tot.Used Space"] = dfBase["Tot.Used Space"].div(divisor)
+
+        # Using numpy to create an array to house total values. May be better to use numpy to hold values of the other columns too!
+        array = np.array(df["Tot.Used Space"])
+        total = array[i]
+
         fig, ax = plt.subplots()
-        p1 = ax.bar(
-            df.iloc[i]["Full Name"],
-            df.iloc[i]["AFS Groups"],
-            width=0.5,
-            color="lightblue",
-            label="AFS Groups",
-        )
-        ax.bar_label(p1, label_type="center")
 
-        p2 = ax.bar(
-            df.iloc[i]["Full Name"],
-            df.iloc[i]["Users AFS"],
-            width=0.5,
-            color="lightgreen",
-            bottom=df.iloc[i]["AFS Groups"],
-            label="Users AFS",
-        )
-        ax.bar_label(p2, label_type="center")
+        if df.iloc[i]["AFS Groups"] != 0:
+            p1 = ax.bar(
+                df.iloc[i]["Full Name"],
+                df.iloc[i]["AFS Groups"],
+                width=0.5,
+                color="lightblue",
+                label="AFS Group",
+            )
+            ax.bar_label(p1, label_type="center")
 
-        p3 = ax.bar(
-            df.iloc[i]["Full Name"],
-            df.iloc[i]["Users Panas."],
-            width=0.5,
-            color="lightcoral",
-            bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
-            label="Users Panas.",
-        )
-        ax.bar_label(p3, label_type="center")
+        if df.iloc[i]["Users AFS"] != 0:
+            p2 = ax.bar(
+                df.iloc[i]["Full Name"],
+                df.iloc[i]["Users AFS"],
+                width=0.5,
+                color="lightgreen",
+                bottom=df.iloc[i]["AFS Groups"],
+                label="AFS User",
+            )
+            ax.bar_label(p2, label_type="center")
 
-        p4 = ax.bar(
-            "Total",
-            df.iloc[i]["Tot.Used Space"],
-            width=0.5,
-            color="silver",
-            label="Tot.Used Space",
-        )
-        ax.bar_label(p4, label_type="center")
+        if df.iloc[i]["Users Panas."] != 0:
+            p3 = ax.bar(
+                df.iloc[i]["Full Name"],
+                df.iloc[i]["Users Panas."],
+                width=0.5,
+                color="lightcoral",
+                bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
+                label="Panasas User",
+            )
+            ax.bar_label(p3, label_type="center")
 
-        ax.set(
-            ylabel="Terabytes",
-            xlabel="User",
-            title=f"{df.iloc[i]['Full Name']}'s Storage Amounts",
+        ax.set(ylabel=counter, title=f"{df.iloc[i]['Full Name']}'s Storage Amounts")
+
+        # Setting axis limits
+        xlimits = ax.get_xlim()
+        ax.set_xlim(left=-0.7, right=0.7)
+        ylimits = ax.get_ylim()
+        ax.set_ylim(bottom=None, top=(ylimits[1] + ylimits[1] * 0.15))
+
+        # Displaying total on top of bar
+        total = np.float64(np.format_float_positional(total, precision=4))
+        ax.text(
+            0,
+            total + (total * 0.07),
+            f"Total: {total}",
+            ha="center",
+            weight="bold",
+            color="black",
         )
-        lgd = ax.legend(loc="upper right")
+
+        # Displaying legend
+        lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+
+        # Saving the figure
         plt.savefig(
-            f"graphs/research/tests/{df.iloc[i]['Full Name']}_user_report.pdf",
+            f"graphs/research/users/{df.iloc[i]['Full Name']}_user_report.pdf",
             dpi=300,
             format="pdf",
             bbox_extra_artists=(lgd,),
@@ -314,8 +352,11 @@ def test_getUserBarChart(input):
     gigabyte = 1000000
     megabyte = 1000
     kilobytes = 1
-    i = 0
+    i = 112
     df = pd.read_csv(f"csv/{input}.csv")
+
+    # May be able to use in your pie chart issue to filter out the zeros ex. df.loc[df["Full Name"] != "Patrick Joseph Flynn"]
+    print(df.loc[df["Full Name"] == "Patrick Joseph Flynn"])
 
     divisor = getDivisor(df.iloc[i]["Tot.Used Space"])
     print(f'raw storage amount: {df.iloc[i]["Tot.Used Space"]}')
@@ -550,6 +591,32 @@ def getDivisor(input):
         return megabyte
     else:
         return kilobyte
+
+
+# +======================================================================================+
+# |       Tool to determine the proper divisor to use when given a pandas dataframe      |
+# |             Uses the total storage of a user to calculate the divisor                |
+# +======================================================================================+
+def getDivisorArray(inputArray):
+    # may be faster to do bit shifting?
+    terabyte = 1000000000
+    gigabyte = 1000000
+    megabyte = 1000
+    kilobyte = 1
+    outputArray = np.zeros(len(inputArray))
+
+    np.array(inputArray)
+    for i in range(inputArray):
+        if terabyte <= input:
+            outputArray = np.insert(outputArray, i, terabyte)
+        elif gigabyte <= input < terabyte:
+            outputArray = np.insert(outputArray, i, gigabyte)
+        elif megabyte <= input < gigabyte:
+            outputArray = np.insert(outputArray, i, megabyte)
+        else:
+            outputArray = np.insert(outputArray, i, kilobyte)
+
+    return outputArray
 
 
 # +======================================================================================+
