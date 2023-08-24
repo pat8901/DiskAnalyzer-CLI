@@ -459,6 +459,14 @@ def test_getUserBarChart(input):
 
 
 # +======================================================================================+
+# |  Creates a histogram using binned data as x values and their frequencies as y values |
+# |   *This is different from piechart as it would make sense to have 0 counts for bins* |
+# +======================================================================================+
+def getGroupHistogram():
+    print('hello')
+
+
+# +======================================================================================+
 # | This function takes in a csv file and a single column which then creates a pie chart |
 # | displaying the counts of binned data within a specified range                        |
 # +======================================================================================+
@@ -528,7 +536,7 @@ def testCollegeIndividualPlot():
 
 
 # +======================================================================================+
-# |             This fucntion may be helpful in adding labels to graphs                  |
+# |             This function may be helpful in adding labels to graphs                  |
 # +======================================================================================+
 def testCollegeGroupPlot():
     terabyte = 1000000000
