@@ -16,8 +16,8 @@ import misc
 # |  Creates a histogram using binned data as x values and their frequencies as y values |
 # |   *This is different from piechart as it would make sense to have 0 counts for bins* |
 # +======================================================================================+
-def getGroupHistogram(input, column):
-    df = pd.read_csv(f"csv/{input}.csv")
+def getGroupHistogram(input, column, date):
+    df = pd.read_csv(f"csv/{input}_{date}.csv")
     terabyte = 1000000000
     bins = [0, 1, 50, 100, 200, 300, 400, 500, 600]
     better_bins = tools.binCreator(80, 2, 0)
@@ -63,7 +63,7 @@ def getGroupHistogram(input, column):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/histogram_group_storage_2steps.pdf",
+        f"graphs/research/group/histogram_{column}_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),

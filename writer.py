@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import tools
 
 
 # +======================================================================================+
@@ -12,9 +13,10 @@ import numpy as np
 # |                           *Can be optimized further*                                 |
 # +======================================================================================+
 def createFullOutput(input):
+    date = tools.getReportDate(input)
     pdf = open(f"{input}", "rb")
     reader = PdfReader(pdf)
-    with open("tmp/full_output.txt", "w") as f_output:
+    with open(f"tmp/full_output_{date}.txt", "w") as f_output:
         count = 0
         for i in reader.pages:
             page = reader.pages[count]
@@ -27,12 +29,12 @@ def createFullOutput(input):
 # |           Converts input pdf into a txt file to be used in further processing        |
 # |                           *Can be optimized further*                                 |
 # +======================================================================================+
-def createResearchOutput():
+def createResearchOutput(date):
     begin = "-------------------------------   -------    ------------    ------------    ------------    --------------"
     end = "=========================================|===============|===============|===============|=================|"
     beginFound = False
-    with open("tmp/full_output.txt", "r") as f_input:
-        with open("groups/research.txt", "w") as f_output:
+    with open(f"tmp/full_output_{date}.txt", "r") as f_input:
+        with open(f"groups/research_{date}.txt", "w") as f_output:
             for line in f_input:
                 if end in line:
                     break
@@ -48,14 +50,14 @@ def createResearchOutput():
 # |           Converts input pdf into a txt file to be used in further processing        |
 # |                           *Can be optimized further*                                 |
 # +======================================================================================+
-def createDepartmentOutput():
+def createDepartmentOutput(date):
     header = "                                            Space Used by Departments"
     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
     end = "=========================================|===============|===============|===============|=================|"
     headerFound = False
     beginFound = False
-    with open("tmp/full_output.txt", "r") as f_input:
-        with open("groups/departments.txt", "w") as f_output:
+    with open(f"tmp/full_output_{date}.txt", "r") as f_input:
+        with open(f"groups/departments_{date}.txt", "w") as f_output:
             for line in f_input:
                 if header in line:
                     headerFound = True
@@ -74,14 +76,14 @@ def createDepartmentOutput():
 # |           Converts input pdf into a txt file to be used in further processing        |
 # |                           *Can be optimized further*                                 |
 # +======================================================================================+
-def createCollegesOutput():
+def createCollegesOutput(date):
     header = "                                            Space Used by Colleges"
     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
     end = "=========================================|===============|===============|===============|=================|"
     headerFound = False
     beginFound = False
-    with open("tmp/full_output.txt", "r") as f_input:
-        with open("groups/colleges.txt", "w") as f_output:
+    with open(f"tmp/full_output_{date}.txt", "r") as f_input:
+        with open(f"groups/colleges_{date}.txt", "w") as f_output:
             for line in f_input:
                 if header in line:
                     headerFound = True
@@ -100,9 +102,9 @@ def createCollegesOutput():
 # |           Converts input pdf into a txt file to be used in further processing        |
 # |                           *Can be optimized further*                                 |
 # +======================================================================================+
-def csvWriter(input, output):
-    with open(f"groups/{input}.txt", "r") as f:
-        with open(f"csv/{output}.csv", "w", newline="") as file:
+def csvWriter(input, output, date):
+    with open(f"groups/{input}_{date}.txt", "r") as f:
+        with open(f"csv/{output}_{date}.csv", "w", newline="") as file:
             writer = csv.writer(file)
             if output == "research":
                 headers = [

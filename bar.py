@@ -58,7 +58,7 @@ def finaltestgetUserBarChart(input):
                 df.iloc[i]["Full Name"],
                 df.iloc[i]["AFS Groups"],
                 width=0.5,
-                color="dodgerblue",
+                color="tab:blue",
                 label="AFS Group",
             )
             ax.bar_label(p1, label_type="center")
@@ -68,7 +68,7 @@ def finaltestgetUserBarChart(input):
                 df.iloc[i]["Full Name"],
                 df.iloc[i]["Users AFS"],
                 width=0.5,
-                color="limegreen",
+                color="tab:green",
                 bottom=df.iloc[i]["AFS Groups"],
                 label="AFS User",
             )

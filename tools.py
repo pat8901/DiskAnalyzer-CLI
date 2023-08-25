@@ -131,3 +131,7 @@ def binCreator(amount, step, start):
         left = left + step
     # bins.append()
     return bins
+
+
+def getReportDate(report_file):
+    return report_file[12:22]

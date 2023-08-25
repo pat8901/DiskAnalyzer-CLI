@@ -17,14 +17,16 @@ def main():
     # input = sys.argv[1]
     # print(f'You said "{input}"')
 
-    writer.createFullOutput("Storage_Rep_2023-08-10.pdf")
-    writer.createResearchOutput()
-    writer.createDepartmentOutput()
-    writer.createCollegesOutput()
+    report_date = tools.getReportDate("Storage_Rep_2023-08-10.pdf")
 
-    writer.csvWriter("research", "research")
-    writer.csvWriter("departments", "departments")
-    writer.csvWriter("colleges", "colleges")
+    writer.createFullOutput("Storage_Rep_2023-08-10.pdf")
+    writer.createResearchOutput(report_date)
+    writer.createDepartmentOutput(report_date)
+    writer.createCollegesOutput(report_date)
+
+    writer.csvWriter("research", "research", report_date)
+    writer.csvWriter("departments", "departments", report_date)
+    writer.csvWriter("colleges", "colleges", report_date)
 
     # getGroupPieChart("research", "AFS Groups")
     # getGroupPieChart("colleges", "AFS Groups")
@@ -32,7 +34,8 @@ def main():
     # getUserBarChart("research")
     # test_getUserBarChart("research")
     # bar.finaltestgetUserBarChart("research")
-    histogram.getGroupHistogram("research", "AFS Groups")
+
+    histogram.getGroupHistogram("research", "AFS Groups", report_date)
     # secGetGroupHistogram('research','AFS Groups')
 
 
