@@ -1,0 +1,50 @@
+Academic & Administrative Services       |              0|              0|              0|                0
+Alliance for Catholic Education          |              0|       19524265|              0|         19524265
+Applied & Computational Math & Statistics|    19843425177|     8262220727|     2479536252|      30585182156
+Accountancy                              |              0|      328513982|              0|        328513982
+College of Arts & Letters                |              0|             21|              0|               21
+Aero Mechanical Engineering              |     7245501323|    18261909650|    58621173576|      84128584549
+Anthropology                             |              0|       78899208|              0|         78899208
+Architecture                             |      854991491|             21|              0|        854991512
+Biological Sciences                      |   107596555849|    21317838371|    11322580992|     140236975212
+Civil Engineering & Geological Sciences  |    23040507176|    12021433033|    37103811288|      72165751497
+Chemical & Biomolecular Engineering      |    35400869741|     9990688077|    37056390264|      82447948082
+Chemistry & Biochemistry                 |   129045709273|    13597330672|    15670921192|     158313961137
+Center for Nano Science & Technology     |              0|              0|              0|                0
+College of Business Administration       |    27104166289|      648481366|             24|      27752647679
+Center for Research Computing            |     6157605817|     7217825512|    52443976272|      65819407601
+Computer Science and Engineering         |   203947442724|    61860324809|    17423791652|     283231559185
+Center for Social Research               |              0|             42|              0|               42
+Center for Transgene Research            |              0|       83758015|              0|         83758015
+Economics                                |    11163123869|    11559506697|      953940096|      23676570662
+Electrical Engineering                   |      362485257|     5812117446|     2333845048|       8508447751
+English                                  |              0|         114266|              0|           114266
+College of Engineering                   |              0|             22|              0|               22
+Engineering and Science Computing        |              0|      175764665|              0|        175764665
+Finance                                  |    14687627228|     8488722408|     1570000184|      24746349820
+Government                               |              0|              0|              0|                0
+Graduate School                          |              0|              0|              0|                0
+Institute for Latino Studies             |              0|              0|              0|                0
+IT Mendoza                               |      545248464|     1729040863|             40|       2274289367
+Kaneb Center                             |              0|             42|              0|               42
+Kellogg Institute for International Studi|              0|       28228653|              0|         28228653
+Kroc Institute for International Peace St|              0|              0|              0|                0
+Keough School of Global Affairs          |              0|       11724995|              0|         11724995
+University Libraries                     |      191707606|     1129307244|      205130024|       1526144874
+Law School                               |              0|      108115957|              0|        108115957
+Marketing                                |     1625407554|       38694487|              0|       1664102041
+Management                               |       89688308|      141328222|              0|        231016530
+Mathematics                              |              0|       60157183|       13290000|         73447183
+Notre Dame Research                      |              0|              0|              0|                0
+Nuclear Structure Lab                    |     7817338366|              0|              0|       7817338366
+Office of Digital Learning               |              0|              0|              0|                0
+Office of Information Technologies       |              0|        3658579|              0|          3658579
+Pre-College Programs                     |              0|              0|              0|                0
+Philosophy                               |              0|            713|              0|              713
+Physics                                  |    52257154512|    11819639891|     7526645912|      71603440315
+Political Science                        |              0|       88161610|              0|         88161610
+Psychology                               |     7517704310|     5836415608|      659510072|      14013629990
+Radiation Lab                            |     5243686148|     1082273422|        9340072|       6335299642
+College of Science                       |              0|        7515992|              0|          7515992
+Sociology                                |       11043477|     1314086560|              0|       1325130037
+Theology                                 |      526643419|      186600478|        8670104|        721914001

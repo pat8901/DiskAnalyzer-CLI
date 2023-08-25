@@ -1,0 +1,472 @@
+Patrick Joseph Flynn           |  CSE    |   133762065171|    16969457292|    45844660096|     196576182559
+Steven A Corcelli              |  CHEM   |    66712344736|     7600111587|     5940069048|      80252525371
+Michael Pfrender               |  BIO    |    50303592131|     1531151446|      338890464|      52173634041
+Brian M Baker                  |  CHEM   |    50500444961|      389879289|      221660048|      51111984298
+Walter J Scheirer              |  CSE    |    25639284958|    10593155097|    12724759160|      48957199215
+Paola Crippa                   |  CEGEOS |      137855522|       12983354|    45270000332|      45420839208
+Jonathan MacArt                |  AME    |              0|      371233164|    37879430000|      38250663164
+Jeffrey Feder                  |  BIO    |    26850901523|     5711011077|     2882310152|      35444222752
+Christopher Fruehwirth         |  COBA   |    28647000123|      113646287|              0|      28760646410
+Edward Maginn                  |  CBE    |     2601107824|     6264081365|    18624960096|      27490149285
+David Chiang                   |  CSE    |    26789360218|      697603431|        3010024|      27489973673
+Paul Raymond Brenner           |  CRC    |     7554346308|     4597614459|    15235828560|      27387789327
+Ashley Parkinson Thrall        |  CEGEOS |    25507430100|       60244499|              0|      25567674599
+Jonathan Whitmer               |  CBE    |    22849393378|     1252333333|     1448920024|      25550646735
+Nora J Besansky                |  BIO    |    16032437696|      215063824|     4590289024|      20837790544
+Center for ShockWave Processing|  AME    |              0|      489269359|    19090000000|      19579269359
+Grant Mathews                  |  PHYS   |     3238190673|     2511283690|    12655893096|      18405367459
+Paul H Schultz                 |  FIN    |    12921690238|     1968040738|     1490000000|      16379730976
+Jonathan D Hauenstein          |  ACMS   |    14903299318|      816400290|             48|      15719699656
+Elizabeth A Archie             |  BIO    |     7182512883|      196397099|     7970000024|      15348910006
+Olaf Wiest                     |  CHEM   |     2912156953|     2679293875|     8781040096|      14372490924
+Michael Wiescher               |  PHYS   |    12237204517|      541432903|              0|      12778637420
+William Frederich Schneider    |  CBE    |     5151483043|     5271811937|     1958140096|      12381435076
+Kirk Bennett Doran             |  ECON   |     9987066706|     1993978084|             48|      11981044838
+Joannes Westerink              |  CEGEOS |      568047616|     1134805677|     9956616024|      11659469317
+Kevin W Bowyer                 |  CSE    |     4522898647|     6787909067|      259041584|      11569849298
+Manoel Jacques Couder          |  PHYS   |     9921601886|      874039780|              0|      10795641666
+Jun Li                         |  ACMS   |     9227960388|      722586453|      408170000|      10358716841
+Danny Chen                     |  CSE    |      525794257|     7699007005|     2100290000|      10325091262
+Jeremiah Zartman               |  CBE    |     9373589209|       47938455|              0|       9421527664
+Umesh Garg                     |  PHYS   |     1536052742|       94875074|     7130000024|       8760927840
+Diogo Bolster                  |  CEGEOS |     3674856998|     3863064122|      699860048|       8237781168
+Michael Niemier                |  CSE    |     6993977105|     1064043781|              0|       8058020886
+Jane Huang                     |  CSE    |       39964049|      906442653|     6744780000|       7691186702
+Aleksandar Jemcov              |  AME    |              0|     3734401813|     3553480048|       7287881861
+Meng Jiang                     |  CSE    |     5548720553|     1396286447|      115250056|       7060257056
+Timothy Weninger               |  CSE    |      719492023|     2216065854|     3905860024|       6841417901
+Timothy C Beers                |  PHYS   |     6779476365|       54664221|             24|       6834140610
+Ian Carmichael                 |  RAD    |     5541079929|     1214767422|         459072|       6756306423
+Adam Maciej Czajka             |  CSE    |     3432801565|     3213285274|       73250000|       6719336839
+Anna Maria Simon               |  PHYS   |     6315544384|      356772757|        4500000|       6676817141
+Tan Ahn                        |  PHYS   |     6610817274|       40435093|              0|       6651252367
+Nitesh Vijay Chawla            |  CSE    |     4206464328|     2066159758|      174430096|       6447054182
+Ani Aprahamian                 |  PHYS   |     5131564208|      509617153|             72|       5641181433
+Kasturi Haldar                 |  BIO    |     4299673233|      768025112|      164750000|       5232448345
+Jeffrey W Peng                 |  CHEM   |       64915284|     3525980938|     1382770000|       4973666222
+Sharon Stack                   |  CHEM   |     4776161401|       60853230|        5320000|       4842334631
+Alan Huebner                   |  ACMS   |              0|     1129256601|     3340000000|       4469256601
+Harindra J Fernando            |  CEGEOS |              0|     2479649988|     1945660024|       4425310012
+Sharon Hu                      |  CSE    |              0|     4113499891|      222340032|       4335839923
+Meng Wang                      |  AME    |       23621809|     3336860429|      947319048|       4307801286
+Chaoli Wang                    |  CSE    |     2708683541|     1331000827|       10560048|       4050244416
+Nathan Swenson                 |  BIO    |              0|      349410607|     3670000000|       4019410607
+Siddharth Joshi                |  CSE    |       17892985|     3672415469|      270290000|       3960598454
+Troy Alexander Perkins         |  ACMS   |      132834345|     2570292864|     1144330032|       3847457241
+Guangjian Zhang                |  PSYC   |     3392858938|       99630177|              0|       3492489115
+Robert Mark Rennie             |  AME    |      874939137|     2444361446|      172820048|       3492120631
+David Richter                  |  CEGEOS |         916904|      847887369|     2628130048|       3476934321
+Laurie Littlepage              |  CHEM   |     3472494726|        2532411|              0|       3475027137
+Mary Ann McDowell              |  BIO    |     3364901526|       98945265|             24|       3463846815
+Yamil Javier Colon             |  CBE    |              0|      780081247|     2683326056|       3463407303
+Lara Arielle Phillips          |  PHYS   |     3429258241|        5361657|             32|       3434619930
+Ahsan Kareem                   |  CEGEOS |              0|     3335429661|             24|       3335429685
+Zhiyong Zhang                  |  PSYC   |              0|     3131544935|             48|       3131544983
+Douglas L Thain                |  CSE    |     1878569788|      558475494|      650320136|       3087365418
+J Daniel Gezelter              |  CHEM   |     2130680646|      869826051|       53020072|       3053526769
+David Hyde                     |  BIO    |     1999946568|     1048860715|              0|       3048807283
+Tengfei Luo                    |  AME    |              0|     2205257137|      729830096|       2935087233
+Pengjie Gao                    |  FIN    |     1765936988|     1088095775|             24|       2854032787
+Rebecca Surman                 |  PHYS   |     2159419208|      591199918|             24|       2750619150
+John Shim                      |  FIN    |      954579791|     1788534884|             24|       2743114699
+Ryan K Roeder                  |  AME    |     2407737920|      226056991|              0|       2633794911
+Daniel W Bardayan              |  PHYS   |     2137550602|      444247684|       39700000|       2621498286
+Nicholas Zabaras               |  AME    |              0|     2280850939|      326156048|       2607006987
+Christopher Richard Sweet      |  CRC    |              0|     2008875868|      546620024|       2555495892
+Nathan Scott Rose              |  PSYC   |     2351409378|      195793664|             24|       2547203066
+Daniel J Robertson             |  PHYS   |     2421051373|       96626414|              0|       2517677787
+Joshua Koen                    |  PSYC   |     1136035148|     1373786791|             24|       2509821963
+Tijana Milenkovic              |  CSE    |     1265841311|      730123035|      419087000|       2415051346
+Adam Martin                    |  PHYS   |              0|     2062367194|      332620024|       2394987218
+David Batten Go                |  AME    |      892419337|     1446754074|              0|       2339173411
+Yiyu Shi                       |  CSE    |              0|     2284366400|             24|       2284366424
+Mark Plecnik                   |  AME    |     2085080128|      153637093|             48|       2238717269
+Dinshaw S Balsara              |  PHYS   |              0|      299050913|     1860000024|       2159050937
+Paul Huber                     |  CHEM   |     2095996322|            346|              0|       2095996668
+Daniele Schiavazzi             |  ACMS   |        1771765|     1950510260|             48|       1952282073
+Kevin Lannon                   |  PHYS   |              0|      893103430|     1023700704|       1916804134
+Michael Mcnally                |  CSE    |      455919660|     1405380052|              0|       1861299712
+Michael T Ferdig               |  BIO    |              0|     1847278940|              0|       1847278940
+Cristian Koepfli               |  BIO    |     1743556923|       63878086|            420|       1807435429
+Stuart Jones                   |  BIO    |     1734457463|       31120296|             24|       1765577783
+Dong Wang                      |  CSE    |              0|     1734599584|              0|       1734599584
+Vamsi Krishna Kanuri           |  MKTG   |     1665687397|         146055|              0|       1665833452
+James Xavier Sullivan          |  ECON   |     1250612767|      395927422|              0|       1646540189
+Neil Lobo                      |  BIO    |              0|     1631746469|              0|       1631746469
+Maria A Holland                |  AME    |     1275770295|      348995663|             24|       1624765982
+Alexander W Dowling PhD        |  CBE    |              0|     1099688849|      484010000|       1583698849
+Sophie Anne Shive              |  FIN    |              2|     1550211636|             24|       1550211662
+Ahmed Abbasi                   |  COBA   |     1238585675|      305358481|             24|       1543944180
+Scott Christopher Morris       |  AME    |              0|     1236854482|      303640056|       1540494538
+Hope Hollocher                 |  BIO    |     1321299301|      167608314|       24440000|       1513347615
+Siyuan Zhang                   |  BIO    |     1306824218|      198456458|              0|       1505280676
+Steven Buechler                |  ACMS   |     1316655330|       89280643|       56330000|       1462265973
+Katharine White                |  CHEM   |     1313598591|      148540069|              0|       1462138660
+Chen Wang                      |  FIN    |              0|     1461260153|              0|       1461260153
+Aaron Striegel                 |  CSE    |     1263865392|      156004322|       11560000|       1431429714
+Justin Crepp                   |  PHYS   |     1305013859|      110537607|              0|       1415551466
+Vijay Gupta                    |  EE     |      316011612|     1023031340|       58760000|       1397802952
+David Michael Medvigy          |  BIO    |      296044489|      885528024|      183420072|       1364992585
+Taryn Dinkelman                |  ECON   |              0|     1351922919|              0|       1351922919
+Shahriar Mobashery             |  CHEM   |       38603547|     1298070426|              0|       1336673973
+Jason Stifler McLachlan        |  BIO    |      378425800|      914947967|              0|       1293373767
+Eric L Morgan                  |  LIB    |      191707606|     1086312934|             24|       1278020564
+Taeho Jung                     |  CSE    |     1098872163|      126405537|        9870048|       1235147748
+Yongtao Zhang                  |  ACMS   |              0|     1226022816|             24|       1226022840
+Patrick John Fay               |  EE     |              0|     1219200393|              0|       1219200393
+Ethan Lieber                   |  ECON   |              0|     1204787066|              0|       1204787066
+Xin Lu                         |  BIO    |      274972870|      927703440|              0|       1202676310
+Boldizsar Janko                |  PHYS   |      238369674|      938572845|             24|       1176942543
+Colin P Jessop                 |  PHYS   |              0|      572708413|      581580048|       1154288461
+Wolfgang Porod                 |  EE     |              0|     1123961721|             48|       1123961769
+Kasey S Buckles                |  ECON   |              0|     1122288913|              0|       1122288913
+Alexandros A Taflanidis        |  CEGEOS |              0|      241850519|      858400024|       1100250543
+David Phillips                 |  ECON   |       45989279|     1034017441|             24|       1080006744
+Satya Venkata Ravi Sriram Soman|  ITM    |      478033478|      527534315|              0|       1005567793
+Jaroslaw Nabrzyski             |  CRC    |              0|      998574721|           1000|        998575721
+Christiane Baumeister          |  ECON   |              0|      990931281|             24|        990931305
+Karel Matous                   |  AME    |      309283016|      667201501|             72|        976484589
+Bertrand M Hochwald            |  EE     |              0|      950837828|           2000|        950839828
+Dan Kelly                      |  IRE    |              0|      894767692|             88|        894767780
+Stefano Pegoraro               |  ITM    |       67214986|      821355427|             24|        888570437
+Krupali Arun Uplekar           |  ARCH   |      854991491|             21|              0|        854991512
+Margot Fassler                 |  THEO   |      528395740|      114155132|      175720000|        818270872
+Ross Colin Jacobucci           |  PSYC   |              0|      796878907|              0|        796878907
+David Burghoff                 |  EE     |      362482918|      423132585|              0|        785615503
+John Lalor                     |  ITM    |       27381630|      739884511|              0|        767266141
+Jessica Ann Brown              |  CHEM   |      651781991|       91807956|             32|        743589979
+Jeffrey Chilcote               |  PHYS   |      694118891|       25853998|       12910000|        732882889
+Athanasia Demetra Panopoulos   |  BIO    |      720841846|        2817292|             88|        723659226
+Andrew Brian Kennedy           |  CEGEOS |              0|      577779390|      136110024|        713889414
+Michael Anthony Villano        |  SOC    |      694873700|       18346321|              0|        713220021
+Thomas C Corke                 |  AME    |      256995830|      437083488|              0|        694079318
+Richard Williams               |  SOC    |              0|      661876893|              0|        661876893
+holly v goodson                |  CHEM   |      633997725|       16176274|              0|        650173999
+Kyle James Bibby               |  CEGEOS |              0|      277468998|      339480000|        616948998
+Michael Douglas Hildreth       |  PHYS   |              0|      404136465|      205380168|        609516633
+Kevin Thomas Vaughan           |  BIO    |              0|      584250190|              0|        584250190
+Cesar Sosa Padilla Araujo      |  ECON   |              0|      557569694|              0|        557569694
+Nicolas Lehner                 |  PHYS   |      343969727|      206784603|        1420000|        552174330
+Ryan Gerard McClarren          |  AME    |              0|      550013302|              0|        550013302
+Forrest Rule Spence            |  ECON   |        2770233|      533683191|             24|        536453448
+Jeanne RomeroSeverson          |  BIO    |       67913683|      468223420|              0|        536137103
+Daniel Michael Hungerman       |  ECON   |              0|      519883815|              0|        519883815
+Maxime Brodeur                 |  PHYS   |      458571946|       55776201|              0|        514348147
+Mark Caprio                    |  PHYS   |      326625346|      174168105|             48|        500793499
+Stefano Castruccio             |  ACMS   |              0|      498753776|             48|        498753824
+Zhiliang Xu                    |  ACMS   |              0|      386390829|       99690000|        486080829
+Glen Niebur                    |  AME    |      167614970|      309728746|             72|        477343788
+Scott Sheridan Howard          |  EE     |              0|      476608536|              0|        476608536
+Ying Cheng                     |  PSYC   |              0|      455393802|             24|        455393826
+Alan Hamlet                    |  CEGEOS |              0|      454638991|            368|        454639359
+Yuhsin Tsai                    |  PHYS   |              0|      392923710|       57900000|        450823710
+Mark Berends                   |  SOC    |              0|      426511052|              0|        426511052
+Lakshmi Iyer                   |  KIIS   |              0|      417377802|              0|        417377802
+Kapil Khandelwal               |  CEGEOS |             10|      403134003|       10470000|        413604013
+Philippe A Collon              |  PHYS   |      272289066|      132243210|              0|        404532276
+John Firth                     |  ECON   |              0|       27540175|      355430000|        382970175
+Anthony James Hoffman          |  EE     |              0|      375565781|              0|        375565781
+David Bruce Watson             |  PSYC   |              0|      371534560|              0|        371534560
+Lijuan Wang                    |  PSYC   |              0|      371405412|              0|        371405412
+Abby Cordova                   |  KSGA   |      368583546|         257629|              0|        368841175
+Cody Jean Smith                |  BIO    |      270114231|       97016370|              0|        367130601
+KeHai Yuan                     |  PSYC   |              0|      346946540|              0|        346946540
+Morten R Eskildsen             |  PHYS   |              0|      332780235|             80|        332780315
+Ken Sauer                      |  EE     |              0|      322062876|              0|        322062876
+Yi-Ting Hsu                    |  PHYS   |              0|      313758537|              0|        313758537
+Patricia L Clark               |  CHEM   |        8486028|      300633100|              0|        309119128
+Ningyuan Cao                   |  EE     |      176054227|      127573313|              0|        303627540
+Jason C Hicks                  |  CBE    |              0|      300000189|              0|        300000189
+Yong Lee                       |  KSGA   |              0|      299571717|              0|        299571717
+Robert Collinson               |  ECON   |              0|      299153892|              0|        299153892
+Joanna Cecilia da Silva Santos |  CSE    |              0|      294000310|             24|        294000334
+Johnathan Loudis               |  COBA   |              0|      286958727|              0|        286958727
+Yahya Kurama                   |  CEGEOS |              0|      286347179|              0|        286347179
+Christopher J Cronin           |  ECON   |              0|      284967451|              0|        284967451
+Eric Jumper                    |  AME    |              0|      270085090|             24|        270085114
+Zhi Da                         |  FIN    |              0|      260169607|              0|        260169607
+Marinho Angelo Bertanha        |  ECON   |              0|      259309180|             24|        259309204
+Jeffrey S Schorey              |  BIO    |              0|      257399247|              0|        257399247
+Patrick Michael Wensing        |  AME    |              0|      255751369|              0|        255751369
+Martina Bukac                  |  ACMS   |              0|      248892139|              0|        248892139
+Peter M Garnavich              |  PHYS   |              0|      238107057|              0|        238107057
+Patrizio Piraino               |  KIIS   |              0|      230297507|              0|        230297507
+Antonio Delgado                |  PHYS   |              0|      209452505|             24|        209452529
+Eric Russell Sims              |  ECON   |              0|      209058039|              0|        209058039
+Fang Liu                       |  ACMS   |              0|      206649706|        1720000|        208369706
+Richard Taylor                 |  CHEM   |      196742268|         491250|              0|        197233518
+Suman Datta                    |  EE     |              0|      181345186|              0|        181345186
+Hai Lin                        |  EE     |              0|      168978398|         560000|        169538398
+Sarah Anne Mustillo            |  SOC    |       11041957|      149859202|              0|        160901159
+Peter James Bui                |  CSE    |              0|       87881123|       67560000|        155441123
+Richard J deBoer               |  PHYS   |              0|      154295131|             24|        154295155
+Hong Guo                       |  MGMT   |       89688308|       60180221|              0|        149868529
+John Ott                       |  AME    |              0|      146164765|              0|        146164765
+Anthony Serianni               |  CHEM   |              0|      145433778|              0|        145433778
+Lauren Weiss                   |  PHYS   |       71301055|       72849310|              0|        144150365
+Zachary Stangebye              |  ECON   |              0|      142770340|              0|        142770340
+Robert Nerenberg               |  CEGEOS |              0|      130969036|              0|        130969036
+Sangpil Yoon                   |  AME    |      124963131|             21|              0|        124963152
+Rebecca Whelan                 |  CHEM   |       37916262|       83358565|              0|        121274827
+Matthew Joseph Zahr            |  AME    |              0|      118518115|              0|        118518115
+James Robert Brockmole         |  PSYC   |      113608621|             21|              0|        113608642
+A Nilesh Fernando              |  ECON   |              0|      101399694|              0|        101399694
+Gregory Snider                 |  EE     |              0|      100806926|              0|        100806926
+James Ng                       |  LIB    |              0|       43119497|       55750000|         98869497
+Seth N Brown                   |  CHEM   |              0|       98540101|              0|         98540101
+Ruediger Bachmann              |  ECON   |              0|       98539915|              0|         98539915
+Benjamin Pugsley               |  ECON   |              0|       97969282|              0|         97969282
+Mark Suhovecky                 |  LIB    |              0|       97345938|              0|         97345938
+Wanpeng Tan                    |  PHYS   |              0|       88105414|        8740000|         96845414
+Seth A Berry                   |  COBA   |              0|       95988122|              0|         95988122
+Mathew A Chrystal              |  ESC    |              0|       94204599|              0|         94204599
+Yixing Chen                    |  MKTG   |              0|       90176987|              0|         90176987
+Jonathan Chisum                |  EE     |              0|       89784655|            184|         89784839
+Michael Rupley JR              |  ESC    |              0|       89590101|              0|         89590101
+Vlad Mihai Iluc                |  CHEM   |              0|       88794212|              0|         88794212
+Joseph Paul Kaboski            |  ECON   |       88763883|          11970|              0|         88775853
+Hirotaka Sakaue                |  AME    |              0|       88370407|              0|         88370407
+Blake Leyerle                  |  THEO   |              0|       61826477|       26310000|         88136477
+Joseph Otousa                  |  BIO    |       87955302|             30|              0|         87955332
+Mitchell Wayne                 |  PHYS   |              0|       87362266|             24|         87362290
+Matthew Maurice Champion       |  CHEM   |              0|       87038764|            104|         87038868
+Bei Hu                         |  ACMS   |              0|       85538450|              0|         85538450
+Edward Kinzel                  |  AME    |              0|       84827828|           3000|         84830828
+William Carbonaro              |  SOC    |           1520|       84216904|              0|         84218424
+Frank Castellino               |  CTR    |              0|       83758020|             36|         83758056
+S Alex Kandel                  |  CHEM   |              0|       80355797|              0|         80355797
+Donna Glowacki                 |  ANTHRO |              0|       78899260|              0|         78899260
+Chloe Gibbs                    |  ECON   |              0|       78747446|              0|         78747446
+Joshua D Cameron               |  AME    |              0|       76508103|             24|         76508127
+Maria Macia                    |  LS     |              0|       75726727|              0|         75726727
+Thomas Gregory Pratt           |  EE     |              0|       72573328|              0|         72573328
+John William Goodwine Jr       |  AME    |              0|       70391832|             24|         70391856
+Gary Goertz                    |  POLSCI |              0|       69481647|              0|         69481647
+Giles Duffield                 |  BIO    |              0|       68470625|              0|         68470625
+Dervis Can Vural               |  PHYS   |              0|       67587186|              0|         67587186
+Zoltan Toroczkai               |  PHYS   |              0|       66954716|             48|         66954764
+Ramzi Bualuan                  |  CSE    |              0|       64669959|              0|         64669959
+MaryGeraldine Navoa Svarovsky  |  ACE    |              0|       64562755|              0|         64562755
+Martin Barron                  |  ITM    |              0|       62652554|              0|         62652554
+Jianxun Wang                   |  AME    |              0|       61593144|              0|         61593144
+Michael John Coppedge          |  POLSCI |              0|       61363947|              0|         61363947
+Katherine Walden               |  AS     |              0|       59836986|              0|         59836986
+Guosheng Fu                    |  ACMS   |              0|       46924139|       12410024|         59334163
+Dong Quan Ngoc Nguyen          |  ACMS   |              0|       56028702|              0|         56028702
+Patrick Brewick                |  CEGEOS |              0|       16524170|       39180000|         55704170
+Robert Easley                  |  MGMT   |              0|       54987855|              0|         54987855
+Peter Wiest Kelly              |  FIN    |              0|       52007120|             24|         52007144
+Nelson Mark                    |  ECON   |              0|       49641898|              0|         49641898
+Lizhen Lin                     |  ACMS   |              0|       48941961|             24|         48941985
+Justin Mark Luningham          |  PSYC   |              0|       48605709|              0|         48605709
+Brian S J Blagg                |  CHEM   |              0|       48454055|             24|         48454079
+Ann Tenbrunsel                 |  MGMT   |              0|       43352441|              0|         43352441
+Christian Hughes               |  MKTG   |              0|       38548390|              0|         38548390
+Zifeng Zhao                    |  COBA   |              0|       38505861|              0|         38505861
+Gary Bernstein                 |  EE     |              0|       36910987|              0|         36910987
+Hsuehchia Chang                |  CBE    |              0|       36813625|             24|         36813649
+Xinxue Qu                      |  ITM    |       11912627|       23885097|              0|         35797724
+Ronald Metoyer                 |  CSE    |              0|       35441184|              0|         35441184
+Manuel Alejandro Estefan Davila|  KSGA   |              0|       34988764|              0|         34988764
+Robert Stevenson               |  EE     |              0|       34021233|              0|         34021233
+Jay Christopher Howk PhD       |  PHYS   |              0|       33845915|              0|         33845915
+Nosang Myung                   |  CBE    |              2|       33411569|              0|         33411571
+Stephen Yelderman              |  LS     |              0|       32426528|              0|         32426528
+Fanny Ye                       |  CSE    |              0|       31292189|          11000|         31303189
+Graham Peaslee                 |  PHYS   |       29378516|         997442|              0|         30375958
+Matthias Hoelzlein             |  ECON   |              0|       29087480|              0|         29087480
+Francis BilsonDarku            |  ITM    |              0|       25322699|              0|         25322699
+Xiangliang Zhang               |  CSE    |              0|       25068881|            488|         25069369
+Kenneth Kelley III             |  MGMT   |              0|       23230112|              0|         23230112
+Thomas E Fuja                  |  EE     |              0|       23102008|              0|         23102008
+Flint Thomas                   |  AME    |              0|       21688175|             24|         21688199
+Donald Alan Brower             |  LIB    |              0|       18884403|              0|         18884403
+Natalie K Munn                 |  LIB    |              0|       18621656|              0|         18621656
+Victoria Woodard               |  ACMS   |              0|       16062671|              0|         16062671
+Joshua Shrout PhD              |  CEGEOS |              0|       15819939|              0|         15819939
+Joseph M. Powers               |  AME    |              0|       15718921|              0|         15718921
+Timothy C Ovaert               |  AME    |              0|        9429861|        5680000|         15109861
+Lei Liu                        |  EE     |              0|       14931185|              0|         14931185
+Margaret Schwarz               |  CHEM   |              0|       13489023|              0|         13489023
+Jessica Morales                |  LIB    |              0|       13287334|              0|         13287334
+David Galvin                   |  MATH   |              0|       13029035|              0|         13029035
+Peter Burns                    |  CEGEOS |              0|       11178717|              0|         11178717
+Eric Riedl                     |  MATH   |              0|       11011976|              0|         11011976
+Bradley Smith                  |  CHEM   |              0|       10847159|              0|         10847159
+Matthew Charles Bloom          |  COBA   |              0|       10733908|              0|         10733908
+Emily Yuan Tsui                |  CHEM   |              0|       10128100|              0|         10128100
+Alan C Seabaugh                |  EE     |              0|        9530038|              0|          9530038
+Sylwia Ptasinska               |  PHYS   |              0|        9307113|              0|          9307113
+Shaun Wook Lee                 |  BIO    |        6945291|        1516018|              0|          8461309
+Stephen Jonathan Crass         |  PHYS   |              0|        8085026|              0|          8085026
+Jeffrey Harden                 |  POLSCI |              0|        7703154|              0|          7703154
+Keith Wayne Davis              |  SCI    |              0|        7515992|              0|          7515992
+Robert Jason Rosenbaum         |  ACMS   |              0|        7262072|              0|          7262072
+Jennifer Schaefer              |  CBE    |              0|        5858056|              0|          5858056
+Jonathan Sapirstein            |  PHYS   |              0|        5568352|              0|          5568352
+Roxana Smarandache             |  MATH   |              0|        5443345|              0|          5443345
+Benjamin Radcliff              |  POLSCI |              0|        4977527|              0|          4977527
+Stanislav Gordeyev             |  AME    |              0|        4974979|              0|          4974979
+Diego Gomez-Zara               |  CSE    |              0|        4862172|              0|          4862172
+Ian Bentley                    |  PHYS   |              0|        4250749|              0|          4250749
+William Anthony Phillip        |  CBE    |              0|        3753306|              0|          3753306
+Felipe Santiago Tirado         |  BIO    |        1592942|        2006557|              0|          3599499
+Milind Saraph                  |  OIT    |              0|        3390114|              0|          3390114
+Alan Euan Lindsay              |  ACMS   |              0|        3329484|              0|          3329484
+David Sikkink                  |  SOC    |              0|        2839297|              0|          2839297
+Peter Easton                   |  ACT    |              0|        2243064|              0|          2243064
+Abigail Ocobock                |  SOC    |              0|        1971337|              0|          1971337
+Marya Lieberman                |  CHEM   |              0|        1803675|              0|          1803675
+Arnaldo Luis Serrano           |  CHEM   |              0|        1791015|              0|          1791015
+Sharif Nijim                   |  COBA   |              0|        1772780|              0|          1772780
+Juan Del Valle                 |  CHEM   |              0|        1726991|              0|          1726991
+Sunny Boyd                     |  BIO    |              0|        1687813|              0|          1687813
+Samuel Evens                   |  MATH   |              0|        1676419|              0|          1676419
+Jeffrey Allan Diller           |  MATH   |              0|        1573237|              0|          1573237
+Sarah Kroeger                  |  ECON   |              0|        1480486|              0|          1480486
+Luis Felipe Rosado Murillo     |  ANTHRO |              0|        1337949|              0|          1337949
+Meenal Datta                   |  AME    |              0|        1330865|              0|          1330865
+Xiufan Yu                      |  ACMS   |              0|        1210815|              0|          1210815
+Joseph Freeland                |  CSE    |              0|        1165466|              0|          1165466
+Matthew Learoyd Sisk           |  LIB    |              0|        1125363|              0|          1125363
+Tracy Kijewski                 |  CEGEOS |              0|        1081114|              0|          1081114
+Alexei Orlov                   |  EE     |              0|        1074064|              0|          1074064
+Pinar Zorlutuna                |  AME    |              0|        1031205|              0|          1031205
+William Evans                  |  ECON   |              0|         948174|              0|           948174
+Daren Wang                     |  ACMS   |              0|         942732|              0|           942732
+Thomas Mustillo                |  KSGA   |              0|         897064|              0|           897064
+Cindy Bergeman                 |  PSYC   |              0|         791644|              0|           791644
+Michele Muller-Itten           |  ECON   |              0|         604139|              0|           604139
+Jason Rohr                     |  BIO    |              0|         602234|              0|           602234
+Jing Wu                        |  ECON   |              0|         564608|              0|           564608
+Dae Kun Kwon                   |  CEGEOS |              0|         558759|              0|           558759
+Sergey Leonov                  |  AME    |              0|         510216|              0|           510216
+Susanne Wengle                 |  POLSCI |              0|         439952|              0|           439952
+Timothy David Hubbard          |  MGMT   |              0|         390187|              0|           390187
+Craig Lent                     |  EE     |              0|         356690|              0|           356690
+Xiaolong Liu                   |  PHYS   |              0|         329032|              0|           329032
+Scott Kirner                   |  OIT    |              0|         256828|              0|           256828
+Felix Janda                    |  MATH   |              0|         241024|              0|           241024
+Matthew Morrison               |  CSE    |              0|         182055|              0|           182055
+Michael Gekhtman               |  MATH   |              0|         174665|              0|           174665
+Paul Bohn                      |  CHEM   |              0|         132637|              0|           132637
+Doug Hall                      |  EE     |              0|         129845|              0|           129845
+Bill D McDonald                |  FIN    |              0|         120043|              0|           120043
+Elliott Thomas Visconsi        |  EN     |              0|         114245|              0|           114245
+Thomas OSullivan               |  EE     |              0|         114150|              0|           114150
+JNicholas Laneman              |  EE     |              0|         111676|              0|           111676
+Eva Dziadula                   |  KIIS   |              0|          98768|              0|            98768
+Erin McDonnell                 |  SOC    |              0|          96151|              0|            96151
+Christopher Hinkle             |  EE     |              0|          88377|              0|            88377
+Marc Francois Muller           |  CEGEOS |              0|          82747|              0|            82747
+Shane Corwin                   |  FIN    |              0|          82282|              0|            82282
+Christian Smith                |  SOC    |              0|          81853|              0|            81853
+Yazen Khasawneh                |  CEGEOS |              0|          38231|              0|            38231
+Daewon Sun                     |  ITM    |              0|          25423|              0|            25423
+Gregory Timp                   |  EE     |              2|          14869|              0|            14871
+Will E. Bruckert               |  OIT    |              0|           9995|              0|             9995
+Michael Jason Pries            |  ECON   |              0|           8362|              0|             8362
+Merlin Bruening                |  CBE    |              0|           7002|              0|             7002
+Martin Haenggi                 |  EE     |              0|           6776|              0|             6776
+Michel Hockx                   |  EALC   |              0|           6235|              0|             6235
+David Boone                    |  BIO    |              0|           6047|              0|             6047
+John M. LoSecco                |  PHYS   |              0|           6044|              0|             6044
+Xuying Zhao                    |  ITM    |              0|           4209|              0|             4209
+Mary Batistich                 |  ECON   |              0|           4175|              0|             4175
+Jeffrey Campbell               |  ECON   |              0|           3597|              0|             3597
+Thomas Juliano                 |  AME    |              0|           3438|              0|             3438
+Yu Xiao                        |  ECON   |              0|           3189|              0|             3189
+Alexandra Jilkine              |  ACMS   |              0|           3160|              0|             3160
+Tracy Weber                    |  OIT    |              0|           2643|              0|             2643
+Jeremy Ben Fein                |  CEGEOS |              0|           2028|              0|             2028
+Daniel Johnson                 |  LIB    |              0|           2027|              0|             2027
+Kristin Valentino Diehl        |  PSYC   |              0|           1365|              0|             1365
+Lee Anna Clark                 |  PSYC   |            142|           1133|              0|             1275
+David Hachen                   |  SOC    |              0|           1178|              0|             1178
+Rory McVeigh                   |  SOC    |              0|            808|              0|              808
+Jon Coleman                    |  HIST   |              0|            715|              0|              715
+Curtis Franks                  |  PHIL   |              0|            713|              0|              713
+Daniel K Lapsley               |  PSYC   |              0|            493|              0|              493
+Jiajun Li                      |  CSE    |              0|            237|              0|              237
+Carolina Avendano              |  ACMS   |              0|            178|              0|              178
+Jon Philip Camden              |  CHEM   |              0|            147|              0|              147
+Scott Weingart                 |  LIB    |              0|            141|              0|              141
+Shreya Kumar                   |  CSE    |              0|            115|              0|              115
+Yanliang Zhang                 |  AME    |              0|             75|              0|               75
+Badih Assaf                    |  PHYS   |              0|             52|              0|               52
+Zach Schafer                   |  BIO    |              0|             52|              0|               52
+Alexandra Kjuchukova           |  MATH   |              0|             48|              0|               48
+Xuemin NA Lu                   |  BIO    |              0|             46|              0|               46
+Christina Wolbrecht            |  POLSCI |              0|             42|              0|               42
+Drew Creal                     |  ECON   |              0|             42|              0|               42
+Donny Hanjaya Putra            |  AME    |              0|             42|              0|               42
+George Alex Ambrose            |  KANEB  |              0|             42|              0|               42
+Geoffrey Layman                |  POLSCI |              0|             42|              0|               42
+Guillermo Trejo                |  POLSCI |              0|             42|              0|               42
+Jennifer Leah Tank             |  BIO    |              0|             42|              0|               42
+Kyle Doudrick                  |  CEGEOS |              0|             42|              0|               42
+Lyn Spillman                   |  SOC    |              0|             42|              0|               42
+Masaru K Kuno                  |  CHEM   |              0|             42|              0|               42
+Orlando Carter Snead           |  POLSCI |              0|             42|              0|               42
+Peter Bauer                    |  EE     |              0|             42|              0|               42
+Patricia A Champion            |  BIO    |              0|             42|              0|               42
+Ruilan Guo                     |  CBE    |              0|             42|              0|               42
+Hsing-ta Chen                  |  CHEM   |              0|             37|              0|               37
+oit ( acgen )                  |  OIT    |              0|             34|              0|               34
+Ben Matthies                   |  FIN    |              0|             34|              0|               34
+Brady Russo                    |  CTR    |              0|             31|              0|               31
+Jay LaVerne                    |  RAD    |              0|             31|              0|               31
+Jun Yang                       |  FIN    |              0|             31|              0|               31
+AD Test Account                |  OIT    |              0|             29|              0|               29
+AD Test Account                |  OIT    |              0|             29|              0|               29
+Collin McMillan                |  CSE    |              0|             25|              0|               25
+Thomas Joseph Loughran         |  PHYS   |              0|             24|              0|               24
+Christopher Frank Kolda        |  PHYS   |              0|             23|              0|               23
+Iossif Lozovatsky              |  CEGEOS |              0|             23|              0|               23
+Jay Brockman                   |  ENG    |              0|             22|              0|               22
+Robert Battalio                |  FIN    |              0|             22|              0|               22
+Slavi Sevov                    |  CHEM   |              0|             22|              0|               22
+Alexandre Sezgeevich Moukasian |  CBE    |              0|             21|              0|               21
+Adrian V Rocha                 |  BIO    |              0|             21|              0|               21
+Adrienne Sabety                |  ECON   |              0|             21|              0|               21
+Aidan Seale-Feldman            |  ANTHRO |              0|             21|              0|               21
+Brian Fogarty                  |  CSR    |              0|             21|              0|               21
+Benjamin Golez                 |  FIN    |              0|             21|              0|               21
+Crislyn DSouzaSchorey          |  BIO    |              0|             21|              0|               21
+Office of the Registrar        |  CRC    |              0|             21|              0|               21
+Cheryl S Smith                 |  LIB    |              0|             21|              0|               21
+David Edward Campbell          |  POLSCI |              0|             21|              0|               21
+David T Leighton Jr            |  CBE    |              0|             21|              0|               21
+David Jude Veselik             |  BIO    |              0|             21|              0|               21
+Edward Mark Cummings           |  PSYC   |              0|             21|              0|               21
+Emily Johnson                  |  AME    |              0|             21|              0|               21
+Evan Mast                      |  ECON   |              0|             21|              0|               21
+Gregory Hartland               |  CHEM   |              0|             21|              0|               21
+Gary Lamberti                  |  BIO    |              0|             21|              0|               21
+Yihfang Huang                  |  EE     |              0|             21|              0|               21
+Junhui Cai                     |  ITM    |              0|             21|              0|               21
+Jesse Lander                   |  EN     |              0|             21|              0|               21
+Joel Mittleman                 |  SOC    |              0|             21|              0|               21
+Jessica Payne                  |  PSYC   |              0|             21|              0|               21
+James Patrick Schmiedeler      |  AME    |              0|             21|              0|               21
+Kraig Beyerlein                |  SOC    |              0|             21|              0|               21
+Kate Elizabeth Mueller         |  CSR    |              0|             21|              0|               21
+Peter Kogge                    |  CSE    |              0|             21|              0|               21
+Kathy Phillips                 |  ACMS   |              0|             21|              0|               21
+Kaliprasad Rath                |  ECON   |              0|             21|              0|               21
+Michael Lemmon                 |  EE     |              0|             21|              0|               21
+Laura Fields                   |  PHYS   |              0|             21|              0|               21
+Liviu Nicolaescu               |  MATH   |              0|             21|              0|               21
+Mark Joseph Behrens            |  MATH   |              0|             21|              0|               21
+Michael Joseph Chapple         |  AL     |              0|             21|              0|               21
+Matthew J Gursky               |  MATH   |              0|             21|              0|               21
+Michael Joseph Mannor          |  MGMT   |              0|             21|              0|               21
+Mitchell Charles Olsen         |  MKTG   |              0|             21|              0|               21
+Molly Scheel                   |  BIO    |              0|             21|              0|               21
+Panos Antsaklis                |  EE     |              0|             21|              0|               21
+Paul Helquist                  |  CHEM   |              0|             21|              0|               21
+Rebecca Ann Wingert            |  BIO    |              0|             21|              0|               21
+Roger Woodard                  |  ACMS   |              0|             21|              0|               21
+Stefan Frauendorf              |  PHYS   |              0|             21|              0|               21
+Scott Mainwaring               |  POLSCI |              0|             21|              0|               21
+Viva Bartkus                   |  ITM    |              0|             21|              0|               21

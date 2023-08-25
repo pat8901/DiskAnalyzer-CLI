@@ -1,0 +1,17 @@
+Alliance for Catholic Education          |              0|       39698544|              0|         39698544
+Architecture                             |      854991491|             21|              0|        854991512
+Arts & Letters                           |    20404089329|    18797833464|      896700168|      40098622961
+Business                                 |    55816175063|    14306000312|     1160000144|      71282175519
+Center for Nano Science & Tech           |              0|              0|              0|                0
+Center for Transgene Research            |              0|       83758015|              0|         83758015
+Engineering                              |   300712016772|   121198130158|   145569703504|     567479850434
+Graduate School                          |              0|              0|              0|                0
+Institite for Real Estate                |              0|      893161274|             88|        893161362
+Kaneb Center                             |              0|             42|              0|               42
+Law School                               |              0|      108153255|              0|        108153255
+Office of Information Technologies       |              0|        3665705|             40|          3665745
+Office of Research                       |     8671072657|     9285269008|    19566866496|      37523208161
+Pre-College                              |              0|              0|              0|                0
+Science                                  |   414648103304|    65338817190|    72147016264|     552133936758
+University Libraries                     |      169990617|     1287663905|      160340024|       1617994546
+Unknown                                  |    33515725960|    14227597473|    91710475872|     139453799305
