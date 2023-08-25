@@ -134,4 +134,4 @@ def binCreator(amount, step, start):
 
 
 def getReportDate(report_file):
-    return report_file[12:22]
+    return report_file[20:30]

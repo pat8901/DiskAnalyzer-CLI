@@ -17,9 +17,9 @@ def main():
     # input = sys.argv[1]
     # print(f'You said "{input}"')
 
-    report_date = tools.getReportDate("Storage_Rep_2023-08-10.pdf")
+    report_date = tools.getReportDate("reports/Storage_Rep_2023-08-10.pdf")
 
-    writer.createFullOutput("Storage_Rep_2023-08-10.pdf")
+    writer.createFullOutput("reports/Storage_Rep_2023-08-10.pdf")
     writer.createResearchOutput(report_date)
     writer.createDepartmentOutput(report_date)
     writer.createCollegesOutput(report_date)
@@ -37,6 +37,18 @@ def main():
 
     histogram.getGroupHistogram("research", "AFS Groups", report_date)
     # secGetGroupHistogram('research','AFS Groups')
+
+    # ===================================================================
+    # Testing to see if I can use different pdfs to create data
+    report_date_2 = tools.getReportDate("reports/Storage_Rep_2022-08-01.pdf")
+    writer.createFullOutput("reports/Storage_Rep_2022-08-01.pdf")
+    writer.createResearchOutput(report_date_2)
+    writer.createDepartmentOutput(report_date_2)
+    writer.createCollegesOutput(report_date_2)
+    writer.csvWriter("research", "research", report_date_2)
+    writer.csvWriter("departments", "departments", report_date_2)
+    writer.csvWriter("colleges", "colleges", report_date_2)
+    histogram.getGroupHistogram("research", "AFS Groups", report_date_2)
 
 
 if __name__ == "__main__":
