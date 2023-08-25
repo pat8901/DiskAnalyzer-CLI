@@ -5,6 +5,8 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import tools
+import writer
 
 
 def main():
@@ -26,7 +28,10 @@ def main():
 
     # getUserBarChart("research")
     # test_getUserBarChart("research")
-    finaltestgetUserBarChart("research")
+    #finaltestgetUserBarChart("research")
+    getGroupHistogram('research','AFS Groups')
+    #secGetGroupHistogram('research','AFS Groups')
+    tools.testHello()
 
 
 # +======================================================================================+
@@ -462,8 +467,89 @@ def test_getUserBarChart(input):
 # |  Creates a histogram using binned data as x values and their frequencies as y values |
 # |   *This is different from piechart as it would make sense to have 0 counts for bins* |
 # +======================================================================================+
-def getGroupHistogram():
-    print('hello')
+def getGroupHistogram(input, column):
+    df = pd.read_csv(f"csv/{input}.csv")
+    terabyte = 1000000000
+    bins = [0, 1, 50, 100, 200, 300, 400, 500, 600]
+    bins2 = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80]
+    labels2=['0-5','5-10','10-15','15-20','20-25','25-30','35-40','40-45','45-50','50-55','55-60','60-65','65-70','70-75','75-80','80<']
+    bins3 = np.arange(0,302,2)
+    bin3_labels = bins3.copy()
+    labels = [
+        "0-1 TB",
+        "1-50 TB",
+        "50-100 TB",
+        "100-200 TB",
+        "200-300 TB",
+        "300-400 TB",
+        "400-500 TB",
+        "500 TB <"
+    ]
+
+    df[f"{column}"] = df[f"{column}"].div(terabyte)
+
+    # df["bin"] = pd.cut(
+    #     df[f"{column}"],
+    #     bins,
+    #     labels=labels,
+    # )
+    # data = df["bin"].value_counts()
+
+    # df["bin2"] = pd.cut(
+    #     df[f"{column}"],
+    #     bins2,
+    #     labels=labels2,
+    # )
+    # data2 = df["bin2"].value_counts()
+
+    df["bin3"] = pd.cut(
+        df[f"{column}"],
+        bins3,
+        labels=bin3_labels[:-1],
+    )
+    data3 = df["bin3"].value_counts()
+   
+
+    fig, ax = plt.subplots()
+    ax.set(
+        title=f"{input} {column} Storage in Terabytes",
+    )
+
+    # for i in range(len(data)):
+    #     p = ax.bar(labels[i],data[i],width=0.5,)
+
+    # for i in range(len(data2)):
+    #     p = ax.bar(labels2[i],data2[i],width=0.5)
+
+    for i in range(len(data3)):
+        p = ax.bar(bin3_labels[i],data3[i],width=0.5)
+
+    plt.show()
+
+
+def secGetGroupHistogram(input, column):
+    df = pd.read_csv(f"csv/{input}.csv")
+    terabyte = 1000000000
+    bins = [0, 1, 50, 100, 200, 300, 400, 500, 600]
+    labels = [
+        "0-1 TB",
+        "1-50 TB",
+        "50-100 TB",
+        "100-200 TB",
+        "200-300 TB",
+        "300-400 TB",
+        "400-500 TB",
+        "500 TB <",
+    ]
+    
+    df[f"{column}"] = df[f"{column}"].div(terabyte)
+   
+    fig, ax = plt.subplots()
+    ax.set(
+        title=f"{input} {column} Storage in Terabytes",
+    )
+    ax.hist(df,[0, 1, 50, 100, 200, 300, 400, 500, 600])
+    plt.show()
 
 
 # +======================================================================================+
@@ -487,6 +573,7 @@ def getGroupPieChart(input, column):
 
     df[f"{column}"] = df[f"{column}"].div(terabyte)
     df = df.sort_values(f"{column}", ascending=False)
+
     df["bin"] = pd.cut(
         df[f"{column}"],
         bins,
