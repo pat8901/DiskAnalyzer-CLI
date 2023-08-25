@@ -43,7 +43,7 @@ def getGroupHistogram(input, column, date):
     ax.set(
         ylabel="Frequency",
         xlabel="Terabytes",
-        title=f"{column} - Number of Users Within a Range of Storage",
+        title=f"{column} - Number of Users Within a Range of Storage {date}",
     )
 
     # Creating bar plots and adding them to graph

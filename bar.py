@@ -12,9 +12,9 @@ import writer
 # +======================================================================================+
 # |           Official bar chart function that creates batches of user charts            |
 # +======================================================================================+
-def finaltestgetUserBarChart(input):
-    df = pd.read_csv(f"csv/{input}.csv")
-    dfBase = pd.read_csv(f"csv/{input}.csv")
+def finaltestgetUserBarChart(input, date):
+    df = pd.read_csv(f"csv/{input}_{date}.csv")
+    dfBase = pd.read_csv(f"csv/{input}_{date}.csv")
 
     # Calculating how many rows are in the datframe column "Full Name" *can make this a seperate function, may come in handy later*
     users = []
@@ -85,7 +85,9 @@ def finaltestgetUserBarChart(input):
             )
             ax.bar_label(p3, label_type="center")
 
-        ax.set(ylabel=counter, title=f"{df.iloc[i]['Full Name']}'s Storage Amounts")
+        ax.set(
+            ylabel=counter, title=f"{df.iloc[i]['Full Name']}'s Storage Amounts {date}"
+        )
 
         # Setting axis limits
         xlimits = ax.get_xlim()
@@ -109,7 +111,7 @@ def finaltestgetUserBarChart(input):
 
         # Saving the figure
         plt.savefig(
-            f"graphs/research/users/{df.iloc[i]['Full Name']}_user_report.pdf",
+            f"graphs/research/users/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
             dpi=300,
             format="pdf",
             bbox_extra_artists=(lgd,),

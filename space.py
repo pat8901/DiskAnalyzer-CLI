@@ -33,7 +33,7 @@ def main():
 
     # getUserBarChart("research")
     # test_getUserBarChart("research")
-    # bar.finaltestgetUserBarChart("research")
+    bar.finaltestgetUserBarChart("research", report_date)
 
     histogram.getGroupHistogram("research", "AFS Groups", report_date)
     # secGetGroupHistogram('research','AFS Groups')
