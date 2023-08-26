@@ -7,12 +7,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tools
 import writer
-
+import time
 
 # +======================================================================================+
 # |           Official bar chart function that creates batches of user charts            |
 # +======================================================================================+
-def finaltestgetUserBarChart(input, date):
+def getUserBarChart(input, date):
     df = pd.read_csv(f"csv/{input}_{date}.csv")
     dfBase = pd.read_csv(f"csv/{input}_{date}.csv")
 
@@ -119,6 +119,116 @@ def finaltestgetUserBarChart(input, date):
         )
         plt.close(fig)
 
+# +======================================================================================+
+# |           Official bar chart function that creates batches of user charts            |
+# +======================================================================================+
+def testBatchGetUserBarChart(input, date):
+    start = time.time()
+    df = pd.read_csv(f"csv/{input}_{date}.csv")
+
+    # Calculating how many rows are in the datframe column "Full Name" *can make this a seperate function, may come in handy later*
+    users = []
+    for i in df["Full Name"]:
+        users.append(i)
+    length = len(users)
+
+    for i in range(len(users)):
+        # displaying debugging info
+        print(f"User Index: {i}")
+        print(f'Name {df.iloc[i]["Full Name"]}')
+        print(f'Amount {df.iloc[i]["Tot.Used Space"]}')
+        divisor = tools.getDivisor(df.iloc[i]["Tot.Used Space"])
+        print(f"divsior: {divisor}")
+        counter = tools.getChartCounter(divisor)
+        print(f"counter: {counter}")
+
+        
+        df["AFS Groups"].iloc[i] = df.iloc[i]["AFS Groups"]/divisor
+        df["Users AFS"].iloc[i] = df.iloc[i]["Users AFS"]/divisor
+        df["Users Panas."].iloc[i] = df.iloc[i]["Users Panas."]/divisor
+        df["Tot.Used Space"].iloc[i] = df.iloc[i]["Tot.Used Space"]/divisor
+
+    print(df)
+    # Generating a chart for each user found in "users" array
+    for i in range(length):
+        print(f"User Index: {i}")
+        print(f'Name {df.iloc[i]["Full Name"]}')
+        print(f'Amount {df.iloc[i]["Tot.Used Space"]}')
+        divisor = tools.getDivisor(df.iloc[i]["Tot.Used Space"])
+        print(f"divsior: {divisor}")
+        counter = tools.getChartCounter(divisor)
+        print(f"counter: {counter}")
+        fig, ax = plt.subplots()
+
+    
+        if df.iloc[i]["AFS Groups"] != 0:
+            p1 = ax.bar(
+                df.iloc[i]["Full Name"],
+                df.iloc[i]["AFS Groups"],
+                width=0.5,
+                color="tab:blue",
+                label="AFS Group",
+            )
+            ax.bar_label(p1, label_type="center")
+
+        if df.iloc[i]["Users AFS"] != 0:
+            p2 = ax.bar(
+                df.iloc[i]["Full Name"],
+                df.iloc[i]["Users AFS"],
+                width=0.5,
+                color="tab:green",
+                bottom=df.iloc[i]["AFS Groups"],
+                label="AFS User",
+            )
+            ax.bar_label(p2, label_type="center")
+
+        if df.iloc[i]["Users Panas."] != 0:
+            p3 = ax.bar(
+                df.iloc[i]["Full Name"],
+                df.iloc[i]["Users Panas."],
+                width=0.5,
+                color="orange",
+                bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
+                label="Panasas User",
+            )
+            ax.bar_label(p3, label_type="center")
+
+        ax.set(
+            ylabel=counter, title=f"{df.iloc[i]['Full Name']}'s Storage Amounts {date}"
+        )
+
+        # Setting axis limits
+        xlimits = ax.get_xlim()
+        ax.set_xlim(left=-0.7, right=0.7)
+        ylimits = ax.get_ylim()
+        ax.set_ylim(bottom=None, top=(ylimits[1] + ylimits[1] * 0.15))
+
+        # Displaying total on top of bar
+        # total = np.float64(np.format_float_positional(total, precision=4))
+        # ax.text(
+        #     0,
+        #     total + (total * 0.07),
+        #     f"Total: {total}",
+        #     ha="center",
+        #     weight="bold",
+        #     color="black",
+        # )
+
+        # Displaying legend
+        lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+
+        # Saving the figure
+        plt.savefig(
+            f"graphs/research/tests/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
+            dpi=300,
+            format="pdf",
+            bbox_extra_artists=(lgd,),
+            bbox_inches="tight",
+        )
+        plt.close(fig)
+    end = time.time()
+    print("The time of execution of above program is :",
+      (end-start) * 10**3, "ms")
 
 # +======================================================================================+
 # |             Testing function for when getting a user's bar chart of storages         |

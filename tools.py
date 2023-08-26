@@ -7,10 +7,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def testHello():
-    print("Hello")
-
-
 # +======================================================================================+
 # |       Tool to determine the proper divisor to use when given a pandas dataframe      |
 # |             Uses the total storage of a user to calculate the divisor                |
@@ -111,7 +107,9 @@ def addlabels(x, y):
     for i in range(len(x)):
         plt.text(i, y[i], y[i])
 
-
+# +======================================================================================+
+# |             Creates a list of bin labels to be used with frequency graphs            |
+# +======================================================================================+
 def binLabelCreator(amount, step, start):
     bin_labels = []
     bin_labels.append(f"{start}-{step}")
@@ -121,7 +119,9 @@ def binLabelCreator(amount, step, start):
         left = left + step
     return bin_labels
 
-
+# +======================================================================================+
+# |             Creates a list of bin to be used with frequency graphs                   |
+# +======================================================================================+
 def binCreator(amount, step, start):
     bins = []
     bins.append(start)
@@ -132,6 +132,8 @@ def binCreator(amount, step, start):
     # bins.append()
     return bins
 
-
+# +======================================================================================+
+# |                       Fetches the date of the input report                           |
+# +======================================================================================+
 def getReportDate(report_file):
     return report_file[20:30]

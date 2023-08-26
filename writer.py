@@ -99,8 +99,7 @@ def createCollegesOutput(date):
 
 
 # +======================================================================================+
-# |           Converts input pdf into a txt file to be used in further processing        |
-# |                           *Can be optimized further*                                 |
+# |           Creates a csv file from previosuly generated csv files                     |
 # +======================================================================================+
 def csvWriter(input, output, date):
     with open(f"groups/{input}_{date}.txt", "r") as f:

@@ -10,8 +10,8 @@ import writer
 
 
 # +======================================================================================+
-# | This function takes in a csv file and a single column which then creates a pie chart |
-# | displaying the counts of binned data within a specified range                        |
+# |       Takes in a csv file and a single column and creates a pie chart displaying     |
+# |                 the counts of binned data within a specified range                   |
 # +======================================================================================+
 def getGroupPieChart(input, column):
     terabyte = 1000000000

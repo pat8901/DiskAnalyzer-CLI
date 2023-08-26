@@ -75,22 +75,11 @@ def getGroupHistogram(input, column, date):
 
 # +======================================================================================+
 # |  Creates a histogram using binned data as x values and their frequencies as y values |
-# |   *This is different from piechart as it would make sense to have 0 counts for bins* |
+# |             *bins are auto-made using the hist function instead of bar*              |
 # +======================================================================================+
-def secGetGroupHistogram(input, column):
+def autoGetGroupHistogram(input, column):
     df = pd.read_csv(f"csv/{input}.csv")
     terabyte = 1000000000
-    bins = [0, 1, 50, 100, 200, 300, 400, 500, 600]
-    labels = [
-        "0-1 TB",
-        "1-50 TB",
-        "50-100 TB",
-        "100-200 TB",
-        "200-300 TB",
-        "300-400 TB",
-        "400-500 TB",
-        "500 TB <",
-    ]
 
     df[f"{column}"] = df[f"{column}"].div(terabyte)
 
