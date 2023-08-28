@@ -19,28 +19,17 @@ import misc
 def getGroupHistogram(input, column, date):
     df = pd.read_csv(f"csv/{input}_{date}.csv")
     terabyte = 1000000000
-    xaxis = 0
-
     scott_bins = [0, 0.1, 0.5, 1, 2, 10, 20, 50, 10000000]
     scott_labels = [
-        "0-100GB",
-        "100-500GB",
+        "0GB-100GB",
+        "100GB-500GB",
         "500GB-1TB",
-        "1-2TB",
-        "2-10TB",
-        "10-20TB",
-        "20-50TB",
-        "50-?TB",
+        "1TB-2TB",
+        "2TB-10TB",
+        "10TB-20TB",
+        "20TB-50TB",
+        "50TB-?TB",
     ]
-
-    bin0 = [0, 0.1]
-    label0 = ["0-100GB"]
-    bin1 = [0.5, 1]
-    label1 = ["500GB-1TB"]
-    bin2 = [2, 10]
-    label2 = ["2-10TB"]
-    bin3 = [20, 50, 10000000]
-    label3 = ["20-50TB", "50-?TB"]
 
     better_bins = tools.binCreator(80, 2, 0)
     better_bins_labels = tools.binLabelCreator(80, 2, 0)
@@ -56,28 +45,13 @@ def getGroupHistogram(input, column, date):
 
     df["bin"] = pd.cut(df[f"{column}"], scott_bins, labels=scott_labels, right=False)
 
-    df["bin0"] = pd.cut(df[f"{column}"], bin0, labels=label0, right=False)
-    df["bin1"] = pd.cut(df[f"{column}"], bin1, labels=label1, right=False)
-    df["bin2"] = pd.cut(df[f"{column}"], bin2, labels=label2, right=False)
-    df["bin3"] = pd.cut(df[f"{column}"], bin3, labels=label3, right=False)
-
     # Counts the frequency of counts within bin ranges
     data = df["bin"].value_counts(sort=False)
-    data0 = df["bin0"].value_counts(sort=False)
-    data1 = df["bin1"].value_counts(sort=False)
-    data2 = df["bin2"].value_counts(sort=False)
-    data3 = df["bin3"].value_counts(sort=False)
-    print(data0)
-    print(data1)
-    print(data2)
-    print(data3)
     print(data)
-    # with pd.option_context("display.max_rows", None, "display.max_columns", 10):
-    #     print(df)
 
     # *Debugging* Shows full table data
     # with pd.option_context("display.max_rows", None, "display.max_columns", None):
-    #     print(data)
+    #     print(df)
 
     # Setting the graph's x/y labels and title
     ax.set(
@@ -102,15 +76,6 @@ def getGroupHistogram(input, column, date):
             p = ax.bar(scott_labels[i], data[i], label=scott_labels[i], width=1)
             ax.bar_label(p, label_type="edge")
 
-    # p0 = ax.bar(label0, data0, label=label0, width=1)
-    # ax.bar_label(p0, label_type="edge")
-    # p1 = ax.bar(label1, data1, label=label1, width=1)
-    # ax.bar_label(p1, label_type="edge")
-    # p2 = ax.bar(label2, data2, label=label2, width=1)
-    # ax.bar_label(p2, label_type="edge")
-    # p3 = ax.bar(label3, data3, label=label3, width=1)
-    # ax.bar_label(p3, label_type="edge")
-
     # Legend - Not really needed
     # lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
 
@@ -124,7 +89,7 @@ def getGroupHistogram(input, column, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/test_histogram_{column}_{date}.pdf",
+        f"graphs/research/group/histogram_{column}_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
