@@ -51,35 +51,40 @@ def main():
     writer.csvWriter("research", "research", report_date)
     writer.csvWriter("departments", "departments", report_date)
     writer.csvWriter("colleges", "colleges", report_date)
-    histogram.getGroupHistogram("research", "AFS Groups", report_date)
-    histogram.getGroupHistogram("research", "Users AFS", report_date)
-    histogram.getGroupHistogram("research", "Users Panas.", report_date)
 
-    # ===================================================================
-    # Testing to see if I can use different pdfs to create data
-    report_date_2 = tools.getReportDate("reports/Storage_Rep_2022-08-01.pdf")
-    writer.createFullOutput("reports/Storage_Rep_2022-08-01.pdf")
-    writer.createResearchOutput(report_date_2)
-    writer.createDepartmentOutput(report_date_2)
-    writer.createCollegesOutput(report_date_2)
-    writer.csvWriter("research", "research", report_date_2)
-    writer.csvWriter("departments", "departments", report_date_2)
-    writer.csvWriter("colleges", "colleges", report_date_2)
-    histogram.getGroupHistogram("research", "AFS Groups", report_date_2)
+    # histogram.getGroupHistogram("research", "AFS Groups", report_date)
+    histogram.getBatchGroupHistogram("research", "AFS Groups", report_date)
+    # histogram.getStackedGroupHistogram("research", report_date)
 
+    # histogram.getGroupHistogram("research", "Users AFS", report_date)
+    # histogram.getGroupHistogram("research", "Users Panas.", report_date)
+    # histogram.getGroupHistogram("departments", "AFS Groups", report_date)
+
+    # # ===================================================================
     # # Testing to see if I can use different pdfs to create data
-    report_date_3 = tools.getReportDate("reports/Storage_Rep_2021-08-01.pdf")
-    writer.createFullOutput("reports/Storage_Rep_2021-08-01.pdf")
-    writer.createResearchOutput(report_date_3)
-    writer.createDepartmentOutput(report_date_3)
-    writer.createCollegesOutput(report_date_3)
-    writer.csvWriter("research", "research", report_date_3)
-    writer.csvWriter("departments", "departments", report_date_3)
-    writer.csvWriter("colleges", "colleges", report_date_3)
-    histogram.getGroupHistogram("research", "AFS Groups", report_date_3)
+    # report_date_2 = tools.getReportDate("reports/Storage_Rep_2022-08-01.pdf")
+    # writer.createFullOutput("reports/Storage_Rep_2022-08-01.pdf")
+    # writer.createResearchOutput(report_date_2)
+    # writer.createDepartmentOutput(report_date_2)
+    # writer.createCollegesOutput(report_date_2)
+    # writer.csvWriter("research", "research", report_date_2)
+    # writer.csvWriter("departments", "departments", report_date_2)
+    # writer.csvWriter("colleges", "colleges", report_date_2)
+    # histogram.getGroupHistogram("research", "AFS Groups", report_date_2)
 
-    # # bar.testBatchGetUserBarChart("research", report_date)
-    # # bar.hellogetUserBarChart("research", report_date)
+    # # # Testing to see if I can use different pdfs to create data
+    # report_date_3 = tools.getReportDate("reports/Storage_Rep_2021-08-01.pdf")
+    # writer.createFullOutput("reports/Storage_Rep_2021-08-01.pdf")
+    # writer.createResearchOutput(report_date_3)
+    # writer.createDepartmentOutput(report_date_3)
+    # writer.createCollegesOutput(report_date_3)
+    # writer.csvWriter("research", "research", report_date_3)
+    # writer.csvWriter("departments", "departments", report_date_3)
+    # writer.csvWriter("colleges", "colleges", report_date_3)
+    # histogram.getGroupHistogram("research", "AFS Groups", report_date_3)
+
+    # # # bar.testBatchGetUserBarChart("research", report_date)
+    # # # bar.hellogetUserBarChart("research", report_date)
 
 
 def getJob():
