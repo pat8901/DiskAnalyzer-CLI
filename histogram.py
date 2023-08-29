@@ -210,6 +210,7 @@ def getBatchGroupHistogram(group, column, date):
 # +======================================================================================+
 def getStackedGroupHistogram(group, date):
     df = pd.read_csv(f"csv/{group}_{date}.csv")
+    row_count = len(df.index)
     terabyte = 1000000000
     colors = [
         "tab:blue",
@@ -221,21 +222,21 @@ def getStackedGroupHistogram(group, date):
         "tab:gray",
         "tab:brown",
     ]
+    patterns = ["//", "o", "x"]
     better_bins = tools.binCreator(80, 2, 0)
     better_bins_labels = tools.binLabelCreator(80, 2, 0)
     scott_unused_bins = [0, 0.001]
     scott_unused_labels = ["0GB-1GB"]
-    scott_bins = [0, 0.001, 0.1, 0.5, 1, 2, 10, 20, 50, 10000000]
+    scott_bins = [0.001, 0.1, 0.5, 1, 4, 10, 20, 50, 10000000]
     scott_labels = [
-        "0GB-1GB",
-        "1GB-100GB",
-        "100GB-500GB",
-        "500GB-1TB",
-        "1TB-2TB",
-        "2TB-10TB",
-        "10TB-20TB",
-        "20TB-50TB",
-        "50TB-?TB",
+        "1-100 GB",
+        "100-500 GB",
+        "500-1 TB",
+        "1-4 TB",
+        "4-10 TB",
+        "10-20 TB",
+        "20-50 TB",
+        "50-? TB",
     ]
 
     fig, ax = plt.subplots()
@@ -294,9 +295,10 @@ def getStackedGroupHistogram(group, date):
     #     print(df)
 
     # Setting the graph's x/y labels and title
-    ax.set(
-        ylabel="Number of Users",
-        title=f"Number of Users Within a Range of Storage {date}",
+    ax.set_ylabel("Number of Users", fontsize=16)
+    ax.set_title(
+        f"Combined counts from AFS Groups, Users AFS, and Users Panasas ({date})",
+        fontsize=16,
     )
 
     # Creating bar plots and adding them to graph
@@ -306,41 +308,76 @@ def getStackedGroupHistogram(group, date):
 
     # Creating bar plots and adding them to graph
     for i in range(len(data_AFS_Groups)):
-        if i != 0:
-            if data_AFS_Groups[i] != 0:
-                p0 = ax.bar(
-                    scott_labels[i], data_AFS_Groups[i], label=scott_labels[i], width=1
-                )
-                ax.bar_label(p0, label_type="center")
-            if data_Users_AFS[i] != 0:
-                p1 = ax.bar(
-                    scott_labels[i],
-                    data_Users_AFS[i],
-                    label=scott_labels[i],
-                    width=1,
-                    bottom=data_AFS_Groups[i],
-                )
-                ax.bar_label(p1, label_type="center")
-            if data_Users_Panas[i] != 0:
-                p2 = ax.bar(
-                    scott_labels[i],
-                    data_Users_Panas[i],
-                    label=scott_labels[i],
-                    width=1,
-                    bottom=data_AFS_Groups[i] + data_Users_AFS[i],
-                )
-                ax.bar_label(p2, label_type="center")
-        else:
-            continue
+        if data_AFS_Groups[i] != 0:
+            p0 = ax.bar(
+                scott_labels[i],
+                data_AFS_Groups[i],
+                label=scott_labels[i],
+                width=1,
+                color=colors[0],
+                edgecolor="black",
+            )
+            ax.bar_label(
+                p0,
+                label_type="center",
+                fontsize=16,
+            )
+        if data_Users_AFS[i] != 0:
+            p1 = ax.bar(
+                scott_labels[i],
+                data_Users_AFS[i],
+                label=scott_labels[i],
+                width=1,
+                bottom=data_AFS_Groups[i],
+                color=colors[1],
+                edgecolor="black",
+            )
+            ax.bar_label(p1, label_type="center", fontsize=16)
+        if data_Users_Panas[i] != 0:
+            p2 = ax.bar(
+                scott_labels[i],
+                data_Users_Panas[i],
+                label=scott_labels[i],
+                width=1,
+                bottom=data_AFS_Groups[i] + data_Users_AFS[i],
+                color=colors[2],
+                edgecolor="black",
+            )
+            ax.bar_label(p2, label_type="center", fontsize=16)
+
+        total = data_AFS_Groups[i] + data_Users_AFS[i] + data_Users_Panas[i]
+        ax.text(
+            i,
+            total + 5,
+            f"Total: {total}",
+            ha="center",
+            weight="bold",
+            color="black",
+        )
 
     # Legend - Not really needed
-    lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+    # lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+    lgd = ax.legend(
+        [p2, p1, p0],
+        ["Users Panasas", "Users AFS", "AFS Groups"],
+        bbox_to_anchor=(0.85, 0.85),
+        loc="upper left",
+        fontsize=18,
+    )
+    ax.set_axisbelow(True)
+    plt.grid(axis="y", color="0.95")
+    matplotlib.pyplot.xticks(fontsize=12)
+    matplotlib.pyplot.yticks(fontsize=14)
     plt.figtext(
         0.12,
         0.01,
-        f"*{data_AFS_Groups[0]+data_Users_AFS[0]+data_Users_Panas[0]} users counts between 0GB-1GB not displayed    * unused count: {data_AFS_Groups_unused[0]+data_Users_AFS_unused[0]+data_Users_Panas_unused[0]}",
+        f"""Note: 
+        {row_count} unique users
+        {row_count*3} total counts 
+        {data_AFS_Groups_unused[0]+data_Users_AFS_unused[0]+data_Users_Panas_unused[0]} counts between 0-1 GB not displayed""",
         horizontalalignment="left",
         fontsize=12,
+        color="0.4",
     )
 
     # Rotating x labels 90 degrees
@@ -353,7 +390,7 @@ def getStackedGroupHistogram(group, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/stackTest_histogram_{group}_{date}.pdf",
+        f"graphs/research/group/{group}_combined_histogram_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
