@@ -317,11 +317,8 @@ def getStackedGroupHistogram(group, date):
                 color=colors[0],
                 edgecolor="black",
             )
-            ax.bar_label(
-                p0,
-                label_type="center",
-                fontsize=16,
-            )
+            if i not in [5, 6, 7]:
+                ax.bar_label(p0, label_type="center", fontsize=16)
         if data_Users_AFS[i] != 0:
             p1 = ax.bar(
                 scott_labels[i],
@@ -332,7 +329,8 @@ def getStackedGroupHistogram(group, date):
                 color=colors[1],
                 edgecolor="black",
             )
-            ax.bar_label(p1, label_type="center", fontsize=16)
+            if i not in [5, 6, 7]:
+                ax.bar_label(p1, label_type="center", fontsize=16)
         if data_Users_Panas[i] != 0:
             p2 = ax.bar(
                 scott_labels[i],
@@ -343,7 +341,8 @@ def getStackedGroupHistogram(group, date):
                 color=colors[2],
                 edgecolor="black",
             )
-            ax.bar_label(p2, label_type="center", fontsize=16)
+            if i not in [5, 6, 7]:
+                ax.bar_label(p2, label_type="center", fontsize=16)
 
         total = data_AFS_Groups[i] + data_Users_AFS[i] + data_Users_Panas[i]
         ax.text(
@@ -379,9 +378,23 @@ def getStackedGroupHistogram(group, date):
         fontsize=12,
         color="0.4",
     )
+    plt.table(
+        cellText=[
+            [data_Users_Panas[5], data_Users_Panas[6], data_Users_Panas[7]],
+            [data_Users_AFS[5], data_Users_AFS[6], data_Users_AFS[7]],
+            [data_AFS_Groups[5], data_AFS_Groups[6], data_AFS_Groups[7]],
+        ],
+        colWidths=[0.05] * 3,
+        rowLabels=["Users Panasas", "Users AFS", "AFS Groups"],
+        rowLoc="left",
+        rowColours=["tab:green", "tab:orange", "tab:blue"],
+        colLabels=["10-20 TB", "20-50 TB", "50-? TB"],
+        loc="center right",
+    )
 
     # Rotating x labels 90 degrees
     # plt.xticks(rotation=90, ha="right")
+    # plt.yticks(np.arange(0, 195, 5))
     plt.xticks(rotation=0, ha="center")
 
     # Setting the size of the graph for when it will be saved to a file
@@ -390,7 +403,7 @@ def getStackedGroupHistogram(group, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/{group}_combined_histogram_{date}.pdf",
+        f"graphs/research/group/test_{group}_combined_histogram_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
