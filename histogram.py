@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import scipy.stats as stats
+#import scipy.stats as stats
 import tools
 import writer
 import bar
@@ -108,10 +108,9 @@ def getGroupHistogram(group, column, date):
 def getBatchGroupHistogram(group, column, date):
     df = pd.read_csv(f"csv/{group}_{date}.csv")
     terabyte = 1000000000
-    scott_bins = [0, 0.0005, 0.001, 0.1, 0.5, 1, 2, 10, 20, 50, 10000000]
+    scott_bins = [0, 0.001, 0.1, 0.5, 1, 2, 10, 20, 50, 10000000]
     scott_labels = [
-        "0GB-0.5GB",
-        "0.5GB-1GB",
+        "0GB-1GB",
         "1GB-100GB",
         "100GB-500GB",
         "500GB-1TB",
@@ -145,27 +144,31 @@ def getBatchGroupHistogram(group, column, date):
         print(df)
 
     # Setting the graph's x/y labels and title
-    ax.set(
-        ylabel="Frequency",
-        title=f"{column} - Number of Users Within a Range of Storage {date}",
-    )
-    # ax.set_ylim([0, 50])
+    ax.set_ylabel("Number of Users",fontsize=16)
+    if column =="Tot.Used Space":
+        ax.set_title(f"Total Used Space ({date})",fontsize=16)
+    else:
+        ax.set_title(f"{column} ({date})",fontsize=16)
+    matplotlib.pyplot.xticks(fontsize=12)
+    matplotlib.pyplot.yticks(fontsize=14)
+    plt.figtext(.12, 0.01, f'*{data[0]} users between 0GB-1GB not displayed', horizontalalignment='left',fontsize=12)
+    #ax.grid(axis='y')
 
     # Creating bar plots and adding them to graph
     # for i in range(len(data)):
-    #     p = ax.bar(better_bins_labels[i], data[i], label=better_bins_labels[i], width=1)
+    #     p = ax.bar(better_bins_labels[i], data[i], label=better_bins_lab1els[i], width=1)
     #     ax.bar_label(p, label_type="edge")
 
     # Creating bar plots and adding them to graph
     for i in range(len(data)):
         if i == 0:
             continue
-        if i == 1:
-            continue
         else:
-            p = ax.bar(scott_labels[i], data[i], label=scott_labels[i], width=1)
-            ax.bar_label(p, label_type="edge")
+            p = ax.bar(scott_labels[i], data[i], label=scott_labels[i], width=1, edgecolor='white')
+            
+            ax.bar_label(p, label_type="edge",fontsize=16)
 
+   
     # Legend - Not really needed
     # lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
 
@@ -179,7 +182,7 @@ def getBatchGroupHistogram(group, column, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/test5_histogram_{group}_{column}_{date}.pdf",
+        f"graphs/research/group/{group}_{column}_histogram_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
@@ -193,7 +196,7 @@ def getBatchGroupHistogram(group, column, date):
 # |  Creates a histogram using binned data as x values and their frequencies as y values |
 # |             *bins are auto-made using the hist function instead of bar*              |
 # +======================================================================================+
-def getStackedGroupHistogram(group, date):
+def getStackedGroupHistogram(group,column, date):
     df = pd.read_csv(f"csv/{group}_{date}.csv")
     terabyte = 1000000000
     scott_bins = [0.001, 0.1, 0.5, 1, 2, 10, 20, 50, 10000000]

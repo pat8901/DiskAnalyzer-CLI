@@ -54,6 +54,9 @@ def main():
 
     # histogram.getGroupHistogram("research", "AFS Groups", report_date)
     histogram.getBatchGroupHistogram("research", "AFS Groups", report_date)
+    histogram.getBatchGroupHistogram("research", "Users AFS", report_date)
+    histogram.getBatchGroupHistogram("research", "Users Panas.", report_date)
+    histogram.getBatchGroupHistogram("research", "Tot.Used Space", report_date)
     # histogram.getStackedGroupHistogram("research", report_date)
 
     # histogram.getGroupHistogram("research", "Users AFS", report_date)
