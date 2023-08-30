@@ -236,7 +236,7 @@ def getStackedGroupHistogram(group, date):
         "4-10 TB",
         "10-20 TB",
         "20-50 TB",
-        "50-? TB",
+        "> 50 TB",
     ]
 
     fig, ax = plt.subplots()
@@ -297,7 +297,7 @@ def getStackedGroupHistogram(group, date):
     # Setting the graph's x/y labels and title
     ax.set_ylabel("Number of Users", fontsize=16)
     ax.set_title(
-        f"Combined counts from AFS Groups, Users AFS, and Users Panasas ({date})",
+        f"Combined Counts From AFS Groups, Users AFS, and Users Panasas ({date})",
         fontsize=16,
     )
 
@@ -356,15 +356,17 @@ def getStackedGroupHistogram(group, date):
 
     # Legend - Not really needed
     # lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
-    lgd = ax.legend(
-        [p2, p1, p0],
-        ["Users Panasas", "Users AFS", "AFS Groups"],
-        bbox_to_anchor=(0.85, 0.85),
-        loc="upper left",
-        fontsize=18,
-    )
+    # lgd = ax.legend(
+    #     [p2, p1, p0],
+    #     ["Users Panasas", "Users AFS", "AFS Groups"],
+    #     bbox_to_anchor=(0.85, 0.85),
+    #     loc="upper left",
+    #     fontsize=18,
+    # )
+
     ax.set_axisbelow(True)
-    plt.grid(axis="y", color="0.95")
+
+    plt.grid(axis="y", color="0.95",zorder=0)
     matplotlib.pyplot.xticks(fontsize=12)
     matplotlib.pyplot.yticks(fontsize=14)
     plt.figtext(
@@ -390,6 +392,7 @@ def getStackedGroupHistogram(group, date):
         rowColours=["tab:green", "tab:orange", "tab:blue"],
         colLabels=["10-20 TB", "20-50 TB", "50-? TB"],
         loc="center right",
+        zorder=3
     )
 
     # Rotating x labels 90 degrees
@@ -403,7 +406,7 @@ def getStackedGroupHistogram(group, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/test_{group}_combined_histogram_{date}.pdf",
+        f"graphs/research/group/{group}_combined_histogram_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
