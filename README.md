@@ -4,4 +4,4 @@ This program will take in a properitary pdf file that holds information on stora
 
 # Install
 
-# Misc
+Please install all packages found in the requirments.txt
