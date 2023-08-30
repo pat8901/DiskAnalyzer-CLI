@@ -92,7 +92,7 @@ def getGroupHistogram(group, column, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/test1_histogram_{group}_{column}_{date}.pdf",
+        f"graphs/research/group_reports/test1_histogram_{group}_{column}_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
@@ -194,7 +194,7 @@ def getBatchGroupHistogram(group, column, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/{group}_{column}_histogram_{date}.pdf",
+        f"graphs/research/group_reports/{group}_{column}_histogram_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),
@@ -366,7 +366,7 @@ def getStackedGroupHistogram(group, date):
 
     ax.set_axisbelow(True)
 
-    plt.grid(axis="y", color="0.95",zorder=0)
+    plt.grid(axis="y", color="0.95", zorder=0)
     matplotlib.pyplot.xticks(fontsize=12)
     matplotlib.pyplot.yticks(fontsize=14)
     plt.figtext(
@@ -390,9 +390,9 @@ def getStackedGroupHistogram(group, date):
         rowLabels=["Users Panasas", "Users AFS", "AFS Groups"],
         rowLoc="left",
         rowColours=["tab:green", "tab:orange", "tab:blue"],
-        colLabels=["10-20 TB", "20-50 TB", "50-? TB"],
+        colLabels=["10-20 TB", "20-50 TB", "> 50 TB"],
         loc="center right",
-        zorder=3
+        zorder=3,
     )
 
     # Rotating x labels 90 degrees
@@ -406,7 +406,7 @@ def getStackedGroupHistogram(group, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group/{group}_combined_histogram_{date}.pdf",
+        f"graphs/research/group_reports/{group}_combined_histogram_{date}.pdf",
         dpi=300,
         format="pdf",
         # bbox_extra_artists=(lgd,),

@@ -9,10 +9,11 @@ import tools
 import writer
 import time
 
+
 # +======================================================================================+
 # |           Official bar chart function that creates batches of user charts            |
 # +======================================================================================+
-def hellogetUserBarChart(input,date):
+def hellogetUserBarChart(input, date):
     df = pd.read_csv(f"csv/{input}_{date}.csv")
     dfBase = pd.read_csv(f"csv/{input}_{date}.csv")
     start = time.time()
@@ -112,7 +113,7 @@ def hellogetUserBarChart(input,date):
 
         # Saving the figure
         plt.savefig(
-            f"graphs/research/users/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
+            f"graphs/research/user_reports/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
             dpi=300,
             format="pdf",
             bbox_extra_artists=(lgd,),
@@ -120,8 +121,8 @@ def hellogetUserBarChart(input,date):
         )
         plt.close(fig)
     end = time.time()
-    print("The time of execution of above program is :",
-      (end-start) * 10**3, "ms")
+    print("The time of execution of above program is :", (end - start) * 10**3, "ms")
+
 
 # +======================================================================================+
 # |           Official bar chart function that creates batches of user charts            |
@@ -136,9 +137,6 @@ def testBatchGetUserBarChart(input, date):
     #     users.append(i)
     # length = len(users)
 
-   
-    
-
     # for i in range(row_count):
     #     # displaying debugging info
     #     divisor = tools.getDivisor(df.iloc[i]["Tot.Used Space"])
@@ -149,7 +147,6 @@ def testBatchGetUserBarChart(input, date):
     #     print(f"divsior: {divisor}")
     #     print(f"counter: {counter}")
 
-        
     #     df["AFS Groups"].iloc[i] = df.iloc[i]["AFS Groups"]/divisor
     #     df["Users AFS"].iloc[i] = df.iloc[i]["Users AFS"]/divisor
     #     df["Users Panas."].iloc[i] = df.iloc[i]["Users Panas."]/divisor
@@ -160,10 +157,10 @@ def testBatchGetUserBarChart(input, date):
     for i in range(row_count):
         divisor = tools.getDivisor(df.iloc[i]["Tot.Used Space"])
         counter = tools.getChartCounter(divisor)
-        df["AFS Groups"].iloc[i] = df.iloc[i]["AFS Groups"]/divisor
-        df["Users AFS"].iloc[i] = df.iloc[i]["Users AFS"]/divisor
-        df["Users Panas."].iloc[i] = df.iloc[i]["Users Panas."]/divisor
-        df["Tot.Used Space"].iloc[i] = df.iloc[i]["Tot.Used Space"]/divisor
+        df["AFS Groups"].iloc[i] = df.iloc[i]["AFS Groups"] / divisor
+        df["Users AFS"].iloc[i] = df.iloc[i]["Users AFS"] / divisor
+        df["Users Panas."].iloc[i] = df.iloc[i]["Users Panas."] / divisor
+        df["Tot.Used Space"].iloc[i] = df.iloc[i]["Tot.Used Space"] / divisor
 
         print(f"User Index: {i}")
         print(f'Name {df.iloc[i]["Full Name"]}')
@@ -177,7 +174,7 @@ def testBatchGetUserBarChart(input, date):
             p1 = ax.bar(
                 df.iloc[i]["Full Name"],
                 df.iloc[i]["AFS Groups"],
-                width=0.5, 
+                width=0.5,
                 color="tab:blue",
                 label="AFS Group",
             )
@@ -210,13 +207,15 @@ def testBatchGetUserBarChart(input, date):
         )
 
         # Setting axis limits
-        #xlimits = ax.get_xlim()
+        # xlimits = ax.get_xlim()
         ax.set_xlim(left=-0.7, right=0.7)
         ylimits = ax.get_ylim()
         ax.set_ylim(bottom=None, top=(ylimits[1] + ylimits[1] * 0.15))
 
-        #Displaying total on top of bar
-        total = np.float64(np.format_float_positional(df.iloc[i]["Tot.Used Space"], precision=4))
+        # Displaying total on top of bar
+        total = np.float64(
+            np.format_float_positional(df.iloc[i]["Tot.Used Space"], precision=4)
+        )
         ax.text(
             0,
             total + (total * 0.07),
@@ -231,7 +230,7 @@ def testBatchGetUserBarChart(input, date):
 
         # Saving the figure
         plt.savefig(
-            f"graphs/research/users/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
+            f"graphs/research/user_reports/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
             dpi=300,
             format="pdf",
             bbox_extra_artists=(lgd,),
@@ -240,8 +239,8 @@ def testBatchGetUserBarChart(input, date):
         plt.close(fig)
 
     end = time.time()
-    print("The time of execution of above program is :",
-      (end-start) * 10**3, "ms")
+    print("The time of execution of above program is :", (end - start) * 10**3, "ms")
+
 
 # +======================================================================================+
 # |             Testing function for when getting a user's bar chart of storages         |
@@ -382,6 +381,8 @@ def getUserBarChart(input):
             title=f"{df.iloc[i]['Full Name']}'s AFS Storage Amount",
         )
         ax.legend(loc="upper right")
-        plt.savefig(f"graphs/research/user/{df.iloc[i]['Full Name']}_user_report.pdf")
+        plt.savefig(
+            f"graphs/research/use_reports/{df.iloc[i]['Full Name']}_user_report.pdf"
+        )
         plt.close(fig)
         # plt.show()
