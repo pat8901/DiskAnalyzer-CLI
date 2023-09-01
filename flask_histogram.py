@@ -12,7 +12,7 @@ def getStackedGroupHistogram(group, date):
     terabyte = 1000000000
     colors = [
         "tab:blue",
-        "tab:orange",
+        "orange",
         "tab:green",
         "tab:purple",
         "tab:pink",
@@ -161,7 +161,7 @@ def getStackedGroupHistogram(group, date):
         colWidths=[0.05] * 3,
         rowLabels=["Users Panasas", "Users AFS", "AFS Groups"],
         rowLoc="left",
-        rowColours=["tab:green", "tab:orange", "tab:blue"],
+        rowColours=["tab:green", "orange", "tab:blue"],
         colLabels=["10-20 TB", "20-50 TB", "> 50 TB"],
         loc="center right",
         zorder=3,
@@ -188,7 +188,7 @@ def convertToImage():
 
     # Save plot to a BytesIO object
     img = io.BytesIO()
-    plt.savefig(img, format="png", bbox_inches="tight")
+    plt.savefig(img, dpi=75, format="png", bbox_inches="tight")
     img.seek(0)
 
     # Convert BytesIO object to base64 string

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 import pandas as pd
 import csv
 import base64
@@ -11,11 +11,19 @@ import flask_histogram
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def root():
-    df = pd.read_csv(f"csv/research_2023-08-10.csv")
-    json_data = df.to_json(orient="values")
-    return json_data
+    if request.method == "GET":
+        data = "Hello World!"
+        return jsonify({"data": data})
+    # df = pd.read_csv(f"csv/research_2023-08-10.csv")
+    # json_data = df.to_json(orient="values")
+    # return json_data
+
+
+@app.route("/math/<int:num>", methods=["GET"])
+def addTwo(num):
+    return jsonify({"data": num + 2})
 
 
 @app.route("/hello")
