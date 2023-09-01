@@ -12,8 +12,7 @@ import tools
 # |           Converts input pdf into a txt file to be used in further processing        |
 # |                           *Can be optimized further*                                 |
 # +======================================================================================+
-def createFullOutput(input):
-    date = tools.getReportDate(input)
+def createFullOutput(input, date):
     pdf = open(f"{input}", "rb")
     reader = PdfReader(pdf)
     with open(f"text/full_output/full_output_{date}.txt", "w") as f_output:
@@ -141,3 +140,7 @@ def csvWriter(input, output, date):
                     trimmedWords.append(new_word)
                 # writer = csv.writer(file)
                 writer.writerow(trimmedWords)
+
+
+def csvChecker():
+    print("hello")

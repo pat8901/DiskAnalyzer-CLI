@@ -107,6 +107,7 @@ def addlabels(x, y):
     for i in range(len(x)):
         plt.text(i, y[i], y[i])
 
+
 # +======================================================================================+
 # |             Creates a list of bin labels to be used with frequency graphs            |
 # +======================================================================================+
@@ -118,6 +119,7 @@ def binLabelCreator(amount, step, start):
         bin_labels.append(f"{left}-{left+step}")
         left = left + step
     return bin_labels
+
 
 # +======================================================================================+
 # |             Creates a list of bin to be used with frequency graphs                   |
@@ -132,8 +134,30 @@ def binCreator(amount, step, start):
     # bins.append()
     return bins
 
+
+# +======================================================================================+
+# |                       Reformates the date to American Standard                       |
+# +======================================================================================+
+def dateFormatter(date):
+    print(date)
+
+
 # +======================================================================================+
 # |                       Fetches the date of the input report                           |
 # +======================================================================================+
 def getReportDate(report_file):
-    return report_file[20:30]
+    return report_file[-14:-4]
+
+
+# +======================================================================================+
+# |                       Fetches the path of the input report                           |
+# +======================================================================================+
+def getFilePath(report_file):
+    return report_file[-14:-4]
+
+
+# +======================================================================================+
+# |                       Fetches the file name of input report                           |
+# +======================================================================================+
+def getFileName(report_file):
+    return report_file[-26:]
