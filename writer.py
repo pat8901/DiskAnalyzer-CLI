@@ -142,5 +142,54 @@ def csvWriter(input, output, date):
                 writer.writerow(trimmedWords)
 
 
+def csvWriter2():
+    input = "research"
+    output = "research"
+    date = "2023-08-10"
+    with open(f"text/grouped_output/{input}_{date}.txt", "r") as f:
+        with open(f"csv/{output}_{9999999}.csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            if output == "research":
+                headers = [
+                    "Id",
+                    "Full Name",
+                    "DepCode",
+                    "AFS Groups",
+                    "Users AFS",
+                    "Users Panas.",
+                    "Tot.Used Space",
+                ]
+                writer.writerow(headers)
+            if output == "departments":
+                headers = [
+                    "Department",
+                    "AFS Groups",
+                    "Users AFS",
+                    "Users Panas.",
+                    "Tot.Used Space",
+                ]
+                writer.writerow(headers)
+            if output == "colleges":
+                headers = [
+                    "College Name",
+                    "AFS Groups",
+                    "Users AFS",
+                    "Users Panas.",
+                    "Tot.Used Space",
+                ]
+                writer.writerow(headers)
+            count = 1
+            for line in f:
+                trimmedWords = []
+                line = line.split("|")
+                trimmedWords.append(count)
+                count = count + 1
+                for word in line:
+                    new_word = word.strip()
+                    trimmedWords.append(new_word)
+                # writer = csv.writer(file)
+                writer.writerow(trimmedWords)
+
+
 def csvChecker():
     print("hello")
