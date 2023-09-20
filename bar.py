@@ -106,9 +106,11 @@ def getUserBarCharts(input, date):
 
         # Saving the figure
         plt.savefig(
-            f"graphs/research/user_reports/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
+            # f"graphs/research/user_reports/{df.iloc[i]['Full Name']}_user_report_{date}.pdf",
+            f"graphs/research/user_reports/pngs/{df.iloc[i]['Full Name']}_user_report_{date}.png",
             dpi=300,
-            format="pdf",
+            # format="pdf",
+            format="png",
             bbox_extra_artists=(lgd,),
             bbox_inches="tight",
         )
