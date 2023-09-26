@@ -161,3 +161,10 @@ def getFilePath(report_file):
 # +======================================================================================+
 def getFileName(report_file):
     return report_file[-26:]
+
+
+# +======================================================================================+
+# |                Tool to choose what format you want to save figures in                |
+# +======================================================================================+
+def getFormat():
+    print(f"you selected png")

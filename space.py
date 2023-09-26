@@ -3,6 +3,7 @@ import tools
 import writer
 import bar
 import histogram
+import command_line
 import readline
 
 
@@ -20,62 +21,13 @@ def main():
     writer.csvWriter("departments", "departments", report_date)
     writer.csvWriter("colleges", "colleges", report_date)
 
-    print("Which group would you like to create graphs for? *Choose a number*")
-    selection_group = input(
-        """
-    Options:
-    [1] Researchers
-    [2] Departments
-    [3] Colleges
-    [4] Quit
-    """
-    )
+    histogram.getGroupTotals("research", "2023-08-10")
+    histogram.getGroupHistogram("research", "AFS Groups", "2023-08-10")
+    histogram.getGroupHistogram("research", "Users AFS", "2023-08-10")
+    histogram.getGroupHistogram("research", "Users Panas.", "2023-08-10")
+    histogram.getStackedGroupHistogram("research", "2023-08-10")
 
-    match selection_group:
-        case "1":
-            print("you choose researchers")
-            group = "research"
-            getJob(group, report_date)
-        case "2":
-            print("you choose departments")
-            group = "departments"
-            getJob(group, report_date)
-        case "3":
-            print("you choose colleges")
-            group = "colleges"
-            getJob(group, report_date)
-        case "4":
-            print("you choose to quit")
-        case _:
-            print("you choose invalid option!")
-
-
-def getJob(group, date):
-    print("Which job would you like to preform?")
-    selection_job = input(
-        """
-    Options:
-    [1] Create graphs for all users individualy
-    [2] Create a histogram on individual category 
-    [3] Create a stacked histogram on all three categories 
-    [4] Quit
-    """
-    )
-    match selection_job:
-        case "1":
-            print("you choose create user graphs")
-            bar.getUserBarCharts(group, date)
-        case "2":
-            print("creating indiviual group histogram")
-            histogram.getGroupHistogram(group, "AFS Groups", date)
-
-        case "3":
-            print("Creating stacked histogram")
-            histogram.getStackedGroupHistogram(group, date)
-        case "4":
-            print("you choose to quit")
-        case _:
-            print("you choose invalid option!")
+    # command_line.getCommandLine(report_date)
 
 
 if __name__ == "__main__":

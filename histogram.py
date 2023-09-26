@@ -5,6 +5,71 @@ import tools
 
 
 # +======================================================================================+
+# |             Creates a histogram of total storage values for the 3 groups             |
+# +======================================================================================+
+def getGroupTotals(group, date):
+    df = pd.read_csv(f"csv/{group}_{date}.csv")
+    terabyte = 1000000000
+
+    # Converting from KB to TB
+    df["AFS Groups"] = df["AFS Groups"].div(terabyte)
+    df["Users AFS"] = df["Users AFS"].div(terabyte)
+    df["Users Panas."] = df["Users Panas."].div(terabyte)
+    df["Tot.Used Space"] = df["Tot.Used Space"].div(terabyte)
+
+    afs_group_total = df["AFS Groups"].sum()
+    afs_user_total = df["Users AFS"].sum()
+    panas_total = df["Users Panas."].sum()
+    total = df["Tot.Used Space"].sum()
+
+    fig, ax = plt.subplots()
+    ax.set_ylabel("Terabytes", fontsize=16)
+    ax.set_title(f"Group Storage Amount ({date})", fontsize=16)
+    matplotlib.pyplot.xticks(fontsize=12)
+    matplotlib.pyplot.yticks(fontsize=14)
+    ax.set_axisbelow(True)
+    plt.grid(axis="y", color="0.95", zorder=0)
+
+    afs_group_bar = ax.bar(
+        "AFS Group", afs_group_total, label="AFS Group", width=1, edgecolor="white"
+    )
+    ax.bar_label(afs_group_bar, label_type="edge", fontsize=16)
+
+    afs_user_bar = ax.bar(
+        "AFS User", afs_user_total, label="AFS Group", width=1, edgecolor="white"
+    )
+    ax.bar_label(afs_user_bar, label_type="edge", fontsize=16)
+
+    panasas_bar = ax.bar(
+        "Panasas", panas_total, label="AFS Group", width=1, edgecolor="white"
+    )
+    ax.bar_label(panasas_bar, label_type="edge", fontsize=16)
+
+    # total_bar = ax.bar("Total", total, label="AFS Group", width=1, edgecolor="white")
+    # ax.bar_label(total_bar, label_type="edge", fontsize=16)
+
+    # Setting the size of the graph for when it will be saved to a file
+    figure = plt.gcf()
+    figure.set_size_inches(24, 8.5)
+
+    # Saving the figure
+    plt.savefig(
+        f"graphs/research/group_reports/{group}_totals_{date}.png",
+        dpi=300,
+        format="png",
+        # bbox_extra_artists=(lgd,),
+        bbox_inches="tight",
+    )
+
+    plt.show()
+
+    print(f"AFS Group:  {afs_group_total}")
+    print(f"AFS User:   {afs_user_total}")
+    print(f"Panasas:    {panas_total}")
+    print(f"Total:      {total}")
+
+
+# +======================================================================================+
 # |  Creates a histogram using binned data as x values and their frequencies as y values |
 # |             *bins are auto-made using the hist function instead of bar*              |
 # +======================================================================================+
@@ -36,6 +101,7 @@ def getGroupHistogram(group, column, date):
     #     df[f"{column}"], better_bins, labels=better_bins_labels, right=False
     # )
 
+    # Creating the bins
     df["bin"] = pd.cut(df[f"{column}"], scott_bins, labels=scott_labels, right=False)
 
     # Counts the frequency of counts within bin ranges
@@ -96,9 +162,9 @@ def getGroupHistogram(group, column, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/group_reports/{group}_{column}_histogram_{date}.pdf",
+        f"graphs/research/group_reports/{group}_{column}_histogram_{date}.png",
         dpi=300,
-        format="pdf",
+        format="png",
         # bbox_extra_artists=(lgd,),
         bbox_inches="tight",
     )
@@ -267,6 +333,7 @@ def getStackedGroupHistogram(group, date):
 
     ax.set_axisbelow(True)
 
+    # Setting horizontal lines
     plt.grid(axis="y", color="0.95", zorder=0)
     matplotlib.pyplot.xticks(fontsize=12)
     matplotlib.pyplot.yticks(fontsize=14)
@@ -307,9 +374,9 @@ def getStackedGroupHistogram(group, date):
 
     # Saving the figure
     plt.savefig(
-        f"graphs/research/test_reports/{group}_combined_histogram_{date}.pdf",
+        f"graphs/research/test_reports/{group}_combined_histogram_{date}.png",
         dpi=300,
-        format="pdf",
+        format="png",
         # bbox_extra_artists=(lgd,),
         bbox_inches="tight",
     )
