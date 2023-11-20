@@ -168,3 +168,33 @@ def getFileName(report_file):
 # +======================================================================================+
 def getFormat():
     print(f"you selected png")
+
+
+def getMonth(date):
+    # Extracting the month from the given date. Based on the month it will be changed from number format to words
+    month = date[5:7]
+    if month == "01":
+        month = "January"
+    if month == "02":
+        month = "Feburary"
+    if month == "03":
+        month = "March"
+    if month == "04":
+        month = "April"
+    if month == "05":
+        month = "May"
+    if month == "06":
+        month = "June"
+    if month == "07":
+        month = "July"
+    if month == "08":
+        month = "August"
+    if month == "09":
+        month = "September"
+    if month == "10":
+        month = "October"
+    if month == "11":
+        month = "November"
+    if month == "12":
+        month = "December"
+    return month

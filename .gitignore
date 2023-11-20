@@ -18,5 +18,7 @@ images/groupStorageCharts/*
 !images/groupStorageCharts/README.txt
 images/userStorageCharts/*
 !images/userStorageCharts/README.txt
+images/batches/*
+!images/batches/README.txt
 
 images/graphs

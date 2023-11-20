@@ -32,6 +32,7 @@ def main():
     src.writer.generateReports(
         "documents/reports/Storage_Rep_2023-08-10.pdf", "2023-08-10"
     )
+    src.bar.getUserBarCharts("research", "2023-08-10")
 
 
 if __name__ == "__main__":

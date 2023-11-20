@@ -28,8 +28,12 @@ import os
 # |           Official bar chart function that creates batches of user charts            |
 # +======================================================================================+
 def getUserBarCharts(input, date):
+    pd.options.mode.chained_assignment = None  # default='warn'
     # Read csv file into pandas dataframe
-    df = pd.read_csv(f"./documents/csv/{input}_{date}.csv")
+    year = date[0:4]
+    month = tools.getMonth(date)
+    print(month)
+    df = pd.read_csv(f"./documents/csv/{year}/{month}/{input}_{date}.csv")
     # Getting the amount of rows in dataframe
     row_count = len(df.index)
 
