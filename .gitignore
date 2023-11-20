@@ -6,10 +6,11 @@ __pycache__
 
 documents/csv/*
 !documents/csv/README.txt
+
 documents/reports/*
 !documents/reports/README.txt
-documents/text/*
-!documents/text/README.txt
+
+
 
 images/groupStorageCharts/*
 !images/groupStorageCharts/README.txt
