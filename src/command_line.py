@@ -1,5 +1,5 @@
-import bar
-import histogram
+import src.bar
+import src.histogram
 
 
 def getCommandLine(report_date):
@@ -47,14 +47,14 @@ def getJob(group, date):
     match selection_job:
         case "1":
             print("you choose create user graphs")
-            bar.getUserBarCharts(group, date)
+            src.bar.getUserBarCharts(group, date)
         case "2":
             print("creating indiviual group histogram")
-            histogram.getGroupHistogram(group, "AFS Groups", date)
+            src.histogram.getGroupHistogram(group, "AFS Groups", date)
 
         case "3":
             print("Creating stacked histogram")
-            histogram.getStackedGroupHistogram(group, date)
+            src.histogram.getStackedGroupHistogram(group, date)
         case "4":
             print("you choose to quit")
         case _:

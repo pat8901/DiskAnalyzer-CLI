@@ -1,10 +1,10 @@
 import sys
-import tools
-import writer
-import bar
-import histogram
-import command_line
 import readline
+import src.tools
+import src.writer
+import src.bar
+import src.histogram
+import src.command_line
 
 
 def main():
@@ -27,23 +27,11 @@ def main():
     # histogram.getGroupHistogram("research", "Users Panas.", "2023-08-10")
     # histogram.getStackedGroupHistogram("research", "2023-08-10")
 
-    writer.createFullOutput(
+    # command_line.getCommandLine(report_date)
+
+    src.writer.generateReports(
         "documents/reports/Storage_Rep_2023-08-10.pdf", "2023-08-10"
     )
-    writer.createResearchOutput("2023-08-10")
-    writer.createDepartmentOutput("2023-08-10")
-    writer.createCollegesOutput("2023-08-10")
-    writer.csvWriter("research", "research", "2023-08-10")
-    writer.csvWriter("departments", "departments", "2023-08-10")
-    writer.csvWriter("colleges", "colleges", "2023-08-10")
-
-    histogram.getGroupTotals("research", "2023-08-10")
-    histogram.getGroupHistogram("research", "AFS Groups", "2023-08-10")
-    histogram.getGroupHistogram("research", "Users AFS", "2023-08-10")
-    histogram.getGroupHistogram("research", "Users Panas.", "2023-08-10")
-    histogram.getStackedGroupHistogram("research", "2023-08-10")
-
-    # command_line.getCommandLine(report_date)
 
 
 if __name__ == "__main__":
