@@ -8,10 +8,10 @@ import readline
 
 
 def main():
-    file_input = sys.argv[1]
-    print(f'You said "{file_input}"')
-    report_date = tools.getReportDate(file_input)
-    print(f"date: {report_date}")
+    # file_input = sys.argv[1]
+    # print(f'You said "{file_input}"')
+    # report_date = tools.getReportDate(file_input)
+    # print(f"date: {report_date}")
 
     writer.createFullOutput(file_input, report_date)
     writer.createResearchOutput(report_date)
