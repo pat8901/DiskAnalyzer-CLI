@@ -4,3 +4,17 @@ graphs/research/user_reports/pngs
 graphs/research/test_reports/
 csv/
 __pycache__
+
+documents/csv/*
+!documents/csv/README.txt
+documents/reports/*
+!documents/reports/README.txt
+documents/text/*
+!documents/text/README.txt
+
+images/groupStorageCharts/*
+!images/groupStorageCharts/README.txt
+images/userStorageCharts/*
+!images/userStorageCharts/README.txt
+
+images/graphs
