@@ -13,13 +13,29 @@ def main():
     # report_date = tools.getReportDate(file_input)
     # print(f"date: {report_date}")
 
-    writer.createFullOutput(file_input, report_date)
-    writer.createResearchOutput(report_date)
-    writer.createDepartmentOutput(report_date)
-    writer.createCollegesOutput(report_date)
-    writer.csvWriter("research", "research", report_date)
-    writer.csvWriter("departments", "departments", report_date)
-    writer.csvWriter("colleges", "colleges", report_date)
+    # writer.createFullOutput(file_input, report_date)
+    # writer.createResearchOutput(report_date)
+    # writer.createDepartmentOutput(report_date)
+    # writer.createCollegesOutput(report_date)
+    # writer.csvWriter("research", "research", report_date)
+    # writer.csvWriter("departments", "departments", report_date)
+    # writer.csvWriter("colleges", "colleges", report_date)
+
+    # histogram.getGroupTotals("research", "2023-08-10")
+    # histogram.getGroupHistogram("research", "AFS Groups", "2023-08-10")
+    # histogram.getGroupHistogram("research", "Users AFS", "2023-08-10")
+    # histogram.getGroupHistogram("research", "Users Panas.", "2023-08-10")
+    # histogram.getStackedGroupHistogram("research", "2023-08-10")
+
+    writer.createFullOutput(
+        "documents/reports/Storage_Rep_2023-08-10.pdf", "2023-08-10"
+    )
+    writer.createResearchOutput("2023-08-10")
+    writer.createDepartmentOutput("2023-08-10")
+    writer.createCollegesOutput("2023-08-10")
+    writer.csvWriter("research", "research", "2023-08-10")
+    writer.csvWriter("departments", "departments", "2023-08-10")
+    writer.csvWriter("colleges", "colleges", "2023-08-10")
 
     histogram.getGroupTotals("research", "2023-08-10")
     histogram.getGroupHistogram("research", "AFS Groups", "2023-08-10")

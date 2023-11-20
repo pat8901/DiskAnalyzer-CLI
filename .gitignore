@@ -10,7 +10,8 @@ documents/csv/*
 documents/reports/*
 !documents/reports/README.txt
 
-
+documents/text/*
+!documents/text/README.txt
 
 images/groupStorageCharts/*
 !images/groupStorageCharts/README.txt
