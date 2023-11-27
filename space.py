@@ -27,9 +27,27 @@ all_colors = (
 )
 
 
-@click.group()
+@click.command()
 def main():
-    """Program to generate graphs of disk storage usage"""
+    click.echo(
+        """
+  _____    _         _      _____                _                            _____   _        _____ 
+ |  __ \  (_)       | |    |  __ \              | |                          / ____| | |      |_   _|
+ | |  | |  _   ___  | | __ | |__) |   __ _    __| |   __ _   _ __   ______  | |      | |        | |  
+ | |  | | | | / __| | |/ / |  _  /   / _` |  / _` |  / _` | | '__| |______| | |      | |        | |  
+ | |__| | | | \__ \ |   <  | | \ \  | (_| | | (_| | | (_| | | |             | |____  | |____   _| |_ 
+ |_____/  |_| |___/ |_|\_\ |_|  \_\  \__,_|  \__,_|  \__,_| |_|              \_____| |______| |_____|
+                                                                                                     
+                                                                                                     
+"""
+    )
+    click.echo(
+        click.style(
+            f'Welcome! To get started type "-help" command to see what you can do.',
+            bold=True,
+        )
+    )
+
     # file_input = sys.argv[1]
     # print(f'You said "{file_input}"')
     # report_date = tools.getReportDate(file_input)
@@ -51,30 +69,20 @@ def main():
 
     # command_line.getCommandLine(report_date)
 
-    for color in all_colors:
-        click.echo(click.style(f"I am colored {color}", fg=color))
-    for color in all_colors:
-        click.echo(click.style(f"I am colored {color} and bold", fg=color, bold=True))
-    for color in all_colors:
-        click.echo(click.style(f"I am reverse colored {color}", fg=color, reverse=True))
+    # for color in all_colors:
+    #     click.echo(click.style(f"I am colored {color}", fg=color))
+    # for color in all_colors:
+    #     click.echo(click.style(f"I am colored {color} and bold", fg=color, bold=True))
+    # for color in all_colors:
+    #     click.echo(click.style(f"I am reverse colored {color}", fg=color, reverse=True))
 
-    click.echo(click.style("I am blinking", blink=True))
-    click.echo(click.style("I am underlined", underline=True))
+    # click.echo(click.style("I am blinking", blink=True))
+    # click.echo(click.style("I am underlined", underline=True))
 
-    src.writer.generateReports(
-        "documents/reports/Storage_Rep_2023-08-10.pdf", "2023-08-10"
-    )
-    src.bar.getUserBarCharts("research", "2023-08-10")
-
-
-@main.command()
-def test():
-    print("hello")
-
-
-@main.command()
-def test2():
-    print("world!")
+    # src.writer.generateReports(
+    #     "documents/reports/Storage_Rep_2023-08-10.pdf", "2023-08-10"
+    # )
+    # src.bar.getUserBarCharts("research", "2023-08-10")
 
 
 if __name__ == "__main__":
