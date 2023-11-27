@@ -28,7 +28,47 @@ all_colors = (
 
 
 @click.command()
-def main():
+@click.argument("filename", nargs=-1)
+@click.option(
+    "--create",
+    type=click.Choice(["Researchers", "Colleges", "Departments"], case_sensitive=False),
+    help="Create plots for the given report",
+)
+@click.option(
+    "--about",
+    "about",
+    "-a",
+    is_flag=True,
+    show_default=True,
+    default=False,
+    help="Tells you about the program",
+)
+def main(filename, create, about):
+    print("Hello im in main!")
+    if about:
+        info()
+    click.echo(f"file name: {filename}")
+    print("exiting...")
+
+    # print(f"group: {create}")
+    # click.echo(f"about value: {about}")
+    # input = getGroup()
+    # file_input = sys.argv[1]
+    # print(f'You said "{file_input}"')
+    # report_date = tools.getReportDate(file_input)
+    # print(f"date: {report_date}")
+
+
+def create():
+    click.echo(
+        click.style(
+            f"I am the create command\n",
+            bold=True,
+        )
+    )
+
+
+def info():
     click.echo(
         """
   _____    _         _      _____                _                            _____   _        _____ 
@@ -43,46 +83,47 @@ def main():
     )
     click.echo(
         click.style(
-            f'Welcome! To get started type "-help" command to see what you can do.',
+            f'Welcome! To get started type "-help" command to see what you can do.\n',
             bold=True,
         )
     )
 
-    # file_input = sys.argv[1]
-    # print(f'You said "{file_input}"')
-    # report_date = tools.getReportDate(file_input)
-    # print(f"date: {report_date}")
 
-    # writer.createFullOutput(file_input, report_date)
-    # writer.createResearchOutput(report_date)
-    # writer.createDepartmentOutput(report_date)
-    # writer.createCollegesOutput(report_date)
-    # writer.csvWriter("research", "research", report_date)
-    # writer.csvWriter("departments", "departments", report_date)
-    # writer.csvWriter("colleges", "colleges", report_date)
+def getGroup():
+    value = click.prompt("Please enter a valid integer", type=int)
+    click.confirm("Do you want to continue?", abort=True)
+    click.echo(
+        click.style(
+            f"""What group would you like to create graphs for? 
 
-    # histogram.getGroupTotals("research", "2023-08-10")
-    # histogram.getGroupHistogram("research", "AFS Groups", "2023-08-10")
-    # histogram.getGroupHistogram("research", "Users AFS", "2023-08-10")
-    # histogram.getGroupHistogram("research", "Users Panas.", "2023-08-10")
-    # histogram.getStackedGroupHistogram("research", "2023-08-10")
+Options:
+    [1] Researchers
+    [2] Departments
+    [3] Colleges
+    [4] Quit""",
+            bold=True,
+        )
+    )
+    while True:
+        group_input = input("> ")
 
-    # command_line.getCommandLine(report_date)
+        match group_input:
+            case "1":
+                print("you choose create user graphs")
+            case "2":
+                print("creating indiviual group histogram")
 
-    # for color in all_colors:
-    #     click.echo(click.style(f"I am colored {color}", fg=color))
-    # for color in all_colors:
-    #     click.echo(click.style(f"I am colored {color} and bold", fg=color, bold=True))
-    # for color in all_colors:
-    #     click.echo(click.style(f"I am reverse colored {color}", fg=color, reverse=True))
+            case "3":
+                print("Creating stacked histogram")
 
-    # click.echo(click.style("I am blinking", blink=True))
-    # click.echo(click.style("I am underlined", underline=True))
+            case "4":
+                print("you choose to quit")
+            case _:
+                print("Invalid option!")
+                print("Please enter a number between 1-3")
+                break
 
-    # src.writer.generateReports(
-    #     "documents/reports/Storage_Rep_2023-08-10.pdf", "2023-08-10"
-    # )
-    # src.bar.getUserBarCharts("research", "2023-08-10")
+    print(f"You said {group_input}!")
 
 
 if __name__ == "__main__":
