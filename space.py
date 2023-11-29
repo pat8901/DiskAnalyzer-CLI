@@ -28,7 +28,8 @@ all_colors = (
 
 
 @click.command()
-@click.argument("filename", nargs=-1)
+@click.argument("input", type=click.Path(exists=True), nargs=0)
+# @click.Argument("input", type=click.Path(exists=True), nargs={0,1}, required=False)
 @click.option(
     "--create",
     type=click.Choice(["Researchers", "Colleges", "Departments"], case_sensitive=False),
@@ -43,11 +44,12 @@ all_colors = (
     default=False,
     help="Tells you about the program",
 )
-def main(filename, create, about):
+def main(input, create, about):
     print("Hello im in main!")
     if about:
         info()
-    click.echo(f"file name: {filename}")
+    click.echo(f"file name: {input}")
+    click.echo(click.format_filename(input))
     print("exiting...")
 
     # print(f"group: {create}")
