@@ -1,3 +1,25 @@
+"""
+Copyright (c) 2023 Patrick O'Brien-Seitz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished
+to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+"""
+
 import sys
 import readline
 import src.tools
@@ -28,37 +50,24 @@ all_colors = (
 
 
 @click.command()
-@click.argument("input", type=click.Path(exists=True), nargs=0)
-# @click.Argument("input", type=click.Path(exists=True), nargs={0,1}, required=False)
+@click.option("--about", "-a", is_flag=True, help="Tells you about the program")
 @click.option(
-    "--create",
-    type=click.Choice(["Researchers", "Colleges", "Departments"], case_sensitive=False),
-    help="Create plots for the given report",
+    "--file",
+    "-f",
+    type=click.Path(exists=True),
+    help="Input a report file to generate data",
 )
-@click.option(
-    "--about",
-    "about",
-    "-a",
-    is_flag=True,
-    show_default=True,
-    default=False,
-    help="Tells you about the program",
-)
-def main(input, create, about):
+def main(file, about):
     print("Hello im in main!")
+    if file:
+        # TODO: parse report
+        src.writer.generateReports(file, file.split("/")[-1][-14:-4])
+        click.echo(f"File path: {file}")
+        click.echo(f"File: {file.split('/')[-1][-14:-4]}")
+        getGroup()
     if about:
         info()
-    click.echo(f"file name: {input}")
-    click.echo(click.format_filename(input))
     print("exiting...")
-
-    # print(f"group: {create}")
-    # click.echo(f"about value: {about}")
-    # input = getGroup()
-    # file_input = sys.argv[1]
-    # print(f'You said "{file_input}"')
-    # report_date = tools.getReportDate(file_input)
-    # print(f"date: {report_date}")
 
 
 def create():
@@ -68,6 +77,45 @@ def create():
             bold=True,
         )
     )
+
+
+def getGroup():
+    # value = click.prompt("Please enter a valid integer", type=int)
+    # click.confirm("Do you want to continue?", abort=True)
+    click.echo(
+        click.style(
+            f"""What group would you like to create graphs for? 
+
+Options:
+    [0] General Stats
+    [1] Researchers
+    [2] Departments
+    [3] Colleges
+    [4] Quit""",
+            bold=True,
+        )
+    )
+    while True:
+        group_input = input("> ")
+
+        match group_input:
+            case "0":
+                print("You chose general stats")
+                src.histogram.getStackedGroupHistogram("Researchers", "")
+            case "1":
+                print("you choose create user graphs")
+            case "2":
+                print("creating indiviual group histogram")
+            case "3":
+                print("Creating stacked histogram")
+            case "4":
+                print("you choose to quit")
+            case _:
+                print("Invalid option!")
+                print("Please enter a number between 0-4")
+                break
+
+    print(f"You said {group_input}!")
 
 
 def info():
@@ -89,43 +137,29 @@ def info():
             bold=True,
         )
     )
-
-
-def getGroup():
-    value = click.prompt("Please enter a valid integer", type=int)
-    click.confirm("Do you want to continue?", abort=True)
     click.echo(
-        click.style(
-            f"""What group would you like to create graphs for? 
+        """
+        Copyright (c) 2023 Patrick O'Brien-Seitz
 
-Options:
-    [1] Researchers
-    [2] Departments
-    [3] Colleges
-    [4] Quit""",
-            bold=True,
-        )
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is furnished
+        to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        THE SOFTWARE.
+        """
     )
-    while True:
-        group_input = input("> ")
-
-        match group_input:
-            case "1":
-                print("you choose create user graphs")
-            case "2":
-                print("creating indiviual group histogram")
-
-            case "3":
-                print("Creating stacked histogram")
-
-            case "4":
-                print("you choose to quit")
-            case _:
-                print("Invalid option!")
-                print("Please enter a number between 1-3")
-                break
-
-    print(f"You said {group_input}!")
 
 
 if __name__ == "__main__":
