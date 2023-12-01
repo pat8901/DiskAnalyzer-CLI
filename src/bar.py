@@ -38,7 +38,17 @@ def getUserBarCharts(input, date):
     # Read csv file into pandas dataframe
     year = date[0:4]
     month = tools.getMonth(date)
-    print(month)
+
+    # Check to see if these directories exist. If not, create them
+    year_save_path = f"./images/batches/{year}"
+    year_is_exist = os.path.exists(year_save_path)
+    if not year_is_exist:
+        os.makedirs(year_save_path)
+    month_save_path = f"./images/batches/{year}/{month}"
+    month_is_exist = os.path.exists(month_save_path)
+    if not month_is_exist:
+        os.makedirs(month_save_path)
+
     df = pd.read_csv(f"./documents/csv/{year}/{month}/{input}_{date}.csv")
     # Getting the amount of rows in dataframe
     row_count = len(df.index)
@@ -56,7 +66,7 @@ def getUserBarCharts(input, date):
         df["Tot.Used Space"].iloc[i] = df.iloc[i]["Tot.Used Space"] / divisor
 
         # Printing user info to the terminal
-        # print(f"User Index: {i}")
+        print(f"User Index: {i}")
         # print(f'Name {df.iloc[i]["Full Name"]}')
         # print(f'Amount {df.iloc[i]["Tot.Used Space"]}')
         # print(f"divsior: {divisor}")
@@ -121,7 +131,7 @@ def getUserBarCharts(input, date):
         lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
         # Saving the figure
         plt.savefig(
-            f"./images/batches/{df.iloc[i]['Full Name']}_user_report_{date}.png",
+            f"./images/batches/{year}/{month}/{df.iloc[i]['Full Name']}_user_report_{date}.png",
             dpi=300,
             format="png",
             bbox_extra_artists=(lgd,),

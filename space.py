@@ -60,34 +60,24 @@ all_colors = (
 def main(file, about):
     print("Hello im in main!")
     if file:
-        # TODO: parse report
         src.writer.generateReports(file, file.split("/")[-1][-14:-4])
         click.echo(f"File path: {file}")
         click.echo(f"File: {file.split('/')[-1][-14:-4]}")
-        getGroup()
+        group = getGroup()
+        getJob(group, file.split("/")[-1][-14:-4])
     if about:
         info()
     print("exiting...")
 
 
-def create():
-    click.echo(
-        click.style(
-            f"I am the create command\n",
-            bold=True,
-        )
-    )
-
-
 def getGroup():
     # value = click.prompt("Please enter a valid integer", type=int)
-    # click.confirm("Do you want to continue?", abort=True)
+
     click.echo(
         click.style(
             f"""What group would you like to create graphs for? 
 
 Options:
-    [0] General Stats
     [1] Researchers
     [2] Departments
     [3] Colleges
@@ -97,17 +87,13 @@ Options:
     )
     while True:
         group_input = input("> ")
-
         match group_input:
-            case "0":
-                print("You chose general stats")
-                src.histogram.getStackedGroupHistogram("Researchers", "")
             case "1":
-                print("you choose create user graphs")
+                return "research"
             case "2":
-                print("creating indiviual group histogram")
+                return "departments"
             case "3":
-                print("Creating stacked histogram")
+                return "colleges"
             case "4":
                 print("you choose to quit")
             case _:
@@ -115,7 +101,51 @@ Options:
                 print("Please enter a number between 0-4")
                 break
 
-    print(f"You said {group_input}!")
+
+def getJob(group, date):
+    print(f"group: {group}")
+    year = date[0:4]
+    print(f"year: {year}")
+    month = src.tools.getMonth(date)
+    print(f"month: {month}")
+    click.echo(
+        click.style(
+            f"""What group would you like to create graphs for? 
+
+Options:
+    [1] General Stats
+    [2] Generate graphs for all users
+    [3] Generate a graph for a single user
+    [4] Quit""",
+            bold=True,
+        )
+    )
+    while True:
+        group_input = input("> ")
+
+        match group_input:
+            case "1":
+                print("You chose general stats")
+                src.histogram.getStackedGroupHistogram(group, year, month, date)
+                break
+            case "2":
+                click.confirm(
+                    "This will create graphs for all user which can be time consuming. Do you want to continue?",
+                    abort=True,
+                )
+                print("generating graphs for each user...")
+                src.bar.getUserBarCharts(group, date)
+                break
+            case "3":
+                print("generating graph for <user>...")
+                break
+            case "4":
+                print("quitting")
+                break
+            case _:
+                print("Invalid option!")
+                print("Please enter a number between 0-4")
+                break
 
 
 def info():

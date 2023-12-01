@@ -199,8 +199,8 @@ def getGroupHistogram(group, column, date):
 # |             Uses binned data as x values and their frequencies as y values           |
 # |          *This needs to be fixed so it can be dynamic in its error correction*       |
 # +======================================================================================+
-def getStackedGroupHistogram(group, date):
-    df = pd.read_csv(f"csv/{group}_{date}.csv")
+def getStackedGroupHistogram(group, year, month, date):
+    df = pd.read_csv(f"./documents/csv/{year}/{month}/{group}_{date}.csv")
     row_count = len(df.index)
     terabyte = 1000000000
     # Colors for the bars
@@ -386,11 +386,12 @@ def getStackedGroupHistogram(group, date):
 
     # Saving the figure. The save path does not exist. Either way the file structure where theses get saved needs to be redone
     plt.savefig(
-        f"graphs/research/test_reports/{group}_combined_histogram_{date}.png",
+        f"images/groupStorageCharts/{group}_stacked_histogram_{date}.png",
         dpi=300,
         format="png",
         bbox_inches="tight",
     )
+    plt.close(fig)
 
     # plt.show() # Showing the plot
 
