@@ -6,6 +6,16 @@ graphs/research/test_reports/
 __pycache__
 
 
+documents/csv/*
+!documents/csv/README.txt
+documents/text/full_output/*
+!documents/text/full_output/README.txt
+documents/text/group_output/*
+!documents/text/group_output/README.txt
+documents/text/grouped_output/*
+!documents/text/grouped_output/README.txt
+documents/text/names/*
+!documents/text/names/README.txt
 
 images/groupStorageCharts/*
 !images/groupStorageCharts/README.txt
