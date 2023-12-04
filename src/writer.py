@@ -29,11 +29,11 @@ import csv
 import src.tools
 
 
-# +======================================================================================+
-# |           Converts input pdf into a txt file to be used in further processing        |
-# |                           *Can be optimized further*                                 |
-# +======================================================================================+
 def createFullOutput(input, date):
+    """Can be optimized further
+
+    Converts input pdf into a txt file to be used in further processing
+    """
     pdf = open(f"{input}", "rb")  # Open pdf file
     reader = PdfReader(pdf)  # Create a pdf reader object and pass the pdf
     # print(os.getcwd())

@@ -162,6 +162,9 @@ def dynamic_getUserBarCharts(year, month, date, name, group):
         if file.startswith(f"{group}_{year}-{date[0:2]}"):
             my_files.append(file)  # add file to list
     # Read csv file into pandas dataframe
+    print(
+        f"./documents/csv/{year}/{month}/{my_files[0]}"
+    )  # TODO there is a problem here
     df = pd.read_csv(f"./documents/csv/{year}/{month}/{my_files[0]}")
     # Debugging info
     # print(f'row number {df[df["Full Name"] == f"{name}"].index}')

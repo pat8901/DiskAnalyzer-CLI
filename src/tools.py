@@ -238,12 +238,17 @@ def sortUsers(group, year, month, date):
 def searchUsers(sorted_users):
     """Searches alphabetically sorted list of users based on search input provided"""
     while True:
-        search_input = input("Enter user to search:")
-        results = sorted_users.startswith(search_input)
-        print("results")
-
-        # if search_input in sorted_users:
-        #     print(f"{search_input} was found!")
-        #     break
-        # else:
-        #     print("User was not found")
+        found_users = []
+        found = False
+        count = 1
+        search_input = input("Enter user to search:").lower()
+        print("============================")
+        for user in sorted_users:
+            if search_input in user.lower():
+                print(f"{count}: {user}")
+                found_users.append(user)
+                count += 1
+        print("============================\n")
+        if len(found_users) == 1:
+            print(f"found user: {found_users[0]}")
+            return found_users[0]

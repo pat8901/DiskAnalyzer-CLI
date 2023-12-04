@@ -149,7 +149,8 @@ Options:
                 print("generating graph for <user>...")
                 sorted_users = src.tools.sortUsers(group, year, month, date)
                 # print(sorted_users)
-                src.tools.searchUsers(sorted_users)
+                found_user = src.tools.searchUsers(sorted_users)
+                src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
                 break
             case "4":
                 print("quitting")
