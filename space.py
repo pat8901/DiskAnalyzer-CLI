@@ -65,9 +65,16 @@ def main(file, about):
         click.echo(f"File path: {file}")
         click.echo(f"File: {file.split('/')[-1][-14:-4]}")
         group = getGroup()
-        getJob(group, file.split("/")[-1][-14:-4])
-    if about:
+        getJob(
+            group, file.split("/")[-1][-14:-4]
+        )  # TODO call this inside of getGroup()
+    elif about:
         info()
+    else:
+        click.echo(click.style("No [OPTION] provided!", fg="red"))
+        click.echo(
+            "Please run program with the --help flag to see the availible options."
+        )
     print("exiting...")
 
 
@@ -96,7 +103,8 @@ Options:
             case "3":
                 return "colleges"
             case "4":
-                print("you choose to quit")
+                click.echo("quitting...")
+                break
             case _:
                 print("Invalid option!")
                 print("Please enter a number between 0-4")
@@ -111,7 +119,7 @@ def getJob(group, date):
     print(f"month: {month}")
     click.echo(
         click.style(
-            f"""What group would you like to create graphs for? 
+            f"""What job would you like to preform? 
 
 Options:
     [1] General Stats
@@ -139,6 +147,9 @@ Options:
                 break
             case "3":
                 print("generating graph for <user>...")
+                sorted_users = src.tools.sortUsers(group, year, month, date)
+                # print(sorted_users)
+                src.tools.searchUsers(sorted_users)
                 break
             case "4":
                 print("quitting")
@@ -161,12 +172,6 @@ def info():
                                                                                                      
                                                                                                      
 """
-    )
-    click.echo(
-        click.style(
-            f'Welcome! To get started type "-help" command to see what you can do.\n',
-            bold=True,
-        )
     )
     click.echo(
         """

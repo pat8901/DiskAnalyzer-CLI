@@ -219,3 +219,31 @@ def getMonth(date):
     if month == "12":
         month = "December"
     return month
+
+
+def sortUsers(group, year, month, date):
+    """Read file containing user names, alphabetically sort them and return as a list"""
+    with open(
+        f"documents/text/names/{year}/{month}/{group}_{date}.txt", "r"
+    ) as file_input:
+        sorted_users = []
+        # Loop through each line in the input file
+        for user in file_input:
+            user = user.strip()
+            sorted_users.append(user)  # Append the name to the list
+
+    return sorted(sorted_users)
+
+
+def searchUsers(sorted_users):
+    """Searches alphabetically sorted list of users based on search input provided"""
+    while True:
+        search_input = input("Enter user to search:")
+        results = sorted_users.startswith(search_input)
+        print("results")
+
+        # if search_input in sorted_users:
+        #     print(f"{search_input} was found!")
+        #     break
+        # else:
+        #     print("User was not found")

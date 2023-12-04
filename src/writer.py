@@ -26,8 +26,7 @@ THE SOFTWARE.
 import os
 from pypdf import PdfReader
 import csv
-
-# import sys
+import src.tools
 
 
 # +======================================================================================+
@@ -185,10 +184,8 @@ def createCollegesOutput(date):
                         beginFound = True
 
 
-# +======================================================================================+
-# |                Creates a csv file from previosuly generated text files               |
-# +======================================================================================+
 def csvWriter(input, output, date):
+    """Creates a csv file from previosuly generated text files"""
     # Replace _ with - for proper formatting
     folder_date = date.replace("-", "_")
     # Grab the year string
@@ -295,14 +292,13 @@ def csvWriter(input, output, date):
                 writer.writerow(trimmedWords)
 
 
-# +======================================================================================+
-# |                             *This is not used*                                       |
-# |             Creates a csv file from previosuly generated text files                  |
-# |     This is different from the other csv file writter as it also creates an ID row   |
-# |                     The IDs are increments for each row loop                         |
-# |                             *This is not used*                                       |
-# +======================================================================================+
 def csvWriter2():
+    """*This is not used*
+
+    Creates a csv file from previosuly generated text files.
+    This is different from the other csv file writter as it also creates an ID row
+    The IDs are increments for each row loop.
+    """
     input = "research"
     output = "research"
     date = "2023-08-10"
@@ -351,10 +347,8 @@ def csvWriter2():
                 writer.writerow(trimmedWords)
 
 
-# +======================================================================================+
-# |       Gets the names found in a group text file and returns an array of names        |
-# +======================================================================================+
 def nameExtractor():
+    """Gets the names found in a group text file and returns an array of names"""
     groups = ["research", "colleges", "departments"]
 
     # Read a group text file
@@ -371,49 +365,42 @@ def nameExtractor():
     return names
 
 
-# +======================================================================================+
-# |                 creates files of names for each report uploaded                      |
-# +======================================================================================+
 def nameGenerator(date):
-    # List of groups to create name files for
+    """creates files of names for each report uploaded"""
     groups = ["research", "colleges", "departments"]
     # Replace _ with - for proper formatting
-    month = date.replace("-", "_")
-    # Get the year string
-    year = month[0:-6]
+    # date = date.replace("-", "_")
+    print(f"date: {date}")
+    # month = date.replace("-", "_")
+    month = src.tools.getMonth(date)
+    year = date[0:-6]
 
-    # Checking to see if the "year" directory exist for the following path
+    # Checking to see if the "year" directory exist, and creating it if not found
     year_save_path = f"./documents/text/names/{year}"
     year_is_exist = os.path.exists(year_save_path)
-    # If the path does not exist then make it
     if not year_is_exist:
-        os.makedirs(year_save_path)  # Making the directory
+        os.makedirs(year_save_path)
         print(f"Directory {year_save_path} was created!")
-
-    # Checking to see if the "month" directory exist for the following path
+    # Checking to see if the "month" directory exist, and creating it if not found
     save_path = f"./documents/text/names/{year}/{month}"
     is_exist = os.path.exists(save_path)
-    # If the path does not exist then make it
     if not is_exist:
-        os.makedirs(save_path)  # Making the directory
+        os.makedirs(save_path)
         print(f"Directory {save_path} was created!")
+
     # Loop through each group to make name files for each
     for group in groups:
         # Reading the group text file for the currently selected group
         with open(
             f"./documents/text/grouped_output/{group}/{group}_{date}.txt", "r"
-        ) as file:
-            # Opena new file to write the names to
+        ) as input_file:
+            # Open a new file to write the names to
             with open(
                 f"./documents/text/names/{year}/{month}/{group}_{date}.txt", "w"
             ) as output:
-                # Loop through each line in the input file
-                for line in file:
-                    # Split the line by "|"
+                for line in input_file:
                     line = line.split("|")
-                    # Strip excess whitespace around the first item i.e. the name
                     name = line[0].strip()
-                    # Write the name + new line to the output file
                     output.write(name + "\n")
 
 
@@ -437,190 +424,3 @@ def generateReports(input, date):
     # For each group takes it's corresponding text file and create a csv file from it
     for group in groups:
         csvWriter(group, group, date)
-
-
-# +======================================================================================+
-# |           Converts input pdf into a txt file to be used in further processing        |
-# |                           *Can be optimized further*                                 |
-# +======================================================================================+
-# def createFullOutput(input, date):
-#     pdf = open(f"{input}", "rb")
-#     reader = PdfReader(pdf)
-#     with open(f"text/full_output/full_output_{date}.txt", "w") as f_output:
-#         count = 0
-#         for i in reader.pages:
-#             page = reader.pages[count]
-#             text = page.extract_text()
-#             f_output.write(text + "\n")
-#             count = count + 1
-
-
-# # +======================================================================================+
-# # |           Converts input pdf into a txt file to be used in further processing        |
-# # |                           *Can be optimized further*                                 |
-# # +======================================================================================+
-# def createResearchOutput(date):
-#     begin = "-------------------------------   -------    ------------    ------------    ------------    --------------"
-#     end = "=========================================|===============|===============|===============|=================|"
-#     beginFound = False
-#     with open(f"text/full_output/full_output_{date}.txt", "r") as f_input:
-#         with open(f"text/grouped_output/research_{date}.txt", "w") as f_output:
-#             for line in f_input:
-#                 if end in line:
-#                     break
-#                 if beginFound:
-#                     line = line.strip()
-#                     line = line[:-1]
-#                     f_output.write(line + "\n")
-#                 elif begin in line:
-#                     beginFound = True
-
-
-# # +======================================================================================+
-# # |           Converts input pdf into a txt file to be used in further processing        |
-# # |                           *Can be optimized further*                                 |
-# # +======================================================================================+
-# def createDepartmentOutput(date):
-#     header = "                                            Space Used by Departments"
-#     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
-#     end = "=========================================|===============|===============|===============|=================|"
-#     headerFound = False
-#     beginFound = False
-#     with open(f"text/full_output/full_output_{date}.txt", "r") as f_input:
-#         with open(f"text/grouped_output/departments_{date}.txt", "w") as f_output:
-#             for line in f_input:
-#                 if header in line:
-#                     headerFound = True
-#                 if headerFound:
-#                     if end in line:
-#                         break
-#                     elif beginFound:
-#                         line = line.strip()
-#                         line = line[:-1]
-#                         f_output.write(line + "\n")
-#                     elif begin in line:
-#                         beginFound = True
-
-
-# # +======================================================================================+
-# # |           Converts input pdf into a txt file to be used in further processing        |
-# # |                           *Can be optimized further*                                 |
-# # +======================================================================================+
-# def createCollegesOutput(date):
-#     header = "                                            Space Used by Colleges"
-#     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
-#     end = "=========================================|===============|===============|===============|=================|"
-#     headerFound = False
-#     beginFound = False
-#     with open(f"text/full_output/full_output_{date}.txt", "r") as f_input:
-#         with open(f"text/grouped_output/colleges_{date}.txt", "w") as f_output:
-#             for line in f_input:
-#                 if header in line:
-#                     headerFound = True
-#                 if headerFound:
-#                     if end in line:
-#                         break
-#                     elif beginFound:
-#                         line = line.strip()
-#                         line = line[:-1]
-#                         f_output.write(line + "\n")
-#                     elif begin in line:
-#                         beginFound = True
-
-
-# # +======================================================================================+
-# # |           Creates a csv file from previosuly generated csv files                     |
-# # +======================================================================================+
-# def csvWriter(input, output, date):
-#     with open(f"text/grouped_output/{input}_{date}.txt", "r") as f:
-#         with open(f"csv/{output}_{date}.csv", "w", newline="") as file:
-#             writer = csv.writer(file)
-#             if output == "research":
-#                 headers = [
-#                     "Full Name",
-#                     "DepCode",
-#                     "AFS Groups",
-#                     "Users AFS",
-#                     "Users Panas.",
-#                     "Tot.Used Space",
-#                 ]
-#                 writer.writerow(headers)
-#             if output == "departments":
-#                 headers = [
-#                     "Department",
-#                     "AFS Groups",
-#                     "Users AFS",
-#                     "Users Panas.",
-#                     "Tot.Used Space",
-#                 ]
-#                 writer.writerow(headers)
-#             if output == "colleges":
-#                 headers = [
-#                     "College Name",
-#                     "AFS Groups",
-#                     "Users AFS",
-#                     "Users Panas.",
-#                     "Tot.Used Space",
-#                 ]
-#                 writer.writerow(headers)
-#             for line in f:
-#                 trimmedWords = []
-#                 line = line.split("|")
-#                 for word in line:
-#                     new_word = word.strip()
-#                     trimmedWords.append(new_word)
-#                 # writer = csv.writer(file)
-#                 writer.writerow(trimmedWords)
-
-
-# def csvWriter2():
-#     input = "research"
-#     output = "research"
-#     date = "2023-08-10"
-#     with open(f"text/grouped_output/{input}_{date}.txt", "r") as f:
-#         with open(f"csv/{output}_{9999999}.csv", "w", newline="") as file:
-#             writer = csv.writer(file)
-#             if output == "research":
-#                 headers = [
-#                     "Id",
-#                     "Full Name",
-#                     "DepCode",
-#                     "AFS Groups",
-#                     "Users AFS",
-#                     "Users Panas.",
-#                     "Tot.Used Space",
-#                 ]
-#                 writer.writerow(headers)
-#             if output == "departments":
-#                 headers = [
-#                     "Department",
-#                     "AFS Groups",
-#                     "Users AFS",
-#                     "Users Panas.",
-#                     "Tot.Used Space",
-#                 ]
-#                 writer.writerow(headers)
-#             if output == "colleges":
-#                 headers = [
-#                     "College Name",
-#                     "AFS Groups",
-#                     "Users AFS",
-#                     "Users Panas.",
-#                     "Tot.Used Space",
-#                 ]
-#                 writer.writerow(headers)
-#             count = 1
-#             for line in f:
-#                 trimmedWords = []
-#                 line = line.split("|")
-#                 trimmedWords.append(count)
-#                 count = count + 1
-#                 for word in line:
-#                     new_word = word.strip()
-#                     trimmedWords.append(new_word)
-#                 # writer = csv.writer(file)
-#                 writer.writerow(trimmedWords)
-
-
-# def csvChecker():
-#     print("hello")
