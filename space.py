@@ -64,10 +64,11 @@ def main(file, about):
         src.writer.generateReports(file, file.split("/")[-1][-14:-4])
         click.echo(f"File path: {file}")
         click.echo(f"File: {file.split('/')[-1][-14:-4]}")
-        group = getGroup()
-        getJob(
-            group, file.split("/")[-1][-14:-4]
-        )  # TODO call this inside of getGroup()
+        # group = getGroup()
+        getGroup(file.split("/")[-1][-14:-4])
+        # getJob(
+        #     group, file.split("/")[-1][-14:-4]
+        # )  # TODO call this inside of getGroup()
     elif about:
         info()
     else:
@@ -78,37 +79,47 @@ def main(file, about):
     print("exiting...")
 
 
-def getGroup():
-    # value = click.prompt("Please enter a valid integer", type=int)
+def getGroup(date):
+    #     click.echo(
+    #         click.style(
+    #             f"""What group would you like to create graphs for?
 
-    click.echo(
-        click.style(
-            f"""What group would you like to create graphs for? 
+    # Options:
+    #     [1] Researchers
+    #     [2] Departments
+    #     [3] Colleges
+    #     [4] Quit""",
+    #             bold=True,
+    #         )
+    #     )
+    while True:
+        click.echo(
+            click.style(
+                f"""What group would you like to create graphs for? 
 
 Options:
     [1] Researchers
     [2] Departments
     [3] Colleges
     [4] Quit""",
-            bold=True,
+                bold=True,
+            )
         )
-    )
-    while True:
         group_input = input("> ")
         match group_input:
             case "1":
-                return "research"
+                getJob("research", date)
             case "2":
-                return "departments"
+                getJob("departments", date)
+                # return "departments"
             case "3":
-                return "colleges"
+                getJob("colleges", date)
             case "4":
                 click.echo("quitting...")
-                break
+                exit()
             case _:
                 print("Invalid option!")
                 print("Please enter a number between 0-4")
-                break
 
 
 def getJob(group, date):
@@ -125,7 +136,9 @@ Options:
     [1] General Stats
     [2] Generate graphs for all users
     [3] Generate a graph for a single user
-    [4] Quit""",
+
+    [4] Go back
+    [5] Quit""",
             bold=True,
         )
     )
@@ -154,8 +167,11 @@ Options:
                 src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
                 break
             case "4":
-                print("quitting")
+                print("going back")
                 break
+            case "5":
+                print("quitting")
+                exit()
             case _:
                 print("Invalid option!")
                 print("Please enter a number between 0-4")
