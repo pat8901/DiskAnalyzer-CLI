@@ -150,6 +150,7 @@ Options:
                 sorted_users = src.tools.sortUsers(group, year, month, date)
                 # print(sorted_users)
                 found_user = src.tools.searchUsers(sorted_users)
+                click.confirm(f"Create a graph for {found_user}?", abort=True)
                 src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
                 break
             case "4":

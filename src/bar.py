@@ -139,7 +139,11 @@ def getUserBarCharts(input, date):
 
 
 def dynamic_getUserBarCharts(year, month, date, name, group):
-    """Official function for when getting a user's storage bar chart dynamically"""
+    """Official function for when getting a user's storage bar chart dynamically
+
+    *Note* to fix the small bar issue. I could choose to not display if the bar value is below a certain
+    threshhold which dynamicall changes based on the divsor unit or maybe the other values of the bars
+    """
     # Setting backend to a non-interactive backend. This cuts down on graph generation time
     matplotlib.use("agg")
     # These seem to have no affect. look into more before deleting
@@ -149,103 +153,81 @@ def dynamic_getUserBarCharts(year, month, date, name, group):
     # These seem to have no affect. look into more before deleting
     mplstyle.use("fast")
 
-    # overhead_start = time.time()
-
     # Finding the specified file and loading into dataframe
-    # print(f"current workng directory {os.getcwd()}")
     # Setting parent path
     parent_path = os.listdir(f"./documents/csv/{year}/{month}")
+    # Sets proper csv header depending on the active group
+    if group == "research":
+        header = "Full Name"
+    elif group == "departments":
+        header = "Department"
+    else:
+        header = "College Name"
+
     my_files = []  # list to hold files paths
     # Checking each file in parent path if it matches search string
     for file in parent_path:
         # Checking if correct file name
-        if file.startswith(f"{group}_{year}-{date[0:2]}"):
+        if file.startswith(f"{group}_{date}"):
             my_files.append(file)  # add file to list
-    # Read csv file into pandas dataframe
-    print(
-        f"./documents/csv/{year}/{month}/{my_files[0]}"
-    )  # TODO there is a problem here
+
     df = pd.read_csv(f"./documents/csv/{year}/{month}/{my_files[0]}")
-    # Debugging info
-    # print(f'row number {df[df["Full Name"] == f"{name}"].index}')
-    # print(df[df["Full Name"] == f"{name}"].index[0])
-    # Seeting i to search index of user being searched for
-    i = df[df["Full Name"] == f"{name}"].index[0]
-
-    # overhead_end = time.time()
-    # print(f"Overhead execution time: {overhead_end-overhead_start}")
-
-    # unitcoversion_start = time.time()
-
-    # Getting the divisor to divide row by
-    divisor = tools.getDivisor(df.iloc[i]["Tot.Used Space"])
-    # print(f'raw storage amount: {df.iloc[i]["Tot.Used Space"]}')
-    # print(f"divisor: {divisor}")
-    # Getting the unit the numbers are in
-    counter = tools.getChartCounter(divisor)
-    # unit = plots.tools.getUnit(counter)
+    user_csv_index = df[df[header] == f"{name}"].index[0]
+    divisor = tools.getDivisor(df.iloc[user_csv_index]["Tot.Used Space"])
+    unit = tools.getChartCounter(divisor)
 
     # Dividing the cells the current selected row by the divisor
     df["AFS Groups"] = df["AFS Groups"].div(divisor)
     df["Users AFS"] = df["Users AFS"].div(divisor)
     df["Users Panas."] = df["Users Panas."].div(divisor)
     df["Tot.Used Space"] = df["Tot.Used Space"].div(divisor)
+    csv_totals = np.array(df["Tot.Used Space"])
+    total = csv_totals[user_csv_index]
 
-    # Using numpy to create an array to house total values.
-    array = np.array(df["Tot.Used Space"])
-    total = array[i]
-    # unitconversion_end = time.time()
-    # print(f"Unit conversion time: {unitconversion_end-unitcoversion_start}")
+    fig, ax = plt.subplots()
 
-    # generatinggraph_start = time.time()
-
-    # *Note* to fix the small bar issue. I could choose to not display if the bar value is below a certain threshhold which dynamicall changes based on the divsor unit or maybe the other values of the bars
-
-    # print(f"User index: {i}")
-    fig, ax = plt.subplots()  # Instantiating the plot interface
     # Create bars for AFS Groups, Users AFS, Panasas if data is not 0
-    if df.iloc[i]["AFS Groups"] != 0:
+    if df.iloc[user_csv_index]["AFS Groups"] != 0:
         p1 = ax.bar(
-            df.iloc[i]["Full Name"],
-            df.iloc[i]["AFS Groups"],
+            df.iloc[user_csv_index][header],
+            df.iloc[user_csv_index]["AFS Groups"],
             width=0.5,
             color="tab:blue",
             label="AFS Group",
         )
         ax.bar_label(p1, label_type="center")
-
-    if df.iloc[i]["Users AFS"] != 0:
+    if df.iloc[user_csv_index]["Users AFS"] != 0:
         p2 = ax.bar(
-            df.iloc[i]["Full Name"],
-            df.iloc[i]["Users AFS"],
+            df.iloc[user_csv_index][header],
+            df.iloc[user_csv_index]["Users AFS"],
             width=0.5,
             color="tab:green",
-            bottom=df.iloc[i]["AFS Groups"],
+            bottom=df.iloc[user_csv_index]["AFS Groups"],
             label="AFS User",
         )
         ax.bar_label(p2, label_type="center")
-
-    if df.iloc[i]["Users Panas."] != 0:
+    if df.iloc[user_csv_index]["Users Panas."] != 0:
         p3 = ax.bar(
-            df.iloc[i]["Full Name"],
-            df.iloc[i]["Users Panas."],
+            df.iloc[user_csv_index][header],
+            df.iloc[user_csv_index]["Users Panas."],
             width=0.5,
             color="tab:orange",
-            bottom=df.iloc[i]["AFS Groups"] + df.iloc[i]["Users AFS"],
+            bottom=df.iloc[user_csv_index]["AFS Groups"]
+            + df.iloc[user_csv_index]["Users AFS"],
             label="Panasas User",
         )
         ax.bar_label(p3, label_type="center")
 
     # Setting axis and title labels
-    ax.set(ylabel=counter, title=f"{df.iloc[i]['Full Name']}'s Storage Amounts")
+    ax.set(ylabel=unit, title=f"{df.iloc[user_csv_index][header]}'s Storage Amounts")
     # Setting axis limits
     ax.set_xlim(left=-0.7, right=0.7)
-    ylimits = ax.get_ylim()  # getting the current yaxis limits
+    ylimits = ax.get_ylim()
     ax.set_ylim(bottom=None, top=(ylimits[1] + ylimits[1] * 0.15))
     # Displaying total on top of bar
-    # print(f"total value: {array[i]}")
-    total = np.float64(np.format_float_positional(total, precision=4))
-    # print(total)
+    total = np.float64(
+        np.format_float_positional(total, precision=4)
+    )  # Do I need this?
     ax.text(
         0,
         total + (total * 0.07),
@@ -256,36 +238,28 @@ def dynamic_getUserBarCharts(year, month, date, name, group):
     )
     # lgd = ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
     lgd = ax.legend(bbox_to_anchor=(1, 1), prop={"size": 6})
-    # generatinggraph_end = time.time()
-    # print(f"Generating graph time: {generatinggraph_end-generatinggraph_start}")
 
-    # Saving the graph
-    # savegraph_start = time.time()
-    # Checking to see if year directory exist
+    # Checking to see if year, month, and group directorys exist. If not, create them
     year_save_path = f"./images/userStorageCharts/{year}"
     year_is_exist = os.path.exists(year_save_path)
-    # If the directory does not exist then make it
     if not year_is_exist:
         os.makedirs(year_save_path)
-        # print(f"Directory {year_save_path} was created!")
-    # Checking to see if month directory exist
     month_save_path = f"./images/userStorageCharts/{year}/{month}"
     month_is_exist = os.path.exists(month_save_path)
-    # If the directory does not exist then make it
     if not month_is_exist:
         os.makedirs(month_save_path)
-        # print(f"Directory {month_save_path} was created!")
+    group_save_path = f"./images/userStorageCharts/{year}/{month}/{group}"
+    group_is_exist = os.path.exists(group_save_path)
+    if not group_is_exist:
+        os.makedirs(group_save_path)
 
-    # Saving the figure
     fig.savefig(
-        f"./images/userStorageCharts/{year}/{month}/{df.iloc[i]['Full Name']}_user_report.png",
+        f"./images/userStorageCharts/{year}/{month}/{group}/{df.iloc[user_csv_index][header]}_user_report.png",
         dpi=150,
         format="png",
         bbox_extra_artists=(lgd,),
         # bbox_inches="tight", # not havng this may make saving faster
     )
-    # savegraph_end = time.time()
-    # print(f"saving time: {savegraph_end-savegraph_start}")
 
 
 def test_getUserBarCharts(input):
