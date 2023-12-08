@@ -164,17 +164,18 @@ def dynamic_getUserBarCharts(year, month, date, name, group):
     else:
         header = "College Name"
 
-    my_files = []  # list to hold files paths
+    my_files = []
     # Checking each file in parent path if it matches search string
     for file in parent_path:
-        # Checking if correct file name
         if file.startswith(f"{group}_{date}"):
-            my_files.append(file)  # add file to list
+            my_files.append(file)
 
     df = pd.read_csv(f"./documents/csv/{year}/{month}/{my_files[0]}")
     user_csv_index = df[df[header] == f"{name}"].index[0]
     divisor = tools.getDivisor(df.iloc[user_csv_index]["Tot.Used Space"])
     unit = tools.getChartCounter(divisor)
+    save_name = name.replace(" ", "_")
+    save_date = date.replace("-", "")
 
     # Dividing the cells the current selected row by the divisor
     df["AFS Groups"] = df["AFS Groups"].div(divisor)
@@ -254,7 +255,8 @@ def dynamic_getUserBarCharts(year, month, date, name, group):
         os.makedirs(group_save_path)
 
     fig.savefig(
-        f"./images/userStorageCharts/{year}/{month}/{group}/{df.iloc[user_csv_index][header]}_user_report.png",
+        # f"./images/userStorageCharts/{year}/{month}/{group}/{df.iloc[user_csv_index][header]}_user_report.png",
+        f"./images/userStorageCharts/{year}/{month}/{group}/{save_name}_{save_date}.png",
         dpi=150,
         format="png",
         bbox_extra_artists=(lgd,),
