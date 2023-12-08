@@ -27,7 +27,6 @@ import src.tools
 import src.writer
 import src.bar
 import src.histogram
-import src.command_line
 import click
 
 all_colors = (
