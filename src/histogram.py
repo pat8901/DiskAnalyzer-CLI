@@ -385,8 +385,18 @@ def getStackedGroupHistogram(group, year, month, date):
     figure = plt.gcf()
     figure.set_size_inches(24, 8.5)
 
+    # Checking to see if year, month, and group directorys exist. If not, create them
+    year_save_path = f"./images/groupStorageCharts/{year}"
+    year_is_exist = os.path.exists(year_save_path)
+    if not year_is_exist:
+        os.makedirs(year_save_path)
+    month_save_path = f"./images/groupStorageCharts/{year}/{month}"
+    month_is_exist = os.path.exists(month_save_path)
+    if not month_is_exist:
+        os.makedirs(month_save_path)
+
     plt.savefig(
-        f"images/groupStorageCharts/{group}_{save_date}.png",
+        f"images/groupStorageCharts/{year}/{month}/{group}_{save_date}.png",
         dpi=300,
         format="png",
         bbox_inches="tight",

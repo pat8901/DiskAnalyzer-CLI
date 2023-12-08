@@ -110,7 +110,6 @@ Options:
                 getJob("research", date)
             case "2":
                 getJob("departments", date)
-                # return "departments"
             case "3":
                 getJob("colleges", date)
             case "4":
