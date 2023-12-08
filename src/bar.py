@@ -60,6 +60,7 @@ def getUserBarCharts(group, date):
     if not group_is_exist:
         os.makedirs(group_save_path)
 
+    with click.progressbar(all_the_users_to_process) as bar:
     # Generating a chart for each user found in "users" array
     for user in range(row_count):
         divisor = tools.getDivisor(df.iloc[user]["Tot.Used Space"])
