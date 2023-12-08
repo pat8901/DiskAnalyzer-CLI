@@ -28,7 +28,6 @@ from . import tools
 import os
 
 
-# TODO implement a way where this will work for all groups
 def getUserBarCharts(group, date):
     """Bar chart function that creates batches of user charts"""
     pd.options.mode.chained_assignment = None  # default='warn'

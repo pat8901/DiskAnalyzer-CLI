@@ -194,12 +194,12 @@ def getGroupHistogram(group, column, date):
     # plt.show() # Showing the plot
 
 
-# +======================================================================================+
-# |                Creates a stacked histogram containing all storage types.             |
-# |             Uses binned data as x values and their frequencies as y values           |
-# |          *This needs to be fixed so it can be dynamic in its error correction*       |
-# +======================================================================================+
+# TODO *This needs to be fixed so it can be dynamic in its error correction*
 def getStackedGroupHistogram(group, year, month, date):
+    """Creates a stacked histogram containing all storage types.
+
+    Uses binned data as x values and their frequencies as y values
+    """
     df = pd.read_csv(f"./documents/csv/{year}/{month}/{group}_{date}.csv")
     save_date = date.replace("-", "")
     row_count = len(df.index)
@@ -284,11 +284,10 @@ def getStackedGroupHistogram(group, year, month, date):
         fontsize=16,
     )
 
-    # Creating bar plots and adding them to graph !!!Check to make sure that the if/for statements are indeed reduced!!!
+    # Creating bar plots and adding them to graph
     for i in range(len(data_AFS_Groups)):
         # Run only if not the first column i.e. insignificant data
         if data_AFS_Groups[i] != 0:
-            # Creating the bar
             p0 = ax.bar(
                 labels[i],
                 data_AFS_Groups[i],
