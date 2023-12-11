@@ -26,6 +26,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import click
 
 
 # +======================================================================================+
@@ -227,7 +228,6 @@ def sortUsers(group, year, month, date):
         f"documents/text/names/{year}/{month}/{group}_{date}.txt", "r"
     ) as file_input:
         sorted_users = []
-        # Loop through each line in the input file
         for user in file_input:
             user = user.strip()
             sorted_users.append(user)  # Append the name to the list
@@ -249,6 +249,22 @@ def searchUsers(sorted_users):
                 found_users.append(user)
                 count += 1
         print("============================\n")
-        if len(found_users) == 1:
-            print(f"found user: {found_users[0]}")
-            return found_users[0]
+        # if len(found_users) == 1:
+        #     print(f"found user: {found_users[0]}")
+        #     return found_users[0]
+        return found_users
+
+
+def selectUser(found_users):
+    length = len(found_users)
+    while True:
+        user_input = input("Select User's Number or Type 's' to search again: ")
+        if int(user_input) > length:
+            click.echo(click.style("Enter a Valid Number!", fg="red"))
+            continue
+        user = found_users[int(user_input) - 1]
+        response = click.confirm(f"Create a Graph For {user}?", abort=False)
+        if response == True:
+            return user
+        else:
+            return False

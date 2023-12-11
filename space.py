@@ -90,7 +90,7 @@ def getGroup(date):
 |   [2] Departments                             |
 |   [3] Colleges                                |
 |                                               |
-|   [0] Quit                                    |
+|   [q] Quit                                    |
 |                                               |
 +-----------------------------------------------+ 
 """
@@ -100,77 +100,78 @@ def getGroup(date):
         match group_input:
             case "1":
                 getJob("research", date)
-                print("")
             case "2":
                 getJob("departments", date)
-                print("")
             case "3":
                 getJob("colleges", date)
-                print("")
-            case "0":
+            case "q":
                 click.echo("quitting...")
-                print("")
                 exit()
             case _:
-                print("Invalid option!")
-                print("Please enter a number between 0-4 \n")
+                click.echo(click.style("Invalid option!", fg="red"))
 
 
 def getJob(group, date):
-    print(f"group: {group}")
     year = date[0:4]
-    print(f"year: {year}")
     month = src.tools.getMonth(date)
-    print(f"month: {month}")
-    click.echo(
-        click.style(
-            """
+
+    while True:
+        click.echo(
+            click.style(
+                """
 +-----------------------------------------------+
 | Select Job                                    |
 |                                               |
 |   [1] General Stats                           |
 |   [2] Single-User Graph Generation            |
-|   [3] Muli-User graph Generation              |
+|   [3] Muli-User Graph Generation              |
 |                                               |
 |   [b] Back                                    |
-|   [0] Quit                                    |
+|   [q] Quit                                    |
 |                                               |
 +-----------------------------------------------+ 
 """
+            )
         )
-    )
-    while True:
         group_input = input(">> ")
 
         match group_input:
             case "1":
-                print("You chose general stats")
                 src.histogram.getStackedGroupHistogram(group, year, month, date)
                 break
             case "2":
-                print("generating graph for <user>...")
+                # sorted_users = src.tools.sortUsers(group, year, month, date)
+                # found_user = src.tools.searchUsers(sorted_users)
+                # click.confirm(f"Create a graph for {found_user}?", abort=True)
+                # src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
+                # break
                 sorted_users = src.tools.sortUsers(group, year, month, date)
-                # print(sorted_users)
-                found_user = src.tools.searchUsers(sorted_users)
-                click.confirm(f"Create a graph for {found_user}?", abort=True)
-                src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
+                found_users = src.tools.searchUsers(sorted_users)
+                selected_user = src.tools.selectUser(found_users)
+                # click.confirm(f"Create a graph for {found_user}?", abort=True)
+                if selected_user == False:
+                    continue
+                src.bar.dynamic_getUserBarCharts(
+                    year, month, date, selected_user, group
+                )
                 break
             case "3":
-                click.confirm(
-                    "This will create graphs for all user which can be time consuming. Do you want to continue?",
-                    abort=True,
+                response = click.confirm(
+                    "Creating graphs for all users. Can be time consuming. Do you want to continue?",
+                    abort=False,
                 )
-                src.bar.getUserBarCharts(group, date)
-                break
+                if response == True:
+                    src.bar.getUserBarCharts(group, date)
+                    break
+                else:
+                    continue
             case "b":
-                print("")
                 break
-            case "0":
+            case "q":
                 print("quitting")
                 exit()
             case _:
-                print("Invalid option!")
-                break
+                click.echo(click.style("Invalid option!", fg="red"))
 
 
 def info():
