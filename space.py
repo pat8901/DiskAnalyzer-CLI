@@ -58,11 +58,11 @@ all_colors = (
     help="Input a report file to generate data",
 )
 def main(file, about):
-    print("Hello im in main!")
+    # print("Hello im in main!")
     if file:
         src.writer.generateReports(file, file.split("/")[-1][-14:-4])
-        click.echo(f"File path: {file}")
-        click.echo(f"File: {file.split('/')[-1][-14:-4]}")
+        # click.echo(f"File path: {file}")
+        # click.echo(f"File: {file.split('/')[-1][-14:-4]}")
         # group = getGroup()
         getGroup(file.split("/")[-1][-14:-4])
         # getJob(
@@ -75,49 +75,45 @@ def main(file, about):
         click.echo(
             "Please run program with the --help flag to see the availible options."
         )
-    print("exiting...")
+    # print("exiting...")
 
 
 def getGroup(date):
-    #     click.echo(
-    #         click.style(
-    #             f"""What group would you like to create graphs for?
-
-    # Options:
-    #     [1] Researchers
-    #     [2] Departments
-    #     [3] Colleges
-    #     [4] Quit""",
-    #             bold=True,
-    #         )
-    #     )
     while True:
         click.echo(
             click.style(
-                f"""What group would you like to create graphs for? 
-
-Options:
-    [1] Researchers
-    [2] Departments
-    [3] Colleges
-    [4] Quit""",
-                bold=True,
+                f"""
++-----------------------------------------------+
+| Select Group For Graph Creation               |
+|                                               |
+|   [1] Researchers                             |
+|   [2] Departments                             |
+|   [3] Colleges                                |
+|                                               |
+|   [0] Quit                                    |
+|                                               |
++-----------------------------------------------+ 
+"""
             )
         )
-        group_input = input("> ")
+        group_input = input(">> ")
         match group_input:
             case "1":
                 getJob("research", date)
+                print("")
             case "2":
                 getJob("departments", date)
+                print("")
             case "3":
                 getJob("colleges", date)
-            case "4":
+                print("")
+            case "0":
                 click.echo("quitting...")
+                print("")
                 exit()
             case _:
                 print("Invalid option!")
-                print("Please enter a number between 0-4")
+                print("Please enter a number between 0-4 \n")
 
 
 def getJob(group, date):
@@ -128,20 +124,23 @@ def getJob(group, date):
     print(f"month: {month}")
     click.echo(
         click.style(
-            f"""What job would you like to preform? 
-
-Options:
-    [1] General Stats
-    [2] Generate graphs for all users
-    [3] Generate a graph for a single user
-
-    [4] Go back
-    [5] Quit""",
-            bold=True,
+            """
++-----------------------------------------------+
+| Select Job                                    |
+|                                               |
+|   [1] General Stats                           |
+|   [2] Single-User Graph Generation            |
+|   [3] Muli-User graph Generation              |
+|                                               |
+|   [b] Back                                    |
+|   [0] Quit                                    |
+|                                               |
++-----------------------------------------------+ 
+"""
         )
     )
     while True:
-        group_input = input("> ")
+        group_input = input(">> ")
 
         match group_input:
             case "1":
@@ -149,14 +148,6 @@ Options:
                 src.histogram.getStackedGroupHistogram(group, year, month, date)
                 break
             case "2":
-                click.confirm(
-                    "This will create graphs for all user which can be time consuming. Do you want to continue?",
-                    abort=True,
-                )
-                print("generating graphs for each user...")
-                src.bar.getUserBarCharts(group, date)
-                break
-            case "3":
                 print("generating graph for <user>...")
                 sorted_users = src.tools.sortUsers(group, year, month, date)
                 # print(sorted_users)
@@ -164,15 +155,21 @@ Options:
                 click.confirm(f"Create a graph for {found_user}?", abort=True)
                 src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
                 break
-            case "4":
-                print("going back")
+            case "3":
+                click.confirm(
+                    "This will create graphs for all user which can be time consuming. Do you want to continue?",
+                    abort=True,
+                )
+                src.bar.getUserBarCharts(group, date)
                 break
-            case "5":
+            case "b":
+                print("")
+                break
+            case "0":
                 print("quitting")
                 exit()
             case _:
                 print("Invalid option!")
-                print("Please enter a number between 0-4")
                 break
 
 

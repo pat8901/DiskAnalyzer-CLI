@@ -19,10 +19,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-
-# *Note* When a file is uploaded to the backend we do not know if the data is formated correcly.
-# If the funtions below do not work throw and exception and tell the user that the files are not formated correctly
-
 import os
 from pypdf import PdfReader
 import csv
@@ -34,10 +30,9 @@ def createFullOutput(input, date):
 
     Converts input pdf into a txt file to be used in further processing
     """
-    pdf = open(f"{input}", "rb")  # Open pdf file
-    reader = PdfReader(pdf)  # Create a pdf reader object and pass the pdf
-    # print(os.getcwd())
-    # Open a file to be written to
+    pdf = open(f"{input}", "rb")
+    reader = PdfReader(pdf)
+
     with open(f"./documents/text/full_output/full_output_{date}.txt", "w") as f_output:
         count = 0
         # Loop through each page
@@ -370,7 +365,6 @@ def nameGenerator(date):
     groups = ["research", "colleges", "departments"]
     # Replace _ with - for proper formatting
     # date = date.replace("-", "_")
-    print(f"date: {date}")
     # month = date.replace("-", "_")
     month = src.tools.getMonth(date)
     year = date[0:-6]
@@ -410,12 +404,9 @@ def nameGenerator(date):
 def generateReports(input, date):
     # List of groups to create reports for
     groups = ["research", "colleges", "departments"]
-    print(f"input: {input}")
-    print(f"date: {date}")
 
     # Convert pdf to text file
     createFullOutput(input, date)
-    print("created full output")
     createResearchOutput(date)
     createCollegesOutput(date)
     createDepartmentOutput(date)
