@@ -24,6 +24,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import os
+import click
 
 # import tools
 
@@ -283,64 +284,68 @@ def getStackedGroupHistogram(group, year, month, date):
         f"Combined Counts From AFS Groups, Users AFS, and Users Panasas ({date})",
         fontsize=16,
     )
+    # with click.progressbar(
+    #     range(len(data_AFS_Groups), label="Generating Histogram")
+    # ) as progress:
+    length = len(data_AFS_Groups)
+    with click.progressbar(range(length), label="Generating Histogram") as progress:
+        # Creating bar plots and adding them to graph
+        for bar in progress:
+            # Run only if not the first column i.e. insignificant data
+            if data_AFS_Groups[bar] != 0:
+                p0 = ax.bar(
+                    labels[bar],
+                    data_AFS_Groups[bar],
+                    label=labels[bar],
+                    width=1,
+                    color=colors[0],
+                    edgecolor="black",
+                )
+                # If i not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
+                if bar not in [5, 6, 7]:
+                    ax.bar_label(p0, label_type="center", fontsize=16)
+            # Run only if not the first column i.e. insignificant data
+            if data_Users_AFS[bar] != 0:
+                # Creating the bar
+                p1 = ax.bar(
+                    labels[bar],
+                    data_Users_AFS[bar],
+                    label=labels[bar],
+                    width=1,
+                    bottom=data_AFS_Groups[bar],
+                    color=colors[1],
+                    edgecolor="black",
+                )
+                # If i not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
+                if bar not in [5, 6, 7]:
+                    ax.bar_label(p1, label_type="center", fontsize=16)
+            # Run only if not the first column i.e. insignificant data
+            if data_Users_Panas[bar] != 0:
+                # Creating the bar
+                p2 = ax.bar(
+                    labels[bar],
+                    data_Users_Panas[bar],
+                    label=labels[bar],
+                    width=1,
+                    bottom=data_AFS_Groups[bar] + data_Users_AFS[bar],
+                    color=colors[2],
+                    edgecolor="black",
+                )
+                # If "i" is not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
+                if bar not in [5, 6, 7]:
+                    ax.bar_label(p2, label_type="center", fontsize=16)
 
-    # Creating bar plots and adding them to graph
-    for i in range(len(data_AFS_Groups)):
-        # Run only if not the first column i.e. insignificant data
-        if data_AFS_Groups[i] != 0:
-            p0 = ax.bar(
-                labels[i],
-                data_AFS_Groups[i],
-                label=labels[i],
-                width=1,
-                color=colors[0],
-                edgecolor="black",
+            # Get the total for each stacked bar
+            total = data_AFS_Groups[bar] + data_Users_AFS[bar] + data_Users_Panas[bar]
+            # Label the stacked bar with the total
+            ax.text(
+                bar,
+                total + 5,
+                f"Total: {total}",
+                ha="center",
+                weight="bold",
+                color="black",
             )
-            # If i not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
-            if i not in [5, 6, 7]:
-                ax.bar_label(p0, label_type="center", fontsize=16)
-        # Run only if not the first column i.e. insignificant data
-        if data_Users_AFS[i] != 0:
-            # Creating the bar
-            p1 = ax.bar(
-                labels[i],
-                data_Users_AFS[i],
-                label=labels[i],
-                width=1,
-                bottom=data_AFS_Groups[i],
-                color=colors[1],
-                edgecolor="black",
-            )
-            # If i not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
-            if i not in [5, 6, 7]:
-                ax.bar_label(p1, label_type="center", fontsize=16)
-        # Run only if not the first column i.e. insignificant data
-        if data_Users_Panas[i] != 0:
-            # Creating the bar
-            p2 = ax.bar(
-                labels[i],
-                data_Users_Panas[i],
-                label=labels[i],
-                width=1,
-                bottom=data_AFS_Groups[i] + data_Users_AFS[i],
-                color=colors[2],
-                edgecolor="black",
-            )
-            # If "i" is not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
-            if i not in [5, 6, 7]:
-                ax.bar_label(p2, label_type="center", fontsize=16)
-
-        # Get the total for each stacked bar
-        total = data_AFS_Groups[i] + data_Users_AFS[i] + data_Users_Panas[i]
-        # Label the stacked bar with the total
-        ax.text(
-            i,
-            total + 5,
-            f"Total: {total}",
-            ha="center",
-            weight="bold",
-            color="black",
-        )
     # Setting this to True so one can properly layer different parts of the plot
     ax.set_axisbelow(True)
 

@@ -235,36 +235,57 @@ def sortUsers(group, year, month, date):
     return sorted(sorted_users)
 
 
-def searchUsers(sorted_users):
+def selectUser(sorted_users):
     """Searches alphabetically sorted list of users based on search input provided"""
+    # length = len(sorted_users)
     while True:
         found_users = []
-        found = False
         count = 1
-        search_input = input("Enter user to search:").lower()
+        search_input = input("Enter user to search: ").lower()
+        if search_input == "quit()":
+            return False
+        if search_input == "help()":
+            print("You need help")
+            continue
         print("============================")
         for user in sorted_users:
             if search_input in user.lower():
                 print(f"{count}: {user}")
                 found_users.append(user)
                 count += 1
-        print("============================\n")
-        # if len(found_users) == 1:
-        #     print(f"found user: {found_users[0]}")
-        #     return found_users[0]
-        return found_users
+        print("============================")
+        length = len(found_users)
 
+        while True:
+            if len(found_users) == 0:
+                click.echo(click.style("No Users Found, Try Again\n", fg="red"))
+                break
 
-def selectUser(found_users):
-    length = len(found_users)
-    while True:
-        user_input = input("Select User's Number or Type 's' to search again: ")
-        if int(user_input) > length:
-            click.echo(click.style("Enter a Valid Number!", fg="red"))
-            continue
-        user = found_users[int(user_input) - 1]
-        response = click.confirm(f"Create a Graph For {user}?", abort=False)
-        if response == True:
-            return user
-        else:
-            return False
+            user_input = input("Select User's Number or Type 's' to Search Again: ")
+
+            if user_input == "quit()":
+                return False
+            if user_input == "help()":
+                print("You need help")
+                continue
+            if user_input == "s":
+                print("")
+                break
+
+            try:
+                user_input = int(user_input)
+            except:
+                click.echo(click.style("Enter a Number", fg="red"))
+                continue
+
+            if int(user_input) > length:
+                click.echo(click.style("Enter a Valid Number", fg="red"))
+                continue
+
+            user = found_users[int(user_input) - 1]
+            response = click.confirm(f"Create a Graph For {user}?", abort=False)
+
+            if response == True:
+                return user
+            else:
+                return False

@@ -398,11 +398,8 @@ def nameGenerator(date):
                     output.write(name + "\n")
 
 
-# +======================================================================================+
-# |                 Calls all the functions to generate reports in one go                |
-# +======================================================================================+
 def generateReports(input, date):
-    # List of groups to create reports for
+    """Calls all the functions to generate reports in one go"""
     groups = ["research", "colleges", "departments"]
 
     # Convert pdf to text file

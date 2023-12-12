@@ -118,7 +118,8 @@ def getJob(group, date):
     while True:
         click.echo(
             click.style(
-                """
+                f"""
+Group: {group}           
 +-----------------------------------------------+
 | Select Job                                    |
 |                                               |
@@ -140,15 +141,8 @@ def getJob(group, date):
                 src.histogram.getStackedGroupHistogram(group, year, month, date)
                 break
             case "2":
-                # sorted_users = src.tools.sortUsers(group, year, month, date)
-                # found_user = src.tools.searchUsers(sorted_users)
-                # click.confirm(f"Create a graph for {found_user}?", abort=True)
-                # src.bar.dynamic_getUserBarCharts(year, month, date, found_user, group)
-                # break
                 sorted_users = src.tools.sortUsers(group, year, month, date)
-                found_users = src.tools.searchUsers(sorted_users)
-                selected_user = src.tools.selectUser(found_users)
-                # click.confirm(f"Create a graph for {found_user}?", abort=True)
+                selected_user = src.tools.selectUser(sorted_users)
                 if selected_user == False:
                     continue
                 src.bar.dynamic_getUserBarCharts(
