@@ -50,10 +50,9 @@ all_colors = (
 
 
 @click.command()
-@click.option("--about", "-a", is_flag=True, help="Tells you about the program")
+@click.option("--about", is_flag=True, help="Tells you about the program")
 @click.option(
     "--file",
-    "-f",
     type=click.Path(exists=True),
     help="Input a report file to generate data",
 )
@@ -61,13 +60,11 @@ def main(file, about):
     # print("Hello im in main!")
     if file:
         src.writer.generateReports(file, file.split("/")[-1][-14:-4])
-        # click.echo(f"File path: {file}")
-        # click.echo(f"File: {file.split('/')[-1][-14:-4]}")
-        # group = getGroup()
-        getGroup(file.split("/")[-1][-14:-4])
-        # getJob(
-        #     group, file.split("/")[-1][-14:-4]
-        # )  # TODO call this inside of getGroup()
+        try:
+            getGroup(file.split("/")[-1][-14:-4])
+        except KeyboardInterrupt:
+            print("Exiting...")
+            exit()
     elif about:
         info()
     else:
@@ -85,13 +82,12 @@ def getGroup(date):
                 f"""
 +-----------------------------------------------+
 | Select Group For Graph Creation               |
-|                                               |
+|-----------------------------------------------|           
 |   [1] Researchers                             |
 |   [2] Departments                             |
 |   [3] Colleges                                |
 |                                               |
 |   [q] Quit                                    |
-|                                               |
 +-----------------------------------------------+ 
 """
             )
@@ -122,14 +118,13 @@ def getJob(group, date):
 Group: {group}           
 +-----------------------------------------------+
 | Select Job                                    |
-|                                               |
+|-----------------------------------------------|
 |   [1] General Stats                           |
 |   [2] Single-User Graph Generation            |
 |   [3] Muli-User Graph Generation              |
 |                                               |
 |   [b] Back                                    |
 |   [q] Quit                                    |
-|                                               |
 +-----------------------------------------------+ 
 """
             )
