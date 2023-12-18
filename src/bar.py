@@ -44,7 +44,15 @@ def getUserBarCharts(group, date):
     else:
         header = "College Name"
 
-    df = pd.read_csv(f"./documents/csv/{year}/{month}/{group}_{date}.csv")
+    df = pd.read_csv(
+        f"./documents/csv/{year}/{month}/{group}_{date}.csv",
+        dtype={
+            "AFS Groups": float,
+            "Users AFS": float,
+            "Users Panas.": float,
+            "Tot.Used Space": float,
+        },
+    )
     # Getting the amount of rows in dataframe
     row_count = len(df.index)
 

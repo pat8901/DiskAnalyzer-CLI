@@ -26,13 +26,9 @@ import matplotlib.pyplot as plt
 import os
 import click
 
-# import tools
 
-
-# +======================================================================================+
-# |             Creates a histogram of total storage values for the 3 groups             |
-# +======================================================================================+
 def getGroupTotals(group, year, month, date):
+    """Creates a histogram of total storage values for the 3 storage types"""
     # Read csv file into pandas dataframe
     df = pd.read_csv(f"csv/{group}_{date}.csv")
     terabyte = 1000000000  # Terabyte definition
@@ -102,12 +98,11 @@ def getGroupTotals(group, year, month, date):
     )
 
 
-# +======================================================================================+
-# |             Creates a histogram for a single group and single storage type.          |
-# |             Uses binned data as x values and their frequencies as y values           |
-# +======================================================================================+
 def getGroupHistogram(group, column, date):
-    # Reads csv file selected by group and date into a pandas dataframe
+    """Creates a histogram for a single group and single storage type.
+
+    Uses binned data as x values and their frequencies as y values.
+    """
     df = pd.read_csv(f"csv/{group}_{date}.csv")
     terabyte = 1000000000  # Terabyte definition
     # Bins that values will be compared against
@@ -192,7 +187,6 @@ def getGroupHistogram(group, column, date):
         format="png",
         bbox_inches="tight",
     )
-    # plt.show() # Showing the plot
 
 
 # TODO *This needs to be fixed so it can be dynamic in its error correction*
@@ -201,11 +195,11 @@ def getStackedGroupHistogram(group, year, month, date):
 
     Uses binned data as x values and their frequencies as y values
     """
+
     df = pd.read_csv(f"./documents/csv/{year}/{month}/{group}_{date}.csv")
     save_date = date.replace("-", "")
     row_count = len(df.index)
     terabyte = 1000000000
-    # Colors for the bars
     colors = [
         "tab:blue",
         "orange",
@@ -217,10 +211,11 @@ def getStackedGroupHistogram(group, year, month, date):
         "tab:brown",
     ]
 
-    hidden_bins = [0, 0.001]  # Bins to hold insignificant data
-    hidden_label = ["0GB-1GB"]  # Label for insignificant data
-    bins = [0.001, 0.1, 0.5, 1, 4, 10, 20, 50, 10000000]  # Bins for the good data
-    # Labels for good data
+    # Bins and labels for insignificant data
+    hidden_bins = [0, 0.001]
+    hidden_label = ["0GB-1GB"]
+    # Bins and labels for good data
+    bins = [0.001, 0.1, 0.5, 1, 4, 10, 20, 50, 10000000]
     labels = [
         "1-100 GB",
         "100-500 GB",
@@ -232,7 +227,6 @@ def getStackedGroupHistogram(group, year, month, date):
         "> 50 TB",
     ]
 
-    # Instantiating the plot interface
     fig, ax = plt.subplots()
 
     # Covert data in column from kilobytes to terabytes
@@ -267,7 +261,10 @@ def getStackedGroupHistogram(group, year, month, date):
     data_AFS_Groups = df["bin_AFS_Groups"].value_counts(sort=False)
     data_Users_AFS = df["bin_Users_AFS"].value_counts(sort=False)
     data_Users_Panas = df["bin_Users_Panas."].value_counts(sort=False)
-    # data_total = df["bin_total"].value_counts(sort=False) # Not used, keep for information sake
+    data_total = df["bin_total"].value_counts(
+        sort=False,
+    )
+    print(f"total number of value counts: {data_total}")
 
     data_AFS_Groups_unused = df["bin_AFS_Groups_unused"].value_counts(sort=False)
     data_Users_AFS_unused = df["bin_Users_AFS_unused"].value_counts(sort=False)
@@ -278,20 +275,28 @@ def getStackedGroupHistogram(group, year, month, date):
     # with pd.option_context("display.max_rows", None, "display.max_columns", None):
     #     print(df)
 
-    # Setting the graph's x/y labels and title
     ax.set_ylabel("Number of Users", fontsize=16)
     ax.set_title(
         f"Combined Counts From AFS Groups, Users AFS, and Users Panasas ({date})",
         fontsize=16,
     )
-    # with click.progressbar(
-    #     range(len(data_AFS_Groups), label="Generating Histogram")
-    # ) as progress:
+
     length = len(data_AFS_Groups)
+    biggest_user_count = data_AFS_Groups[0] + data_Users_AFS[0] + data_Users_Panas[0]
+
+    print(f"biggest count (before): {biggest_user_count}")
+    # Finding which bar has the biggest value count
+    for bar in range(length):
+        current_user_count = (
+            data_AFS_Groups[bar] + data_Users_AFS[bar] + data_Users_Panas[bar]
+        )
+        if biggest_user_count < current_user_count:
+            biggest_user_count = current_user_count
+    print(f"biggest count (after): {biggest_user_count}")
+
     with click.progressbar(range(length), label="Generating Histogram") as progress:
         # Creating bar plots and adding them to graph
         for bar in progress:
-            # Run only if not the first column i.e. insignificant data
             if data_AFS_Groups[bar] != 0:
                 p0 = ax.bar(
                     labels[bar],
@@ -302,11 +307,13 @@ def getStackedGroupHistogram(group, year, month, date):
                     edgecolor="black",
                 )
                 # If i not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
-                if bar not in [5, 6, 7]:
+                # if bar not in [5, 6, 7]:
+                #     ax.bar_label(p0, label_type="center", fontsize=16)
+
+                if data_AFS_Groups[bar] / biggest_user_count >= 0.035:
                     ax.bar_label(p0, label_type="center", fontsize=16)
-            # Run only if not the first column i.e. insignificant data
+
             if data_Users_AFS[bar] != 0:
-                # Creating the bar
                 p1 = ax.bar(
                     labels[bar],
                     data_Users_AFS[bar],
@@ -317,11 +324,12 @@ def getStackedGroupHistogram(group, year, month, date):
                     edgecolor="black",
                 )
                 # If i not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
-                if bar not in [5, 6, 7]:
+                # if bar not in [5, 6, 7]:
+                #     ax.bar_label(p1, label_type="center", fontsize=16)
+                if data_Users_AFS[bar] / biggest_user_count >= 0.035:
                     ax.bar_label(p1, label_type="center", fontsize=16)
-            # Run only if not the first column i.e. insignificant data
+
             if data_Users_Panas[bar] != 0:
-                # Creating the bar
                 p2 = ax.bar(
                     labels[bar],
                     data_Users_Panas[bar],
@@ -332,15 +340,16 @@ def getStackedGroupHistogram(group, year, month, date):
                     edgecolor="black",
                 )
                 # If "i" is not in the list then give it a label !!!This is where I needs to fix to make it more dynamic!!!
-                if bar not in [5, 6, 7]:
+                # if bar not in [5, 6, 7]:
+                #     ax.bar_label(p2, label_type="center", fontsize=16)
+                if data_Users_Panas[bar] / biggest_user_count >= 0.035:
                     ax.bar_label(p2, label_type="center", fontsize=16)
 
-            # Get the total for each stacked bar
             total = data_AFS_Groups[bar] + data_Users_AFS[bar] + data_Users_Panas[bar]
-            # Label the stacked bar with the total
+
             ax.text(
                 bar,
-                total + 5,
+                total + (biggest_user_count * 0.02),  # needs to be a percentage
                 f"Total: {total}",
                 ha="center",
                 weight="bold",
@@ -378,7 +387,8 @@ def getStackedGroupHistogram(group, year, month, date):
         rowLoc="left",
         rowColours=["tab:green", "orange", "tab:blue"],
         colLabels=["10-20 TB", "20-50 TB", "> 50 TB"],
-        loc="center right",
+        bbox=(1.05, 1, 1, 1),
+        loc="upper left",
         zorder=3,
     )
 
