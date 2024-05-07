@@ -5,7 +5,8 @@ graphs/research/user_reports/pngs
 graphs/research/test_reports/
 __pycache__
 
-
+documents/reports/*
+!documents/reports/README.txt
 documents/csv/*
 !documents/csv/README.txt
 documents/text/full_output/*
