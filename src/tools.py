@@ -30,12 +30,11 @@ import numpy as np
 import click
 
 
-# +======================================================================================+
-# |       Tool to determine the proper divisor to use when given a pandas dataframe      |
-# |             Uses the total storage of a user to calculate the divisor                |
-# +======================================================================================+
 def getDivisor(input):
-    # may be faster to do bit shifting?
+    """ Tool to determine the proper divisor to use when given a pandas dataframe.
+    Uses the total storage of a user to calculate the divison.
+    """
+    
     terabyte = 1000000000
     gigabyte = 1000000
     megabyte = 1000
@@ -51,12 +50,11 @@ def getDivisor(input):
         return kilobyte
 
 
-# +======================================================================================+
-# |       Tool to determine the proper divisor to use when given a pandas dataframe      |
-# |             Uses the total storage of a user to calculate the divisor                |
-# +======================================================================================+
 def getDivisorArray(inputArray):
-    # may be faster to do bit shifting?
+    """ Tool to determine the proper divisor to use when given a pandas dataframe.
+    Uses the total storage of a user to calculate the divisor.
+    """
+    
     terabyte = 1000000000
     gigabyte = 1000000
     megabyte = 1000
@@ -77,10 +75,9 @@ def getDivisorArray(inputArray):
     return outputArray
 
 
-# +======================================================================================+
-# |               Tool to number to its corresponding name returns a string              |
-# +======================================================================================+
 def getChartCounter(input):
+""" Tool to number to its corresponding name returns a string."""
+    
     terabyte = 1000000000
     gigabyte = 1000000
     megabyte = 1000
@@ -96,10 +93,9 @@ def getChartCounter(input):
         return "Kilobytes"
 
 
-# +======================================================================================+
-# |               Tool to number to its corresponding name returns a string              |
-# +======================================================================================+
 def getUnit(input):
+    """ Tool to number to its corresponding name returns a string."""
+    
     if input == "Terabytes":
         return "TB"
     elif input == "Gigabytes":
@@ -110,11 +106,8 @@ def getUnit(input):
         return "KB"
 
 
-# +======================================================================================+
-# |             This function sums the column of Total Storage and prints                |
-# |                           onto the screen in terabytes                               |
-# +======================================================================================+
 def getTotalStorage():
+    """ This function sums the column of Total Storage and prints onto the screen in terabytes."""
     total = 0
     df = pd.read_csv("csv/research.csv")
     total = df["Tot.Used Space"].sum()
@@ -123,18 +116,14 @@ def getTotalStorage():
     print(f"Total Storage (TB): {terabyte}")
 
 
-# +======================================================================================+
-# |             This fucntion may be helpful in adding labels to graphs                  |
-# +======================================================================================+
 def addlabels(x, y):
+    """This fucntion may be helpful in adding labels to graphs."""
     for i in range(len(x)):
         plt.text(i, y[i], y[i])
 
 
-# +======================================================================================+
-# |             Creates a list of bin labels to be used with frequency graphs            |
-# +======================================================================================+
 def binLabelCreator(amount, step, start):
+    """Creates a list of bin labels to be used with frequency graphs."""
     bin_labels = []
     bin_labels.append(f"{start}-{step}")
     left = step
@@ -144,10 +133,8 @@ def binLabelCreator(amount, step, start):
     return bin_labels
 
 
-# +======================================================================================+
-# |             Creates a list of bin to be used with frequency graphs                   |
-# +======================================================================================+
 def binCreator(amount, step, start):
+    """Creates a list of bin to be used with frequency graphs."""
     bins = []
     bins.append(start)
     left = step
@@ -158,38 +145,28 @@ def binCreator(amount, step, start):
     return bins
 
 
-# +======================================================================================+
-# |                       Reformates the date to American Standard                       |
-# +======================================================================================+
 def dateFormatter(date):
+    """Reformates the date to American Standard."""
     print(date)
 
 
-# +======================================================================================+
-# |                       Fetches the date of the input report                           |
-# +======================================================================================+
 def getReportDate(report_file):
+    """Fetches the date of the input report."""
     return report_file[-14:-4]
 
 
-# +======================================================================================+
-# |                       Fetches the path of the input report                           |
-# +======================================================================================+
 def getFilePath(report_file):
+    """Fetches the path of the input report."""
     return report_file[-14:-4]
 
 
-# +======================================================================================+
-# |                       Fetches the file name of input report                           |
-# +======================================================================================+
 def getFileName(report_file):
+    """Fetches the file name of input report."""
     return report_file[-26:]
 
 
-# +======================================================================================+
-# |                Tool to choose what format you want to save figures in                |
-# +======================================================================================+
 def getFormat():
+    """Tool to choose what format you want to save figures in."""
     print(f"you selected png")
 
 
@@ -224,7 +201,7 @@ def getMonth(date):
 
 
 def sortUsers(group, year, month, date):
-    """Read file containing user names, alphabetically sort them and return as a list"""
+    """Read file containing user names, alphabetically sort them and return as a list."""
     with open(
         f"documents/text/names/{year}/{month}/{group}_{date}.txt", "r"
     ) as file_input:
@@ -237,7 +214,7 @@ def sortUsers(group, year, month, date):
 
 
 def selectUser(sorted_users):
-    """Searches alphabetically sorted list of users based on search input provided"""
+    """Searches alphabetically sorted list of users based on search input provided."""
     # length = len(sorted_users)
     while True:
         found_users = []
