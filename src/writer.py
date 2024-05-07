@@ -27,10 +27,10 @@ import src.tools
 
 
 def createFullOutput(input, date):
-    """Can be optimized further
-
-    Converts input pdf into a txt file to be used in further processing
+    """Can be optimized further.
+    Converts input pdf into a txt file to be used in further processing.
     """
+    
     pdf = open(f"{input}", "rb")
     reader = PdfReader(pdf)
 
@@ -45,12 +45,11 @@ def createFullOutput(input, date):
             count += 1  # Do I even need to count like this?
 
 
-# +======================================================================================+
-# |     Takes full text file and splits into information only containing researchers     |
-#                  This txt file will be used in further processing                      |
-# |            *Can be optimized further, can probably combine with others*              |
-# +======================================================================================+
 def createResearchOutput(date):
+    """ Takes full text file and splits into information only containing researchers. This txt file will be used in further processing.   
+    *Can be optimized further, can probably combine with others* 
+    """
+    
     # This is where the research information begin
     begin = "-------------------------------   -------    ------------    ------------    ------------    --------------"
     # This is where the research information ends
@@ -86,12 +85,12 @@ def createResearchOutput(date):
                     beginFound = True
 
 
-# +======================================================================================+
-# |     Takes full text file and splits into information only containing departments     |
-#                  This txt file will be used in further processing                      |
-# |            *Can be optimized further, can probably combine with others*              |
-# +======================================================================================+
 def createDepartmentOutput(date):
+    """ 
+    Takes full text file and splits into information only containing departments. This txt file will be used in further processing.
+    *Can be optimized further, can probably combine with others*
+    """
+    
     header = "                                            Space Used by Departments"
     # This is where the departments information begins
     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
@@ -132,12 +131,12 @@ def createDepartmentOutput(date):
                         beginFound = True
 
 
-# +======================================================================================+
-# |     Takes full text file and splits into information only containing colleges        |
-#                  This txt file will be used in further processing                      |
-# |            *Can be optimized further, can probably combine with others*              |
-# +======================================================================================+
 def createCollegesOutput(date):
+    """ 
+    Takes full text file and splits into information only containing colleges. This txt file will be used in further processing.
+    *Can be optimized further, can probably combine with others*
+    """
+    
     header = "                                            Space Used by Colleges"
     # This is where colleges information begins
     begin = "-----------------------------------------    ------------    ------------    ------------    --------------"
@@ -181,7 +180,8 @@ def createCollegesOutput(date):
 
 
 def csvWriter(input, output, date):
-    """Creates a csv file from previosuly generated text files"""
+    """Creates a csv file from previosuly generated text files."""
+    
     # Replace _ with - for proper formatting
     folder_date = date.replace("-", "_")
     # Grab the year string
@@ -290,11 +290,11 @@ def csvWriter(input, output, date):
 
 def csvWriter2():
     """*This is not used*
-
     Creates a csv file from previosuly generated text files.
-    This is different from the other csv file writter as it also creates an ID row
+    This is different from the other csv file writter as it also creates an ID row.
     The IDs are increments for each row loop.
     """
+    
     input = "research"
     output = "research"
     date = "2023-08-10"
@@ -344,7 +344,8 @@ def csvWriter2():
 
 
 def nameExtractor():
-    """Gets the names found in a group text file and returns an array of names"""
+    """Gets the names found in a group text file and returns an array of names."""
+    
     groups = ["research", "colleges", "departments"]
 
     # Read a group text file
@@ -362,7 +363,8 @@ def nameExtractor():
 
 
 def nameGenerator(date):
-    """creates files of names for each report uploaded"""
+    """creates files of names for each report uploaded."""
+    
     groups = ["research", "colleges", "departments"]
     # Replace _ with - for proper formatting
     # date = date.replace("-", "_")
@@ -400,7 +402,8 @@ def nameGenerator(date):
 
 
 def generateReports(input, date):
-    """Calls all the functions to generate reports in one go"""
+    """Calls all the functions to generate reports in one go."""
+    
     groups = ["research", "colleges", "departments"]
 
     # Convert pdf to text file
